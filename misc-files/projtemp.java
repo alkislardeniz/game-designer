@@ -311,16 +311,6 @@ public class ScreenObject extends ScreenComponent
  * VariableExpr ::= <name:String>
  */
 
-public enum ExprType 
-{ 
-    BOOLEAN, INTEGER, DOUBLE, STRING, ALL;
-    
-    // whether newType can be substituted as a member of this
-    public boolean isA(ExprType newType);
-    
-    public ExprType max(ExprType other);
-}
-
 // parse string expression into tree, evaluate its value
 // to be extended by classes ending with Expr, which won't be made public
 public abstract class Expr
@@ -377,4 +367,14 @@ public class ExprValue
     
     // whether this can be coerced to newType
     public boolean hasType(ExprType newType);
+}
+
+public enum ExprType 
+{ 
+    BOOLEAN, INTEGER, DOUBLE, STRING, ALL;
+    
+    // whether newType can be substituted as a member of this
+    public boolean isA(ExprType newType);
+    
+    public ExprType max(ExprType other);
 }
