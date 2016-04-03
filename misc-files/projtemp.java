@@ -33,7 +33,8 @@ public class GamePlayer implements Serializable
 {
     Game game;
     Screen currentScreen;
-    Map<String,Expr> varBinds;
+    Map<Var,ExprValue> varBinds;
+    boolean shown;
     
     // for serialization, instantiate everything as null
     public GamePlayer();
@@ -44,13 +45,21 @@ public class GamePlayer implements Serializable
     // called from the constructor and individual screens
     // calls the current screen in the state
     // returns false if currentScreen null, i.e. there are no screens left to execute
+    // automatically sets shown to false
     public boolean call();
+    
+    // called from playable screen's fromPlayer() method
+    // set shown to true
+    public void showCurrentScreen();
+    
+    // return shown, called from GUI
+    public boolean getShown();
     
     public Screen getCurrentScreen();
     public void setCurrentScreen(Screen new);
     
-    public Expr getVariable(String name);
-    public void addVariable(String name, String valueString);
+    public ExprValue getVariable(String name);
+    public void addVariable(String name, String valueString); // parses and evaluates valueString
 }
 
 // data structure containing information about one game
@@ -59,7 +68,7 @@ public class Game implements Serializable
     // possibly make the lists maps, so as to memoize screen names and speed up program
     List<Screen> screens; // search through screens by their names
     List<ScreenObject> sharedObjects; // searched by names, represent objects shared across screens
-    List<String> variables;
+    List<Var> variables;
     Screen startScreen;
     
     // initialize empty collections, null startScreen
@@ -68,6 +77,7 @@ public class Game implements Serializable
     // getters, setters
     // for lists, get() and remove() methods call objects by their names
     // return null if no objects of that name
+    public boolean hasVariable(Var var);
     
     // editor interface
     
@@ -281,17 +291,90 @@ public class ScreenObject extends ScreenComponent
     // perhaps create new ObjectPlayer class to manage object movement in playing game
 }
 
-// parse string expression into tree, evaluate its value
-public class Expr implements Serializable
-{
-    Tree<String> parseTree;
+/** Expression evaluation **/
+
+// Put in a separate package
+
+// incorporate parentheses into the parser
+// parse each recursive operation from left to right
+/* 
+ * Syntax of expressions, sorted by precedence of evaluation:
+ * Expr ::= UnaryOpExpr | BinaryOpExpr | LiteralExpr | VariableExpr
+ * UnaryOpExpr ::= UnaryOp <whitespace> Expr
+ * UnaryOp ::= "NOT" | "-"
+ * BinaryOpExpr ::= Expr <whitespace> BinaryOp <whitespace> Expr
+ * BinaryOp ::= LogicOp | RelationOp | ArithOp
+ * LogicOp ::= "OR" | "AND" 
+ * RelationOp ::= "=" | "!=" | "<" | ">" | "<=" | ">="
+ * ArithOp ::= "+" | "-" | "*" | "/" | "%"
+ * LiteralExpr ::= <Boolean> | <Integer> | <Double> | "\"" <String> "\""
+ * VariableExpr ::= <name:String>
+ */
+
+public enum ExprType 
+{ 
+    BOOLEAN, INTEGER, DOUBLE, STRING, ALL;
     
-    // null tree
+    // whether newType can be substituted as a member of this
+    public boolean isA(ExprType newType);
+    
+    public ExprType max(ExprType other);
+}
+
+// parse string expression into tree, evaluate its value
+// to be extended by classes ending with Expr, which won't be made public
+public abstract class Expr
+{
+    // return null if parseString not a valid Expr, a non-null Expr otherwise
+    public static Expr parse(String parseString);
+    
+    ExprType type;
+    
     public Expr();
     
-    public Expr(String exprString);
+    // return whether the constructed expression is valid within the game
+    // use for error checking while editing, possibly incorporate under parse()
+    public abstract boolean valid(Game game);
+    
+    // assuming expression is valid
+    public ExprType getType(Game game);
     
     // return the result of evaluating the parse tree in the current environment
-    // problem: type checking
-    public Object eval(GamePlayer env);
+    // assuming valid() is already true
+    public abstract ExprValue eval(GamePlayer env);
+}
+
+// static type checking
+public class Var
+{
+    String name;
+    ExprType type;
+    
+    public Var(String name);
+    
+    public String   getName();
+    public ExprType getType();
+    
+    // called after addition of assignment screen
+    public boolean setType(ExprType newType);
+    
+    // whether this can be coerced to newType
+    public boolean hasType(ExprType newType);
+}
+
+public class ExprValue
+{
+    Object   value;
+    ExprType type;
+    
+    public ExprValue(Object value, ExprType type);
+    
+    public Object getValue();
+    public ExprType getType();
+    
+    // for coercion of arguments
+    public boolean setType(ExprType newType);
+    
+    // whether this can be coerced to newType
+    public boolean hasType(ExprType newType);
 }
