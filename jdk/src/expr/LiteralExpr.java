@@ -61,6 +61,8 @@ class LiteralExpr extends Expr
 
     // equals()
 
+    // possibly add random expressions
+
     public boolean valid(VariableSet vars)
     {
         return true;

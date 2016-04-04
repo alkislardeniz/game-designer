@@ -32,6 +32,17 @@ public class Var
         return false;
     }
 
+    public boolean equals(Object other)
+    {
+        return other != null && other instanceof Var
+            && name.equals(((Var) other).name);
+    }
+
+    public String toString()
+    {
+        return name;
+    }
+
     // whether this can be coerced to newType
     public boolean hasType(ExprType newType)
     {
