@@ -29,9 +29,9 @@ public class GamePlayer implements Serializable, VariableEnv
 
     // called from the constructor and individual screens
     // calls the current screen in the state
-    // returns false if currentScreen null, i.e. there are no screens left to execute
+    // returns false if newScreen null, i.e. there are no screens left to execute
     // automatically sets shown to false
-    public boolean call()
+    public boolean call(Screen newScreen)
     {
         return false;
     }
@@ -49,22 +49,12 @@ public class GamePlayer implements Serializable, VariableEnv
         return false;
     }
 
-    public Screen getCurrentScreen()
-    {
-        return null;
-    }
-
-    public void setCurrentScreen(Screen screen)
-    {
-
-    }
-
     public ExprValue getVariable(String name)
     {
         return null;
     }
 
-    public void addVariable(String name, String valueString) // parses and evaluates valueString
+    public void addVariable(String name, Expr value) // parses and evaluates valueString
     {
 
     }

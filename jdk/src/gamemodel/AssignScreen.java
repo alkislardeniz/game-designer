@@ -3,10 +3,13 @@ package gamemodel;
 import expr.*;
 
 /**
- * Created by admin on 4/3/16.
+ * AssignScreen
+ * Performs assignment on variable.
+ * @author  Ata Deniz Aydin
+ * @version 05/04/16
  */
 // make sure this is bound only to one screen
-public class AssignScreen extends Screen
+public class AssignScreen extends NonPlayableScreen
 {
     String variable;
     Expr newValue;
@@ -22,10 +25,10 @@ public class AssignScreen extends Screen
 
     // calculates newValue in the context of player, sets value of variable in the
     // context of player, then calls toPlayer() with the default option
-    public void fromPlayer(GamePlayer player)
+    @Override
+    public String getOption(GamePlayer player)
     {
-        String option = "";
-
-        toPlayer(player, option);
+        player.addVariable(variable, newValue);
+        return ""; // first option
     }
 }

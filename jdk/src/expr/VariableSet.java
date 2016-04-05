@@ -1,7 +1,10 @@
 package expr;
 
 /**
- * Created by admin on 4/3/16.
+ * VariableSet
+ * Collection of variables.
+ * @author  Ata Deniz Aydin
+ * @version 03/04/16
  */
 public interface VariableSet
 {

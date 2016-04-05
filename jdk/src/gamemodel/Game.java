@@ -12,7 +12,7 @@ public class Game implements Serializable, VariableSet
     // possibly make the lists maps, so as to memoize screen names and speed up program
     List<Screen> screens; // search through screens by their names
     List<ScreenObject> sharedObjects; // searched by names, represent objects shared across screens
-    List<Var> variables;
+    List<Var> variables; // perhaps create new class for collection of variables
     Screen startScreen;
 
     // initialize empty collections, null startScreen

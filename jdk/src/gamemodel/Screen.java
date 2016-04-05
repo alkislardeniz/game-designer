@@ -1,10 +1,13 @@
 package gamemodel;
 
-import java.util.List;
+import java.util.Map;
 import java.io.Serializable;
 
 /**
- * Created by admin on 4/3/16.
+ * Screen
+ * Abstract class for screens.
+ * @author  Ata Deniz Aydin
+ * @version 05/04/16
  */
 // class codifying a screen, visible or not
 public abstract class Screen implements Serializable
@@ -13,7 +16,7 @@ public abstract class Screen implements Serializable
     String name;
     String description;
     Game parent; // why?
-    List<Screen> options; // searched by name
+    Map<String,Screen> options; // searched by name
     int optionLimit = -1; // affects add, changed for AssignScreen and CondScreen
     boolean playable; // true for PlayableScreen, used to determine type w/o calling instanceof
 
@@ -41,7 +44,7 @@ public abstract class Screen implements Serializable
     }
 
     // getOptions() to be called from editor
-    protected List<Screen> getOptions()
+    protected Map<String,Screen> getOptions()
     {
         return null;
     }
