@@ -8,6 +8,6 @@ package expr;
  */
 public interface VariableEnv
 {
-    public ExprValue getVariable(String name);
-    public void addVariable(String name, Expr value);
+    public ExprValue getVariable(Var var);
+    public void addVariable(Var var, Expr value);
 }

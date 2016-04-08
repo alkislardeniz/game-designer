@@ -49,12 +49,14 @@ public class GamePlayer implements Serializable, VariableEnv
         return false;
     }
 
-    public ExprValue getVariable(String name)
+    public ExprValue getVariable(Var var)
     {
         return null;
     }
 
-    public void addVariable(String name, Expr value) // parses and evaluates valueString
+    // evaluates value before adding it to map
+    // should check for null
+    public void addVariable(Var var, Expr value)
     {
 
     }

@@ -26,6 +26,7 @@ public class PlayableScreen extends Screen
     {
         return null;
     }
+
     public boolean addComponent(String name, ScreenComponent comp)
     {
         return false;
@@ -50,7 +51,7 @@ public class PlayableScreen extends Screen
 
     // call components in leaving screen
     @Override
-    public void toPlayer(GamePlayer player, String option)
+    public void toPlayer(GamePlayer player, Option option)
     {
 
     }

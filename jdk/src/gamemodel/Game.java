@@ -29,6 +29,11 @@ public class Game implements Serializable, VariableSet
         return false;
     }
 
+    public Var getVariable(String varName)
+    {
+        return null;
+    }
+
     // editor interface
 
     // create new screen, playable, asignment or cond

@@ -1,25 +1,60 @@
 package gamemodel;
 
+import expr.*;
+
 /**
- * Created by admin on 4/3/16.
+ * ScreenTextBox
+ * Assigns inputted value to variable in a screen.
+ * @author  Ata Deniz Aydin
+ * @version 08/04/16
  */
 public class ScreenTextBox extends ScreenComponent
 {
-    String variable;
-    String text;
+    Var variable;
+    Expr text;
 
     // perhaps with less options and setters
     public ScreenTextBox(Screen par, String nam)
     {
+        super(par, nam);
 
+        variable = null;
+        text = null;
     }
 
     // getters, setters go here
 
+    public boolean setVariable(String newVar)
+    {
+        Var temp = parent.parent.getVariable(newVar);
+
+        if (temp == null)
+            return false;
+
+        variable = temp;
+        return true;
+    }
+
+    // called from GUI, perhaps disable exiting from screen until a valid expression is added
+    public ExprError setText(String newText)
+    {
+        Expr temp = Expr.parse(newText);
+
+        if (temp == null)
+            return ExprError.UNPARSED;
+
+        if (!temp.valid(parent.parent))
+            return ExprError.INVALID;
+
+        text = temp;
+        return ExprError.VALID;
+    }
+
     // update value of variable to evaluation of text
+    // if text is false, do nothing or perhaps disable exiting
     @Override
     public void leavingScreen(GamePlayer player)
     {
-
+        player.addVariable(variable, text);
     }
 }

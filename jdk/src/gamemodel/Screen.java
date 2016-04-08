@@ -1,6 +1,6 @@
 package gamemodel;
 
-import java.util.Map;
+import java.util.List;
 import java.io.Serializable;
 
 /**
@@ -16,7 +16,7 @@ public abstract class Screen implements Serializable
     String name;
     String description;
     Game parent; // why?
-    Map<String,Screen> options; // searched by name
+    List<Option> options; // searched by name
     int optionLimit = -1; // affects add, changed for AssignScreen and CondScreen
     boolean playable; // true for PlayableScreen, used to determine type w/o calling instanceof
 
@@ -38,13 +38,13 @@ public abstract class Screen implements Serializable
     // calls player after updating its state, sets new screen of player to option,
     // then calls the player's call() method
     // can be called either from fromPlayer or from GUI action listeners
-    public void toPlayer(GamePlayer player, String option)
+    public void toPlayer(GamePlayer player, Option option)
     {
 
     }
 
     // getOptions() to be called from editor
-    protected Map<String,Screen> getOptions()
+    protected List<Option> getOptions()
     {
         return null;
     }
@@ -54,7 +54,7 @@ public abstract class Screen implements Serializable
         return false;
     }
 
-    public Screen getOption(String name)
+    public Screen getScreenWithOption(String name)
     {
         return null;
     }

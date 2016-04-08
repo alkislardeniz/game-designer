@@ -9,4 +9,5 @@ package expr;
 public interface VariableSet
 {
     public boolean hasVariable(Var var);
+    public Var getVariable(String varName);
 }
