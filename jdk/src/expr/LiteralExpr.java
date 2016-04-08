@@ -38,8 +38,8 @@ class LiteralExpr extends Expr
             typ = ExprType.DOUBLE;
         } catch (NumberFormatException e) {}
 
-        // check for string, i.e. starts and ends with quotation marks, and
-        // doesn't contain any quotation mark inside
+        // check for string, i.e. starts and ends with quotation marks,
+        // and doesn't contain any quotation mark inside
         if (parseString.matches("\"[^\"]*\""))
         {
             val = parseString.substring(1, parseString.length() - 1);

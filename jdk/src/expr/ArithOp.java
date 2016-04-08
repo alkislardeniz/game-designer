@@ -6,40 +6,36 @@ package expr;
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-// TODO
 enum ArithOp implements BinaryOp
 {
     ADD ("+") {
-        public ExprValue apply(ExprValue obj1, ExprValue obj2)
+        protected Number applyOp(double arg1, double arg2)
         {
-            double res = ((Number) obj1.getValue()).doubleValue() + ((Number) obj1.getValue()).doubleValue();
-
-            // if
-            return null;
+            return arg1 + arg2;
         }
     },
     SUB ("-") {
-        public ExprValue apply(ExprValue obj1, ExprValue obj2)
+        protected Number applyOp(double arg1, double arg2)
         {
-            return null;
+            return arg1 - arg2;
         }
     },
     MUL ("*") {
-        public ExprValue apply(ExprValue obj1, ExprValue obj2)
+        protected Number applyOp(double arg1, double arg2)
         {
-            return null;
+            return arg1 * arg2;
         }
     },
     DIV ("/") {
-        public ExprValue apply(ExprValue obj1, ExprValue obj2)
+        protected Number applyOp(double arg1, double arg2)
         {
-            return null;
+            return arg1 / arg2;
         }
     },
     REM ("%") {
-        public ExprValue apply(ExprValue obj1, ExprValue obj2)
+        protected Number applyOp(double arg1, double arg2)
         {
-            return null;
+            return arg1 % arg2;
         }
     };
 
@@ -62,6 +58,15 @@ enum ArithOp implements BinaryOp
 
     public ExprValue apply(ExprValue obj1, ExprValue obj2)
     {
-        return null;
+        Number num1, num2, res;
+
+        num1 = (Number) obj1.getValue();
+        num2 = (Number) obj2.getValue();
+
+        res = applyOp(num1.doubleValue(), num2.doubleValue());
+
+        return new ExprValue(res, getReturnType(obj1.getType(), obj2.getType()));
     }
+
+    protected Number applyOp(double arg1, double arg2) { return null; }
 }

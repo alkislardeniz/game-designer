@@ -43,6 +43,6 @@ class VariableExpr extends Expr
     // assuming variable is already defined
     public ExprValue eval(VariableEnv env)
     {
-        return env.getVariable(var.getName());
+        return env.getVariable(var);
     }
 }

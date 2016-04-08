@@ -8,19 +8,68 @@ package expr;
  */
 class BinaryOpExpr extends Expr
 {
-    // TODO
+    // WIP
     public static Expr parse(String parseString)
     {
-        // locate first binary operation on parseString,
-        // pursue it from the left as far as possible,
-        // then call Expr.parse() on each branch discovered
+        Expr temp;
+
+        // first go through LogicOp, then RelationOp, then ArithOp
+        temp = tryOps(LogicOp.values(), parseString);
+        if (temp == null)
+            temp = tryOps(RelationOp.values(), parseString);
+        if (temp == null)
+            temp = tryOps(ArithOp.values(), parseString);
+
+        return temp;
+    }
+
+    private static Expr tryOps(BinaryOp[] values, String parseString)
+    {
+        Expr temp;
+
+        // return first parsing that works
+        for (BinaryOp op : values)
+        {
+            temp = tryOp(op, parseString);
+            if (temp != null)
+                return temp;
+        }
+
         return null;
+    }
+
+    // parse parseString left-associatively
+    public static Expr tryOp(BinaryOp op, String parseString)
+    {
+        final String opRegex = " *" + op.getName() + " *";
+
+        Expr temp;
+        String[] tokens;
+
+        // if parseString doesn't contain op return null
+        if (!parseString.matches(opRegex))
+            return null;
+
+        // else, locate the two arguments of op
+        tokens = parseString.split(opRegex, 2);
+
+        // try to parse the 2nd argument
+        temp = tryOp(op, tokens[1]);
+
+        if (temp == null)
+            temp = Expr.parse(tokens[1]);
+
+        if (temp == null)
+            return null;
+
+        // otherwise, form application of op
+        return new BinaryOpExpr(op, Expr.parse(tokens[0]), temp);
     }
 
     BinaryOp op;
     Expr arg1, arg2;
 
-    private BinaryOpExpr(BinaryOp op, Expr arg1, Expr arg2)
+    protected BinaryOpExpr(BinaryOp op, Expr arg1, Expr arg2)
     {
         this.op   = op;
         this.arg1 = arg1;

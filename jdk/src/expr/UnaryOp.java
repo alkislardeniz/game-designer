@@ -63,6 +63,8 @@ enum UnaryOp
         this.argType = argType;
     }
 
+    public String getName() { return name; }
+
     public boolean applicable(VariableSet vars, Expr arg)
     {
         return arg.getType(vars).isA(argType);

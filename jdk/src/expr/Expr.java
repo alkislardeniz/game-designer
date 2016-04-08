@@ -9,12 +9,20 @@ package expr;
 // parse string expression into tree, evaluate its value
 public abstract class Expr
 {
-
-    // TODO
+    // WIP
     // return null if parseString not a valid Expr, a non-null Expr otherwise
     public static Expr parse(String parseString)
     {
+        Expr temp;
+
         // go through each subclass in order, seeing if they are not null
+        temp = UnaryOpExpr.parse(parseString);
+        if (temp == null)
+            temp = BinaryOpExpr.parse(parseString);
+        if (temp == null)
+            temp = LiteralExpr.parse(parseString);
+        if (temp == null)
+            temp = VariableExpr.parse(parseString);
 
         return null;
     }
