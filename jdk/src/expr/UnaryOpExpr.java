@@ -35,7 +35,7 @@ class UnaryOpExpr extends Expr
         String argString;
 
         // if parseString doesn't start with op return null
-        if (!parseString.matches("^" + opRegex))
+        if (!parseString.matches(opRegex + ".*"))
             return null;
 
         // else, locate the argument of op

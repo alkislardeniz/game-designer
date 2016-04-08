@@ -47,7 +47,7 @@ class BinaryOpExpr extends Expr
         String[] tokens;
 
         // if parseString doesn't contain op return null
-        if (!parseString.matches(opRegex))
+        if (!parseString.matches(".*?" + opRegex + ".*"))
             return null;
 
         // else, locate the two arguments of op
