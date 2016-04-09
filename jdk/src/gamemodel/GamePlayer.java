@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.util.Hashtable;
 import java.util.Map;
 import java.io.Serializable;
 import expr.*;
@@ -12,19 +13,19 @@ public class GamePlayer implements Serializable, VariableEnv
 {
     Game game;
     Screen currentScreen;
-    Map<Var,ExprValue> varBinds;
+    Map<String,ExprValue> varBinds;
     boolean shown;
 
     // for serialization, instantiate everything as null
     public GamePlayer()
     {
-
+        varBinds = new Hashtable<String, ExprValue>();
     }
 
     // only method called from outside
     public GamePlayer(Game game)
     {
-
+        varBinds = new Hashtable<String, ExprValue>();
     }
 
     // called from the constructor and individual screens
@@ -51,13 +52,13 @@ public class GamePlayer implements Serializable, VariableEnv
 
     public ExprValue getVariable(Var var)
     {
-        return null;
+        return varBinds.get(var.getName());
     }
 
     // evaluates value before adding it to map
     // should check for null
     public void addVariable(Var var, Expr value)
     {
-
+        varBinds.put(var.getName(), value.eval(this));
     }
 }

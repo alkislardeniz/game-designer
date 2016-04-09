@@ -1,7 +1,5 @@
 package expr;
 
-import gamemodel.*;
-
 /**
  * VariableExpr
  * Class representing variables
@@ -28,6 +26,11 @@ class VariableExpr extends Expr
     }
 
     // equals()
+
+    public String toString()
+    {
+        return var.getName();
+    }
 
     // whether variable is defined within game
     public boolean valid(VariableSet vars)

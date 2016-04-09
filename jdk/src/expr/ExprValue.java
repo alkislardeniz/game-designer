@@ -31,6 +31,12 @@ public class ExprValue
         return false;
     }
 
+    //
+    public String toString()
+    {
+        return type.toString(value);
+    }
+
     // whether this can be coerced to newType
     public boolean hasType(ExprType newType)
     {

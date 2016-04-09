@@ -12,6 +12,7 @@ public class Var
     String name;
     ExprType type;
 
+    // TODO check for valid name
     public Var(String name)
     {
         this.name = name;
@@ -34,8 +35,7 @@ public class Var
 
     public boolean equals(Object other)
     {
-        return other != null && other instanceof Var
-            && name.equals(((Var) other).name);
+        return other.toString().equals(toString());
     }
 
     public String toString()

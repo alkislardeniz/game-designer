@@ -31,12 +31,15 @@ class LiteralExpr extends Expr
         {
             val = Integer.valueOf(parseString);
             typ = ExprType.INTEGER;
-        } catch (NumberFormatException e) {}
-        try
+        }
+        catch (NumberFormatException e)
         {
-            val = Double.valueOf(parseString);
-            typ = ExprType.DOUBLE;
-        } catch (NumberFormatException e) {}
+            try
+            {
+                val = Double.valueOf(parseString);
+                typ = ExprType.DOUBLE;
+            } catch (NumberFormatException e1) {}
+        }
 
         // check for string, i.e. starts and ends with quotation marks,
         // and doesn't contain any quotation mark inside
@@ -56,12 +59,17 @@ class LiteralExpr extends Expr
 
     private LiteralExpr(ExprValue value) // memoize
     {
-
+        this.value = value;
     }
 
     // equals()
 
     // possibly add random expressions
+
+    public String toString()
+    {
+        return value.getValue().toString();
+    }
 
     public boolean valid(VariableSet vars)
     {

@@ -8,7 +8,14 @@ package expr;
  */
 enum ExprType
 {
-    BOOLEAN, INTEGER, DOUBLE, STRING, NONE, ALL; // NONE used for variables without initial value
+    BOOLEAN,
+    INTEGER {
+        public String toString(Object obj)
+        {
+            return ((Number) obj).intValue() + "";
+        }
+    },
+    DOUBLE, STRING, NONE, ALL; // NONE used for variables without initial value
 
     // whether newType can be substituted as a member of this
     public boolean isA(ExprType newType)
@@ -26,5 +33,11 @@ enum ExprType
         if (other.isA(this))
             return this;
         return null;
+    }
+
+    // called from toString() of ExprValue
+    public String toString(Object obj)
+    {
+        return obj.toString();
     }
 }

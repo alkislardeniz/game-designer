@@ -48,7 +48,7 @@ enum ArithOp implements BinaryOp
     public boolean applicable(VariableSet vars, Expr arg1, Expr arg2)
     {
         return arg1.getType(vars).isA(ExprType.DOUBLE)
-                && arg2.getType(vars).isA(ExprType.DOUBLE);
+            && arg2.getType(vars).isA(ExprType.DOUBLE);
     }
 
     public ExprType getReturnType(ExprType arg1Type, ExprType arg2Type)

@@ -15,16 +15,20 @@ public abstract class Expr
     {
         Expr temp;
 
+        // omit parentheses
+        if (parseString.matches("\\(.*?\\)"))
+            return Expr.parse(parseString.substring(1, parseString.length() - 1));
+
         // go through each subclass in order, seeing if they are not null
-        temp = UnaryOpExpr.parse(parseString);
+        temp = BinaryOpExpr.parse(parseString);
         if (temp == null)
-            temp = BinaryOpExpr.parse(parseString);
+            temp = UnaryOpExpr.parse(parseString);
         if (temp == null)
             temp = LiteralExpr.parse(parseString);
         if (temp == null)
             temp = VariableExpr.parse(parseString);
 
-        return null;
+        return temp;
     }
 
     ExprType type;

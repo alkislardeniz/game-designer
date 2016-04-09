@@ -1,5 +1,7 @@
 package expr;
 
+import java.util.regex.Pattern;
+
 /**
  * UnaryOpExpr
  * Represents expressions formed by the application of unary operations.
@@ -29,7 +31,7 @@ class UnaryOpExpr extends Expr
     // then call Expr.parse() on rightmost string
     public static Expr tryOp(UnaryOp op, String parseString)
     {
-        final String opRegex = " *" + op.getName() + " *";
+        final String opRegex = " *" + Pattern.quote(op.getName()) + " *";
 
         Expr arg;
         String argString;
@@ -63,6 +65,11 @@ class UnaryOpExpr extends Expr
     {
         this.op  = op;
         this.arg = arg;
+    }
+
+    public String toString()
+    {
+        return "(" + op.getName() + " " + arg + ")";
     }
 
     public boolean valid(VariableSet vars)
