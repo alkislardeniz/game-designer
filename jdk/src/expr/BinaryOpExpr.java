@@ -49,7 +49,6 @@ class BinaryOpExpr extends Expr
         String[] tokens;
 
         // else, locate the two arguments of op
-        // TODO change split method to accompany parentheses
         tokens = splitOp(opRegex, parseString);
 
         // System.out.println(parseString + " , " + op + " : " + java.util.Arrays.toString(tokens));
