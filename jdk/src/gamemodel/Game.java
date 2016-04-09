@@ -1,6 +1,7 @@
 package gamemodel;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.io.Serializable;
 import expr.*;
 
@@ -18,19 +19,33 @@ public class Game implements Serializable, VariableSet
     // initialize empty collections, null startScreen
     public Game()
     {
-
+        variables = new ArrayList<Var>();
     }
 
     // getters, setters
+
+    public Screen getScreen(String name)
+    {
+        return null;
+    }
+
     // for lists, get() and remove() methods call objects by their names
     // return null if no objects of that name
     public boolean hasVariable(Var var)
     {
-        return false;
+        return variables.contains(var);
+    }
+    public boolean addVariable(String varName)
+    {
+        return variables.add(new Var(varName));
     }
 
     public Var getVariable(String varName)
     {
+        for (Var var : variables)
+            if (var.getName().equals(varName))
+                return var;
+
         return null;
     }
 
@@ -54,6 +69,11 @@ public class Game implements Serializable, VariableSet
     // called by controller in moving to a new panel to edit a screen
     public ScreenEditor getEditor(String name)
     {
-        return null;
+        Screen screen = getScreen(name);
+
+        if (screen == null || !(screen instanceof PlayableScreen))
+            return null;
+
+        return new ScreenEditor((PlayableScreen) screen);
     }
 }

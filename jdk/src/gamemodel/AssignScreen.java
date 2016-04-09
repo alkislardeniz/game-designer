@@ -19,6 +19,7 @@ public class AssignScreen extends NonPlayableScreen
     {
         super(parent, name);
         optionLimit = 1;
+        options.add(0, new Option("", null));
     }
 
     // getters, setters

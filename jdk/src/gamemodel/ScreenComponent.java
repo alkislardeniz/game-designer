@@ -6,7 +6,7 @@ import java.awt.Point;
 /**
  * Created by admin on 4/3/16.
  */
-public abstract class ScreenComponent implements Serializable
+public class ScreenComponent implements Serializable
 {
     String name;
     Point  position;
@@ -21,7 +21,9 @@ public abstract class ScreenComponent implements Serializable
     // point initially null, set by ScreenEditor
     public ScreenComponent(Screen par, String nam)
     {
-
+        parent = par;
+        name = nam;
+        position = null;
     }
 
     // in subclasses, GUI components might be inner classes

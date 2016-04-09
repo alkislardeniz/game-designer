@@ -1,6 +1,7 @@
 package gamemodel;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 /**
@@ -29,7 +30,9 @@ public abstract class Screen implements Serializable
     // set other properties to default values, to be changed by edit description screen
     public Screen(Game parent, String name)
     {
-
+        this.parent = parent;
+        this.name = name;
+        options = new ArrayList<Option>();
     }
 
     // called from player, either responds directly or waits for input from GUI interface
