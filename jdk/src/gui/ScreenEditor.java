@@ -15,6 +15,7 @@ public class ScreenEditor extends JPanel
     ScreenView screenView;
 
     // perhaps make these constants for Screen
+    // TODO Or just store grid size and positions in the model, and scale them up in the view
     private final int WIDTH = 504, HEIGHT = 504;
     private final int IMAGE_HEIGHT = 24;
     private final int IMAGE_WIDTH = IMAGE_HEIGHT;

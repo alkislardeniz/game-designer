@@ -25,4 +25,6 @@ public class ScreenPlayer extends JPanel
         // TODO find a way to move objects inside the screen without changing their starting position in the game
         // Perhaps copy each component in the screen?
     }
+
+    // TODO add keyboard listener that moves the movable object, and action listeners for buttons
 }
