@@ -10,27 +10,31 @@ import expr.*;
  */
 public class Game implements Serializable, VariableSet
 {
+    // store dimensions of each screen of game
     // possibly make the lists maps, so as to memoize screen names and speed up program
     List<Screen> screens; // search through screens by their names
     List<ScreenObject> sharedObjects; // searched by names, represent objects shared across screens
-    List<Var> variables; // perhaps create new class for collection of variables
+    List<Var> variables; // perhaps store initial values paired with variables
     Screen startScreen;
 
     // initialize empty collections, null startScreen
     public Game()
     {
         variables = new ArrayList<Var>();
+        // TODO
     }
 
     // getters, setters
 
     public Screen getScreen(String name)
     {
+        // TODO
         return null;
     }
 
     // for lists, get() and remove() methods call objects by their names
     // return null if no objects of that name
+    // change these to include initial values for variables, changing the type of the variable if necessary
     public boolean hasVariable(Var var)
     {
         return variables.contains(var);
@@ -52,6 +56,7 @@ public class Game implements Serializable, VariableSet
     // editor interface
 
     // create new screen, playable, asignment or cond
+    // TODO
     public boolean newPlayableScreen(String name)
     {
         return false;

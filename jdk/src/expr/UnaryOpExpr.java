@@ -31,7 +31,7 @@ class UnaryOpExpr extends Expr
     // then call Expr.parse() on rightmost string
     public static Expr tryOp(UnaryOp op, String parseString)
     {
-        final String opRegex = " *" + Pattern.quote(op.getName()) + " *";
+        final String opRegex = "\\s*" + Pattern.quote(op.getName()) + "\\s*";
 
         Expr arg;
         String argString;

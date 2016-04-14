@@ -35,6 +35,8 @@ public abstract class Screen implements Serializable
         options = new ArrayList<Option>();
     }
 
+    public Game getParent() { return parent; }
+
     // called from player, either responds directly or waits for input from GUI interface
     public abstract void fromPlayer(GamePlayer player);
 
@@ -43,29 +45,29 @@ public abstract class Screen implements Serializable
     // can be called either from fromPlayer or from GUI action listeners
     public void toPlayer(GamePlayer player, Option option)
     {
-
+        // TODO
     }
 
     // getOptions() to be called from editor
     protected List<Option> getOptions()
     {
         return null;
-    }
+    } // TODO
 
     public boolean addOption(String name, Screen screen)
     {
         return false;
-    }
+    } // TODO
 
     public Screen getScreenWithOption(String name)
     {
         return null;
-    }
+    } // TODO
 
     public boolean removeOption(String name)
     {
         return false;
-    }
+    } // TODO
 
     // getter, setter for playable etc.
 }

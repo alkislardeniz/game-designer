@@ -14,7 +14,7 @@ public class ScreenTextBox extends ScreenComponent
     Expr text;
 
     // perhaps with less options and setters
-    public ScreenTextBox(Screen par, String nam)
+    public ScreenTextBox(PlayableScreen par, String nam)
     {
         super(par, nam);
 

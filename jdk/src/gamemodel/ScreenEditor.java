@@ -6,6 +6,7 @@ import java.awt.Point;
  * Created by admin on 4/3/16.
  */
 // encapsulates methods to edit a screen
+// Is this class necessary? Perhaps move to gui.ScreenEditor
 public class ScreenEditor
 {
     PlayableScreen screen;
@@ -16,6 +17,7 @@ public class ScreenEditor
     }
 
     // editor methods
+    // TODO
 
     // place component on screen, adjusting its position
     // called by GUI editor

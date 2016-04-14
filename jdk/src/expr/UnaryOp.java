@@ -1,5 +1,7 @@
 package expr;
 
+import java.lang.Math;
+
 /**
  * UnaryOp
  * Enumerated type for unary operations.
@@ -23,26 +25,29 @@ enum UnaryOp
     NEG ("-", ExprType.DOUBLE) {
         public ExprValue apply(ExprValue value)
         {
-            Object  val  = null;
+            Object   val = null;
             ExprType typ = null;
 
             Number num = (Number) value.getValue();
 
-            if (value.getType() == ExprType.INTEGER)
-            {
-                val = -num.intValue();
-                typ = ExprType.INTEGER;
-            }
-            else if (value.getType() == ExprType.DOUBLE)
-            {
-                val = -num.doubleValue();
-                typ = ExprType.DOUBLE;
-            }
+            val = -num.doubleValue();
+            typ = value.getType();
 
-            if (val != null && typ != null)
-                return new ExprValue(val, typ);
+            return new ExprValue(val, typ);
+        }
+    },
+    SQRT ("sqrt", ExprType.DOUBLE) {
+        public ExprValue apply(ExprValue value)
+        {
+            Object   val = null;
+            ExprType typ = null;
 
-            return null;
+            Number num = (Number) value.getValue();
+
+            val = Math.sqrt(num.doubleValue());
+            typ = ExprType.DOUBLE;
+
+            return new ExprValue(val, typ);
         }
     };
 

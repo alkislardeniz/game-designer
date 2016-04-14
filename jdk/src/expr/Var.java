@@ -35,7 +35,9 @@ public class Var
 
     public boolean equals(Object other)
     {
-        return other.toString().equals(toString());
+        return other != null
+            && other instanceof Var
+            && other.toString().equals(toString());
     }
 
     public String toString()

@@ -11,10 +11,9 @@ public class ScreenLabel extends ScreenComponent
 {
     Expr expr; // expression whose value is to be displayed
 
-    public ScreenLabel(Screen par, String nam, String exp)
+    public ScreenLabel(PlayableScreen par, String nam, String exp)
     {
-        parent = par;
-        name = nam;
+        super(par, nam);
         expr = Expr.parse(exp);
     }
 

@@ -5,16 +5,18 @@ package gamemodel;
  */
 public class ScreenObject extends ScreenComponent
 {
-    boolean movable; // false by default, one object in screen can be moved
-    String  imageName;
+    boolean movable; // there are two types of objects, movable and immovable
+    String img;
     // ...
 
     public ScreenObject(Screen par, String nam, String img)
     {
-
+        // TODO
     }
 
     // getters, setters
+
+    public String getIcon() { return img; }
 
     // perhaps create new ObjectPlayer class to manage object movement in playing game
 }

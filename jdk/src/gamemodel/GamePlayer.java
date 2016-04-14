@@ -41,8 +41,10 @@ public class GamePlayer implements Serializable, VariableEnv
     // set shown to true
     public void showCurrentScreen()
     {
-
+        // TODO
     }
+
+    public Screen getCurrentScreen() { return currentScreen; }
 
     // return shown, called from GUI
     public boolean getShown()

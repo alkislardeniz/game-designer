@@ -8,12 +8,13 @@ package gamemodel;
  */
 public abstract class NonPlayableScreen extends Screen
 {
-    public NonPlayableScreen() {}
+    public NonPlayableScreen() { playable = false; }
 
     // set other properties to default values, to be changed by edit description screen
     public NonPlayableScreen(Game parent, String name)
     {
         super(parent, name);
+        playable = false;
     }
 
     @Override
