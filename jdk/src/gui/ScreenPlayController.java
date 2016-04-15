@@ -8,13 +8,13 @@ import java.awt.*;
  * Contains ScreenView for a screen being played.
  * Created by admin on 4/12/16.
  */
-public class ScreenPlayer extends JPanel
+public class ScreenPlayController extends JPanel
 {
     PlayableScreen screen;
     GamePlayer player;
     ScreenView view;
 
-    public ScreenPlayer(GamePlayer player, PlayableScreen screen)
+    public ScreenPlayController(GamePlayer player, PlayableScreen screen)
     {
         this.player = player;
         this.screen = screen;

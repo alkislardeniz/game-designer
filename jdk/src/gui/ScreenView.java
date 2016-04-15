@@ -31,6 +31,8 @@ public class ScreenView extends JPanel
 
         // initialize screen, comps, movable, bg
 
+        // Perhaps we can use GridBagLayout for components
+
         // add ComponentViews for each component of the screen
         for (ComponentView comp : comps)
             comp.addComponent(this);

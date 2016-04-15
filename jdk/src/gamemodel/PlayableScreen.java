@@ -53,7 +53,7 @@ public class PlayableScreen extends Screen
         return false; // TODO
     }
 
-    // alert each component
+    // alert each component (is that necessary?)
     @Override
     public void fromPlayer(GamePlayer player)
     {

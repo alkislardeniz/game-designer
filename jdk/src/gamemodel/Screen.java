@@ -35,6 +35,8 @@ public abstract class Screen implements Serializable
         options = new ArrayList<Option>();
     }
 
+    public boolean getPlayable() { return playable; }
+
     public Game getParent() { return parent; }
 
     // called from player, either responds directly or waits for input from GUI interface

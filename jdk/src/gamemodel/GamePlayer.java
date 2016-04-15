@@ -37,13 +37,7 @@ public class GamePlayer implements Serializable, VariableEnv
         return false;
     }
 
-    // called from playable screen's fromPlayer() method
-    // set shown to true
-    public void showCurrentScreen()
-    {
-        // TODO
-    }
-
+    // perhaps make this only return playable screens
     public Screen getCurrentScreen() { return currentScreen; }
 
     // return shown, called from GUI

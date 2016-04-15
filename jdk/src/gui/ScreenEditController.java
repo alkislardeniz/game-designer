@@ -8,7 +8,7 @@ import java.awt.event.*;
  * Panel containing ScreenView that allows to edit an individual screen.
  * Created by admin on 4/12/16.
  */
-public class ScreenEditor extends JPanel
+public class ScreenEditController extends JPanel
 {
     Game game;
     PlayableScreen screen;
@@ -21,7 +21,7 @@ public class ScreenEditor extends JPanel
     private final int IMAGE_WIDTH = IMAGE_HEIGHT;
     private final int JUMP = IMAGE_HEIGHT;  // increment for image movement
 
-    public ScreenEditor(PlayableScreen screen)
+    public ScreenEditController(PlayableScreen screen)
     {
         this.screen = screen;
         game = screen.getParent();
