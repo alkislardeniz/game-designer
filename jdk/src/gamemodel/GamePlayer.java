@@ -1,7 +1,7 @@
 package gamemodel;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.io.Serializable;
 import expr.*;
 
@@ -13,19 +13,19 @@ public class GamePlayer implements Serializable, VariableEnv
 {
     Game game;
     Screen currentScreen;
-    Map<String,ExprValue> varBinds;
+    List<Binding> varBinds;
     boolean shown;
 
     // for serialization, instantiate everything as null
     public GamePlayer()
     {
-        varBinds = new Hashtable<String, ExprValue>();
+        varBinds = new ArrayList<Binding>();
     }
 
     // only method called from outside
     public GamePlayer(Game game)
     {
-        varBinds = new Hashtable<String, ExprValue>();
+        varBinds = new ArrayList<Binding>(game.variables);
     }
 
     // called from the constructor and individual screens
@@ -48,13 +48,32 @@ public class GamePlayer implements Serializable, VariableEnv
 
     public ExprValue getVariable(Var var)
     {
-        return varBinds.get(var.getName());
+        Binding bind = getBinding(var);
+
+        if (bind == null)
+            return null;
+
+        return bind.getValue();
+    }
+
+    public Binding getBinding(Var var)
+    {
+        for (Binding bind : varBinds)
+            if (bind.getVar().equals(var))
+                return bind;
+
+        return null;
     }
 
     // evaluates value before adding it to map
     // should check for null
-    public void addVariable(Var var, Expr value)
+    public boolean addVariable(Var var, Expr value)
     {
-        varBinds.put(var.getName(), value.eval(this));
+        ExprValue val = value.eval(this);
+        Binding bind = getBinding(var);
+
+        return val != null
+            && bind != null
+            && bind.setValue(val);
     }
 }

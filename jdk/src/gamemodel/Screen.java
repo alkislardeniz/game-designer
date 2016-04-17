@@ -51,25 +51,44 @@ public abstract class Screen implements Serializable
     }
 
     // getOptions() to be called from editor
-    protected List<Option> getOptions()
+    public List<Option> getOptions()
     {
-        return null;
-    } // TODO
+        return options;
+    }
 
     public boolean addOption(String name, Screen screen)
     {
-        return false;
-    } // TODO
+        return options.add(new Option(name, screen));
+    }
+
+    public Option getOption(String name)
+    {
+        for (Option op : options)
+            if (op.getName().equals(name))
+                return op;
+        return null;
+    }
 
     public Screen getScreenWithOption(String name)
     {
+        for (Option op : options)
+            if (op.getName().equals(name))
+                return op.getScreen();
         return null;
-    } // TODO
+    }
 
     public boolean removeOption(String name)
     {
+        for (Option op : options)
+        {
+            if (op.getName().equals(name))
+            {
+                options.remove(op);
+                return true;
+            }
+        }
         return false;
-    } // TODO
+    }
 
     // getter, setter for playable etc.
 }

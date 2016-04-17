@@ -1,6 +1,6 @@
 package gamemodel;
 
-import expr.Expr;
+import expr.*;
 
 /**
  * ScreenLabel
@@ -19,8 +19,30 @@ public class ScreenLabel extends ScreenComponent
 
     // getters, setters
 
+    public Expr getExpr() { return expr; }
+
+    public ExprError setExpr(String newText)
+    {
+        Expr temp = Expr.parse(newText);
+
+        if (temp == null)
+            return ExprError.UNPARSED;
+
+        if (!temp.valid(parent.parent))
+            return ExprError.INVALID;
+
+        expr = temp;
+        return ExprError.VALID;
+    }
+
     public String getText(GamePlayer env)
     {
         return expr.eval(env).toString();
+    }
+
+    @Override
+    public boolean isCompatible(ScreenComponent other, int x, int y)
+    {
+        return true;
     }
 }

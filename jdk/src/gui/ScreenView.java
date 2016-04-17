@@ -4,6 +4,7 @@ import gamemodel.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
@@ -11,31 +12,41 @@ import java.util.ArrayList;
  */
 public class ScreenView extends JPanel
 {
+    ScreenController parent;
     PlayableScreen screen;
     ArrayList<ComponentView> comps;
     ObjectView movable;
     ImageIcon bg;
 
     // perhaps make these constants for Screen
-    private final int WIDTH = 504, HEIGHT = 504;
-    private final int IMAGE_HEIGHT = 24;
-    private final int IMAGE_WIDTH = IMAGE_HEIGHT;
-    private final int JUMP = IMAGE_HEIGHT;  // increment for image movement
+    // final int WIDTH = 504, HEIGHT = 504;
+    // final int JUMP = IMAGE_HEIGHT;  // increment for image movement
+    int IMAGE_HEIGHT = 24;
+    int IMAGE_WIDTH  = 24;
 
     private boolean showGrid, deleteObject;
 
-    public ScreenView(PlayableScreen screen)
+    public ScreenView(ScreenController parent, PlayableScreen screen, boolean editing)
     {
+        ComponentView view;
+
         deleteObject = false;
         showGrid = true;
 
-        // initialize screen, comps, movable, bg
+        // initialize fields
+        this.parent = parent;
+        this.screen = screen;
+        comps = new ArrayList<ComponentView>();
+        for (ScreenComponent comp : screen.getComponents())
+        {
+            // TODO add comp's specific component view to comps and set movable
+            view = ComponentView.getView(comp, editing);
+            comps.add(view);
+            if (comp == screen.getMovable())
+                movable = (ObjectView) view;
+        }
 
         // Perhaps we can use GridBagLayout for components
-
-        // add ComponentViews for each component of the screen
-        for (ComponentView comp : comps)
-            comp.addComponent(this);
 
         setPreferredSize (new Dimension (WIDTH, HEIGHT));
         setLayout (new BorderLayout());
@@ -76,4 +87,22 @@ public class ScreenView extends JPanel
         }
     }
 
+    class DirectionListener implements KeyListener
+    {
+        public void keyPressed (KeyEvent event)
+        {
+            setFocusable(true);
+            movable.move(event.getKeyCode(), IMAGE_WIDTH, IMAGE_HEIGHT);
+            setFocusable(false);
+            repaint();
+        }
+
+        public void keyReleased(KeyEvent event)
+        {
+            movable.stopMoving();
+            repaint();
+        }
+
+        public void keyTyped (KeyEvent event) {}
+    }
 }

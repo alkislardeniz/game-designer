@@ -246,6 +246,7 @@ public class DirectionPanel extends JPanel
 
         public void keyTyped (KeyEvent event) {}
     }
+
     class MyMouseAdapter extends MouseAdapter
     {
         public void mousePressed (MouseEvent e)

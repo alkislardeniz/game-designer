@@ -28,7 +28,7 @@ public class GamePlayController extends JPanel
             if (!player.getCurrentScreen().equals(currentScreen))
             {
                 currentScreen = player.getCurrentScreen(); // make sure getCurrentScreen() is playable
-                // TODO change ScreenPlayController
+                // TODO update ScreenPlayController
             }
         }
     }

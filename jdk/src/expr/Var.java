@@ -12,7 +12,6 @@ public class Var
     String name;
     ExprType type;
 
-    // TODO check for valid name
     public Var(String name)
     {
         this.name = name;
@@ -25,7 +24,7 @@ public class Var
     // called after addition of assignment screen
     public boolean setType(ExprType newType)
     {
-        if (type.isA(newType))
+        if (type == null || type.isA(newType))
         {
             type = newType;
             return true;

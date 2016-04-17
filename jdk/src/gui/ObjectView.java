@@ -13,16 +13,13 @@ public class ObjectView extends ComponentView
 {
     ScreenObject obj;
     ObjectIcon icon;
-    boolean moving;
 
-    public ObjectView(ScreenObject obj)
+    public ObjectView(ScreenObject obj, boolean editing)
     {
-        super(obj);
+        super(obj, editing);
         this.obj = obj;
-        moving = false;
+        icon.moving = false;
     }
-
-    public void addComponent(ScreenView scr) {}
 
     // draw object on screen
     public void paintComponentOn(Graphics g, ScreenView scr)
@@ -32,36 +29,49 @@ public class ObjectView extends ComponentView
     }
 
     // try to move object, changing position and icon's current image
-    public boolean move(int direction, int jump)
+    public boolean move(int direction, int xScale, int yScale)
     {
-        int x = 0, y = 0;
+        int x, y, dx, dy;
+
+        dx = dy = 0;
 
         if (direction == KeyEvent.VK_UP)
-            y = -1;
+            dy--;
         if (direction == KeyEvent.VK_DOWN)
-            y = 1;
+            dy++;
         if (direction == KeyEvent.VK_LEFT)
-            x = -1;
+            dx--;
         if (direction == KeyEvent.VK_RIGHT)
-            x = 1;
+            dx++;
+
+        x = (int) obj.getPosition().getX() + dx;
+        y = (int) obj.getPosition().getY() + dy;
 
         // check compatibility in obj's parent
-        if (obj.getParent().canPlaceComponent(obj, x, y))
+        if (obj.getParent().placeComponent(obj, x, y))
         {
             // if can move, change coordinates and change currentIcon to direction
 
-            icon.setImage(x, y);
-            moving = true;
+            icon.setImage(dx, dy);
+            icon.moving = true;
+
+            setX(x * xScale);
+            setY(y * yScale);
 
             return true;
         }
         else
         {
-            // otherwise change it to leftStand or rightStand
-            moving = false;
+            // otherwise do not move and do not update icon
+            icon.moving = false;
 
             return false;
         }
+    }
+
+    public void stopMoving()
+    {
+        icon.moving = false;
     }
 
     public ImageIcon getImage()

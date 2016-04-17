@@ -17,8 +17,8 @@ enum ExprType
     },
     DOUBLE (0),
     STRING (""),
-    NONE (null),
-    ALL (null);
+    ALL (null),
+    NONE (null);
 
     Object initialValue;
 

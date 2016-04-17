@@ -29,28 +29,65 @@ public class PlayableScreen extends Screen
 
     public ScreenComponent getComponent(String name)
     {
+        for (ScreenComponent comp : components)
+            if (comp.name.equals(name))
+                return comp;
         return null;
-    } // TODO
+    }
+
     public List<ScreenComponent> getComponents()
     {
         return components;
     }
-    public boolean addComponent(String name, ScreenComponent comp)
+    public boolean addComponent(ScreenComponent comp)
     {
-        return false;
-    } // TODO
+        return components.add(comp);
+    }
 
     public ScreenComponent removeComponent(String name)
     {
+        for (ScreenComponent comp : components)
+            if (comp.name.equals(name))
+            {
+                components.remove(comp);
+                return comp;
+            }
         return null;
-    } // TODO
+    }
 
     // return true if all components are compatible with comp
     // also check for boundaries
     // if comp is already in components and not on (x,y) and not movable, return false
-    public boolean canPlaceComponent(ScreenComponent comp, int x, int y)
+    // try to place comp on (x,y) on the screen
+    public boolean placeComponent(ScreenComponent newComp, int x, int y)
     {
-        return false; // TODO
+        // check for boundaries
+        if (x < 0 || y < 0 || x + newComp.width > parent.width || y + newComp.height > parent.height)
+            return false;
+
+        // check for compatibility
+        for (ScreenComponent comp : components)
+            if (!comp.isCompatible(newComp, x, y))
+                return false;
+
+        // assign newComp to its position on the screen
+        newComp.getPosition().setLocation(x, y);
+
+        // add it to screen if not already in screen
+        if (!components.contains(newComp))
+            components.add(newComp);
+
+        return true;
+    }
+
+    public ScreenComponent getMovable()
+    {
+        return movableComponent;
+    }
+
+    public void setMovable(ScreenComponent movable)
+    {
+        movableComponent = movable;
     }
 
     // alert each component (is that necessary?)

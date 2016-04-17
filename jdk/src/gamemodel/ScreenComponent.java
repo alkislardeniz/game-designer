@@ -11,6 +11,7 @@ public abstract class ScreenComponent implements Serializable
     String name;
     Point  position;
     PlayableScreen parent;
+    int height = 1, width = 1; // by default, can be changed for other components
 
     // null everything
     public ScreenComponent()
@@ -18,7 +19,7 @@ public abstract class ScreenComponent implements Serializable
 
     }
 
-    // point initially null, set by ScreenEditor
+    // point initially null, set by editor
     public ScreenComponent(PlayableScreen par, String nam)
     {
         parent = par;
@@ -36,7 +37,8 @@ public abstract class ScreenComponent implements Serializable
     // perhaps make abstract
     public boolean isCompatible(ScreenComponent other, int x, int y)
     {
-        return position.getX() != x || position.getY() != y; // TODO
+        return (x < position.getX() || x >= position.getX() + width)
+            && (y < position.getY() || y >= position.getY() + height);
     }
 
     // what to do in leaving a screen, nothing by default

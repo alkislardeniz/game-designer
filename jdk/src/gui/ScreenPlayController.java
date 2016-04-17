@@ -3,12 +3,13 @@ package gui;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Contains ScreenView for a screen being played.
  * Created by admin on 4/12/16.
  */
-public class ScreenPlayController extends JPanel
+public class ScreenPlayController extends JPanel implements ScreenController
 {
     PlayableScreen screen;
     GamePlayer player;
@@ -19,11 +20,13 @@ public class ScreenPlayController extends JPanel
         this.player = player;
         this.screen = screen;
 
-        view = new ScreenView(screen);
+        view = new ScreenView(this, screen, false);
         add(view);
+    }
 
-        // TODO find a way to move objects inside the screen without changing their starting position in the game
-        // Perhaps copy each component in the screen?
+    public GamePlayer getPlayer()
+    {
+        return player;
     }
 
     // TODO add keyboard listener that moves the movable object, and action listeners for buttons

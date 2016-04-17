@@ -8,41 +8,40 @@ import java.awt.event.*;
  * Panel containing ScreenView that allows to edit an individual screen.
  * Created by admin on 4/12/16.
  */
-public class ScreenEditController extends JPanel
+public class ScreenEditController extends JPanel implements ScreenController
 {
     Game game;
     PlayableScreen screen;
     ScreenView screenView;
-
-    // perhaps make these constants for Screen
-    // TODO Or just store grid size and positions in the model, and scale them up in the view
-    private final int WIDTH = 504, HEIGHT = 504;
-    private final int IMAGE_HEIGHT = 24;
-    private final int IMAGE_WIDTH = IMAGE_HEIGHT;
-    private final int JUMP = IMAGE_HEIGHT;  // increment for image movement
+    // TODO also include a panel containing options for components to add to the screen
 
     public ScreenEditController(PlayableScreen screen)
     {
         this.screen = screen;
         game = screen.getParent();
 
-        screenView = new ScreenView(screen);
+        screenView = new ScreenView(this, screen, true);
         add(screenView);
 
         // have screenView at the center of the panel,
         // and a pane of components to add to the left
     }
 
-    // perhaps put these in a component controller
-    private class DirectionListener implements KeyListener
+    public GamePlayer getPlayer()
     {
-        public void keyPressed (KeyEvent event)
-        {
-            setFocusable(true);
+        return null;
+    }
 
-            screenView.movable.move(event.getKeyCode(), JUMP);
-
-            // replicate these in move() and setImage()
+    // perhaps put these in a component controller
+//    private class DirectionListener implements KeyListener
+//    {
+//        public void keyPressed (KeyEvent event)
+//        {
+//            setFocusable(true);
+//
+//            screenView.movable.move(event.getKeyCode(), JUMP);
+//
+//            // replicate these in move() and setImage()
 //            int key = event.getKeyCode();
 //            boolean check = true;
 //
@@ -155,12 +154,12 @@ public class ScreenEditController extends JPanel
 //                    currentImage = rightStand;
 //                }
 //            }
-            repaint();
-        }
-
-        public void keyReleased(KeyEvent event)
-        {
-
+//            repaint();
+//        }
+//
+//        public void keyReleased(KeyEvent event)
+//        {
+//
 //            if (currentImage == right)
 //            {
 //                currentImage = rightStand;
@@ -180,9 +179,9 @@ public class ScreenEditController extends JPanel
 //            {
 //                currentImage = rightStand;
 //            }
-            repaint();
-        }
-
-        public void keyTyped (KeyEvent event) {}
-    }
+//            repaint();
+//        }
+//
+//        public void keyTyped (KeyEvent event) {}
+//    }
 }
