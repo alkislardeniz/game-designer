@@ -10,32 +10,27 @@ import java.awt.*;
  */
 public abstract class ComponentView // extends JComponent
 {
-    // return the appropriate view for comp
-    public static ComponentView getView(ScreenComponent comp, boolean editing)
-    {
-        // TODO
-        return null;
-    }
+    ScreenView parent;
 
     ScreenComponent comp;
     boolean editing; // whether the component is editable or not
     int x, y;
 
-    public ComponentView(ScreenComponent comp, boolean editing)
+    public ComponentView(ScreenView parent, ScreenComponent comp, boolean editing)
     {
+        this.parent = parent;
         this.comp = comp;
         this.editing = editing;
         x = (int) comp.getPosition().getX();
         y = (int) comp.getPosition().getY();
 
-        // GUI operations about the representation of the component
-        // probably through subclasses for each type of component
+        // GUI operations about the representation of the component go hee
     }
 
     public ScreenComponent getComponent() { return comp; }
 
     // draw component on screen
-    public abstract void paintComponentOn(Graphics g, ScreenView scr);
+    public abstract void paintComponentOn(Graphics g);
 
     public int getX() { return x; }
 

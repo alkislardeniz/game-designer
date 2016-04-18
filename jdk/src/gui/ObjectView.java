@@ -14,22 +14,23 @@ public class ObjectView extends ComponentView
     ScreenObject obj;
     ObjectIcon icon;
 
-    public ObjectView(ScreenObject obj, boolean editing)
+    public ObjectView(ScreenView parent, ScreenObject obj, boolean editing)
     {
-        super(obj, editing);
+        super(parent, obj, editing);
         this.obj = obj;
+        icon = ObjectIcon.getIcon(obj.getIcon());
         icon.moving = false;
     }
 
     // draw object on screen
-    public void paintComponentOn(Graphics g, ScreenView scr)
+    public void paintComponentOn(Graphics g)
     {
         // handle the icon work on this class as well
-        getImage().paintIcon(scr, g, getX(), getY());
+        getImage().paintIcon(parent, g, getX() * parent.IMAGE_WIDTH, getY() * parent.IMAGE_HEIGHT);
     }
 
     // try to move object, changing position and icon's current image
-    public boolean move(int direction, int xScale, int yScale)
+    public boolean move(int direction)
     {
         int x, y, dx, dy;
 
@@ -44,19 +45,21 @@ public class ObjectView extends ComponentView
         if (direction == KeyEvent.VK_RIGHT)
             dx++;
 
-        x = (int) obj.getPosition().getX() + dx;
-        y = (int) obj.getPosition().getY() + dy;
+        x = getX() + dx;
+        y = getY() + dy;
 
         // check compatibility in obj's parent
-        if (obj.getParent().placeComponent(obj, x, y))
+        if (obj.getParent().canPlaceComponent(obj, x, y))
         {
             // if can move, change coordinates and change currentIcon to direction
 
-            icon.setImage(dx, dy);
-            icon.moving = true;
+            // TODO check if the movable object goes in front of a button (problem: putting button on top of object)
 
-            setX(x * xScale);
-            setY(y * yScale);
+            icon.moving = true;
+            icon.setImage(dx, dy);
+
+            setX(x);
+            setY(y);
 
             return true;
         }

@@ -14,7 +14,7 @@ public class ScreenLabel extends ScreenComponent
     public ScreenLabel(PlayableScreen par, String nam, String exp)
     {
         super(par, nam);
-        expr = Expr.parse(exp);
+        expr = Expr.parse(exp); // problem if this isn't valid
     }
 
     // getters, setters
@@ -44,5 +44,17 @@ public class ScreenLabel extends ScreenComponent
     public boolean isCompatible(ScreenComponent other, int x, int y)
     {
         return true;
+    }
+
+    @Override
+    public void accept(ComponentVisitor visitor)
+    {
+        visitor.visit(this);
+    }
+
+    public boolean valid()
+    {
+        return expr != null
+            && expr.valid(parent.parent);
     }
 }

@@ -17,25 +17,30 @@ public enum ObjectIcon
     // is this necessary?
     public static ObjectIcon getIcon(String iconName)
     {
-        return null;
+        // TODO
+        return MEGAMAN;
     }
 
     ImageIcon[] images; // contains icons to show
     ImageIcon currentImg;
     boolean movable;
     boolean moving;
+    // TODO also contain information about size
 
     private ObjectIcon(String image)
     {
         ImageIcon img = new ImageIcon("pics/" + image);
         // TODO initialize array of icons
-        movable = false;
+        movable = true; // false
+
+        currentImg = img;
     }
 
     private ObjectIcon(String up, String down, String left, String right, String rightStand, String leftStand)
     {
         // TODO
         // perhaps store icons in an array or hash table
+        currentImg = new ImageIcon("pics/" + rightStand);
         movable = true;
     }
 

@@ -6,7 +6,7 @@ package expr;
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-enum ExprType
+public enum ExprType
 {
     BOOLEAN (false),
     INTEGER (0) {

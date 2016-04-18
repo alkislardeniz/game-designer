@@ -48,15 +48,15 @@ public class DirectionPanel extends JPanel
         deleteObject = false;
         showGrid = true;
 
-        up = new ImageIcon ("manRight.gif");
-        down = new ImageIcon ("manRight.gif");
-        left = new ImageIcon ("manLeft.gif");
-        right = new ImageIcon ("manRight.gif");
-        rightStand = new ImageIcon ("manRightStand.gif");
-        leftStand = new ImageIcon ("manLeftStand.gif");
-        bg = new ImageIcon ("bg.png");
-        rock = new ImageIcon ("rock.png");
-        house = new ImageIcon ("house.png");
+        up = new ImageIcon ("pics/manRight.gif");
+        down = new ImageIcon ("pics/manRight.gif");
+        left = new ImageIcon ("pics/manLeft.gif");
+        right = new ImageIcon ("pics/manRight.gif");
+        rightStand = new ImageIcon ("pics/manRightStand.gif");
+        leftStand = new ImageIcon ("pics/manLeftStand.gif");
+        bg = new ImageIcon ("pics/bg.png");
+        rock = new ImageIcon ("pics/rock.png");
+        house = new ImageIcon ("pics/house.png");
         currentImage = rightStand;
 
         setPreferredSize (new Dimension (WIDTH, HEIGHT));

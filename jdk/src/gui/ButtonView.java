@@ -13,19 +13,25 @@ public class ButtonView extends ComponentView
     ScreenButton button;
     JButton jButton;
 
-    public ButtonView(ScreenButton button, boolean editing)
+    public ButtonView(ScreenView parent, ScreenButton button, boolean editing)
     {
-        super(button, editing);
+        super(parent, button, editing);
         this.button = button;
 
-        jButton = new JButton(button.getText());
-        jButton.addActionListener(null);
+        // show button if not playing or visible
+        if (button.getVisible() || parent.parent.getPlayer() == null)
+        {
+            jButton = new JButton(button.getText());
+            jButton.addActionListener(new ButtonListener(parent.parent.getPlayer()));
+            jButton.setEnabled(true);
+            parent.add(jButton);
+        }
     }
 
     // only update position
-    public void paintComponentOn(Graphics g, ScreenView scr)
+    public void paintComponentOn(Graphics g)
     {
-
+        jButton.repaint(); // is this necessary?
     }
 
     private class ButtonListener implements ActionListener

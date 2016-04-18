@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,8 +22,9 @@ public class PlayableScreen extends Screen
     // playable set to true
     public PlayableScreen(Game parent, String name)
     {
+        super(parent, name);
         playable = true;
-
+        components = new ArrayList<ScreenComponent>();
     }
 
     public String getBackgroundName() { return backgroundName; }
@@ -35,10 +37,15 @@ public class PlayableScreen extends Screen
         return null;
     }
 
+    public int getWidth() { return parent.width; }
+
+    public int getHeight() { return parent.height; }
+
     public List<ScreenComponent> getComponents()
     {
         return components;
     }
+
     public boolean addComponent(ScreenComponent comp)
     {
         return components.add(comp);
@@ -55,20 +62,11 @@ public class PlayableScreen extends Screen
         return null;
     }
 
-    // return true if all components are compatible with comp
-    // also check for boundaries
-    // if comp is already in components and not on (x,y) and not movable, return false
     // try to place comp on (x,y) on the screen
     public boolean placeComponent(ScreenComponent newComp, int x, int y)
     {
-        // check for boundaries
-        if (x < 0 || y < 0 || x + newComp.width > parent.width || y + newComp.height > parent.height)
+        if (!canPlaceComponent(newComp, x, y))
             return false;
-
-        // check for compatibility
-        for (ScreenComponent comp : components)
-            if (!comp.isCompatible(newComp, x, y))
-                return false;
 
         // assign newComp to its position on the screen
         newComp.getPosition().setLocation(x, y);
@@ -78,6 +76,29 @@ public class PlayableScreen extends Screen
             components.add(newComp);
 
         return true;
+    }
+
+    // return true if all components are compatible with comp
+    // also check for boundaries
+    // if comp is already in components and not on (x,y) and not movable, return false
+    public boolean canPlaceComponent(ScreenComponent newComp, int x, int y)
+    {
+        // check for boundaries
+        if (x < 0 || y < 0 || x + newComp.width > parent.width || y + newComp.height > parent.height)
+            return false;
+
+        // check for compatibility
+        for (ScreenComponent comp : components)
+            if (comp != newComp && !comp.isCompatible(newComp, x, y))
+                return false;
+
+        return true;
+    }
+
+    public ScreenComponent findComponentAt(int x, int y)
+    {
+        // TODO
+        return null;
     }
 
     public ScreenComponent getMovable()
@@ -95,12 +116,24 @@ public class PlayableScreen extends Screen
     public void fromPlayer(GamePlayer player)
     {
         // TODO
+        for(ScreenComponent comp: components)
+            comp.playing();
     }
 
     // call components in leaving screen
     @Override
     public void toPlayer(GamePlayer player, Option option)
     {
-        // TODO
+        for (ScreenComponent comp : components)
+            comp.leavingScreen(player);
+        super.toPlayer(player, option);
+    }
+
+    public boolean valid()
+    {
+        for (ScreenComponent comp : components)
+            if (!comp.valid())
+                return false;
+        return true;
     }
 }

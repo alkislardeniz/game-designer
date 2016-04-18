@@ -33,6 +33,16 @@ public class Game implements Serializable, VariableSet
         return null;
     }
 
+    public boolean addScreen(Screen screen)
+    {
+        return false;
+    }
+
+    public Screen removeScreen(String name)
+    {
+        return null;
+    }
+
     // for lists, get() and remove() methods call objects by their names
     // return null if no objects of that name
     // change these to include initial values for variables, changing the type of the variable if necessary
@@ -81,23 +91,6 @@ public class Game implements Serializable, VariableSet
         bind.setValue(val);
 
         return true;
-    }
-
-    // editor interface
-
-    // create new screen, playable, asignment or cond
-    // TODO
-    public boolean newPlayableScreen(String name)
-    {
-        return false;
-    }
-    public boolean newAssignmentScreen(String name)
-    {
-        return false;
-    }
-    public boolean newCondScreen(String name)
-    {
-        return false;
     }
 
     // return whether the game is set up correctly

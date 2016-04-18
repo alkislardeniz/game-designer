@@ -56,7 +56,15 @@ public class AssignScreen extends NonPlayableScreen
     @Override
     public Option getOption(GamePlayer player)
     {
-        player.addVariable(variable, newValue);
+        if (valid() && variable.getType().equals(newValue.getType(parent)))
+            player.addVariable(variable, newValue);
         return options.get(0); // first option
+    }
+
+    public boolean valid()
+    {
+        return newValue != null
+            && newValue.valid(parent)
+            && parent.hasVariable(variable);
     }
 }

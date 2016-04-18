@@ -10,16 +10,15 @@ import java.util.ArrayList;
 /**
  * Created by admin on 4/12/16.
  */
-public class ScreenView extends JPanel
+public class ScreenView extends JPanel implements ComponentVisitor
 {
     ScreenController parent;
     PlayableScreen screen;
     ArrayList<ComponentView> comps;
     ObjectView movable;
     ImageIcon bg;
+    boolean editing;
 
-    // perhaps make these constants for Screen
-    // final int WIDTH = 504, HEIGHT = 504;
     // final int JUMP = IMAGE_HEIGHT;  // increment for image movement
     int IMAGE_HEIGHT = 24;
     int IMAGE_WIDTH  = 24;
@@ -28,7 +27,12 @@ public class ScreenView extends JPanel
 
     public ScreenView(ScreenController parent, PlayableScreen screen, boolean editing)
     {
-        ComponentView view;
+        // ComponentView view;
+
+        final int WIDTH = screen.getWidth() * IMAGE_WIDTH;
+        final int HEIGHT = screen.getHeight() * IMAGE_HEIGHT;
+
+        setPreferredSize (new Dimension (WIDTH, HEIGHT));
 
         deleteObject = false;
         showGrid = true;
@@ -36,33 +40,33 @@ public class ScreenView extends JPanel
         // initialize fields
         this.parent = parent;
         this.screen = screen;
+        this.editing = editing;
         comps = new ArrayList<ComponentView>();
+
+        // Perhaps use a GridBagLayout or absolute layout
+        // paintComponentOn() should automatically resize according to IMAGE_HEIGHT and IMAGE_WIDTH
+
         for (ScreenComponent comp : screen.getComponents())
-        {
-            // TODO add comp's specific component view to comps and set movable
-            view = ComponentView.getView(comp, editing);
-            comps.add(view);
-            if (comp == screen.getMovable())
-                movable = (ObjectView) view;
-        }
+            // add comp's specific component view to comps and set movable
+            comp.accept(this);
 
-        // Perhaps we can use GridBagLayout for components
+        addKeyListener(new DirectionListener());
 
-        setPreferredSize (new Dimension (WIDTH, HEIGHT));
-        setLayout (new BorderLayout());
         setFocusable (true);
     }
 
+    // TODO include methods to add, get and modify different component views
+
     public void paintComponent (Graphics g)
     {
-        super.paintComponent (g);
+        super.paintComponent(g);
 
-        g.drawImage(bg.getImage(), 0, 0, null); // make this the screen's property
+        // g.drawImage(bg.getImage(), 0, 0, null); // make this the screen's property
 
         for (ComponentView comp : comps)
         {
             // different for labels, objects, etc.
-            comp.paintComponentOn(g, this);
+            comp.paintComponentOn(g);
         }
 
         if (showGrid)
@@ -87,13 +91,34 @@ public class ScreenView extends JPanel
         }
     }
 
+    public void visit(ScreenButton comp)
+    {
+        comps.add(new ButtonView(this, comp, editing));
+    }
+
+    public void visit(ScreenLabel comp)
+    {
+        comps.add(new LabelView(this, comp, editing));
+    }
+
+    public void visit(ScreenObject comp)
+    {
+        ObjectView view = new ObjectView(this, comp, editing);
+        comps.add(view);
+        // if (comp == screen.getMovable())
+            movable = view;
+    }
+
+    public void visit(ScreenTextBox comp)
+    {
+        comps.add(new TextBoxView(this, comp, editing));
+    }
+
     class DirectionListener implements KeyListener
     {
         public void keyPressed (KeyEvent event)
         {
-            setFocusable(true);
-            movable.move(event.getKeyCode(), IMAGE_WIDTH, IMAGE_HEIGHT);
-            setFocusable(false);
+            movable.move(event.getKeyCode());
             repaint();
         }
 

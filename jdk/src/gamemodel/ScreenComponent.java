@@ -24,10 +24,12 @@ public abstract class ScreenComponent implements Serializable
     {
         parent = par;
         name = nam;
-        position = null;
+        position = new Point(0, 0);
     }
 
     public Point getPosition() { return position; }
+
+    public void setPosition(Point position) { this.position = position; }
 
     public PlayableScreen getParent() { return parent; }
 
@@ -38,7 +40,7 @@ public abstract class ScreenComponent implements Serializable
     public boolean isCompatible(ScreenComponent other, int x, int y)
     {
         return (x < position.getX() || x >= position.getX() + width)
-            && (y < position.getY() || y >= position.getY() + height);
+            || (y < position.getY() || y >= position.getY() + height);
     }
 
     // what to do in leaving a screen, nothing by default
@@ -46,4 +48,10 @@ public abstract class ScreenComponent implements Serializable
     {
 
     }
+
+    public void playing() {}
+
+    public abstract void accept(ComponentVisitor visitor);
+
+    public abstract boolean valid();
 }

@@ -8,6 +8,7 @@ public class ScreenButton extends ScreenComponent
     String option;
     String text;
     boolean visible; // if invisible, an object will call it from its keyboard listener
+    boolean playing = false;
 
     // possibly rearrange arguments
     public ScreenButton(PlayableScreen par, String nam)
@@ -16,6 +17,7 @@ public class ScreenButton extends ScreenComponent
         option  = "";
         text    = nam;
         visible = true;
+        width = 3;
     }
 
     // getters, setters
@@ -29,11 +31,17 @@ public class ScreenButton extends ScreenComponent
     public boolean getVisible() { return visible; }
     public void setVisible(boolean visible) { this.visible = visible; }
 
+    public void playing() { playing = true; }
+
     // call parent screen if clicked
     // called by game's action listeners
     public void clicked(GamePlayer player)
     {
-        parent.toPlayer(player, parent.getOption(option));
+        if (playing)
+        {
+            playing = false;
+            parent.toPlayer(player, parent.getOption(option));
+        }
     }
 
     // return true if not visible, call super.isCompatible() otherwise
@@ -41,5 +49,16 @@ public class ScreenButton extends ScreenComponent
     public boolean isCompatible(ScreenComponent other, int x, int y)
     {
         return !visible || super.isCompatible(other, x, y);
+    }
+
+    @Override
+    public void accept(ComponentVisitor visitor)
+    {
+        visitor.visit(this);
+    }
+
+    public boolean valid()
+    {
+        return parent.hasOption(option);
     }
 }

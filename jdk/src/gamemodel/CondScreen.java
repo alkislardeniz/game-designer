@@ -55,8 +55,10 @@ public class CondScreen extends NonPlayableScreen
     // whether pred is a valid predicate
     // possibly throw error or alert parent otherwise
     // checked automatically by editor
-    public boolean validExpr()
+    public boolean valid()
     {
-        return pred != null && pred.valid(parent);
+        return pred != null
+            && pred.valid(parent)
+            && pred.getType(parent) == ExprType.BOOLEAN;
     }
 }

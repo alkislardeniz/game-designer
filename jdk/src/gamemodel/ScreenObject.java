@@ -6,24 +6,34 @@ package gamemodel;
 public class ScreenObject extends ScreenComponent
 {
     boolean movable; // there are two types of objects, movable and immovable
-    String name;
-    // ...
+    String img;
 
-    public ScreenObject(Screen par, String nam, String img)
+    public ScreenObject(PlayableScreen par, String nam, String img)
     {
-        // TODO
+        super(par, nam);
+        this.img = img;
+        // TODO change dimensions based on img
     }
 
     // getters, setters
 
-    public String getIcon() { return name; }
+    public String getIcon() { return img; }
 
     public void setIcon(String name, int height, int width)
     {
-        this.name = name;
+        this.img = name;
         this.height = height;
         this.width = width;
     }
 
-    // perhaps create new ObjectPlayer class to manage object movement in playing game
+    @Override
+    public void accept(ComponentVisitor visitor)
+    {
+        visitor.visit(this);
+    }
+
+    public boolean valid()
+    {
+        return true;
+    }
 }

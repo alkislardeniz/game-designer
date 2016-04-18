@@ -21,13 +21,13 @@ public class ScreenPlayController extends JPanel implements ScreenController
         this.screen = screen;
 
         view = new ScreenView(this, screen, false);
+        setPreferredSize(new Dimension(504, 504));
         add(view);
+        // setFocusable(true);
     }
 
     public GamePlayer getPlayer()
     {
         return player;
     }
-
-    // TODO add keyboard listener that moves the movable object, and action listeners for buttons
 }

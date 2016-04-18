@@ -32,13 +32,23 @@ public class GamePlayer implements Serializable, VariableEnv
     // calls the current screen in the state
     // returns false if newScreen null, i.e. there are no screens left to execute
     // automatically sets shown to false
-    public boolean call(Screen newScreen)
+    public boolean call()
     {
-        return false;
+        if ( currentScreen == null )
+        {
+            return false;
+        }
+        currentScreen.fromPlayer(this);
+        return true;
     }
 
     // perhaps make this only return playable screens
     public Screen getCurrentScreen() { return currentScreen; }
+
+    public void setCurrentScreen( Screen newScreen )
+    {
+        currentScreen = newScreen;
+    }
 
     // return shown, called from GUI
     public boolean getShown()

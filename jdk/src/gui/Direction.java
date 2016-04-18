@@ -13,7 +13,7 @@ public class Direction
 {
     public static void main( String[] args)
     {
-        ImageIcon logo = new ImageIcon ("logo.png");
+        ImageIcon logo = new ImageIcon ("pics/logo.png");
         JFrame f = new JFrame ("Dadam - Game Designer");
         f.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo (null);
