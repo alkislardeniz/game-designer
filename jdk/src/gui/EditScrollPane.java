@@ -6,13 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by USER on 21.4.2016.
+ *
  */
 public class EditScrollPane extends JPanel {
 
     ButtonGroup group;
     JScrollPane scrollPane;
     JRadioButton iconButton;
+    ObjectIconView selectedObject;
 
     public EditScrollPane () //Objects scroll
     {
@@ -40,7 +41,7 @@ public class EditScrollPane extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-
+            
         }
 
     }
