@@ -1,7 +1,7 @@
 package gamemodel;
 
 /**
- * 
+ *
  * @author Mehmet Can Altuntaş
  * @version 21 April 2016
  */
