@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public enum ObjectIcon
 {
-    MEGAMAN ("manRight.gif", "manRight.gif", "manLeft.gif", "manRight.gif", "manRightStand.gif", "manLeftStand.gif"),
+    MEGAMAN ("manLeft.gif", "manRight.gif", "manRightStand.gif", "manLeftStand.gif"),
     HOUSE ("house.png"),
     ROCK  ("rock.png"),
     BG    ("bg.png");
@@ -36,7 +36,7 @@ public enum ObjectIcon
         currentImg = img;
     }
 
-    private ObjectIcon(String up, String down, String left, String right, String rightStand, String leftStand)
+    private ObjectIcon(String left, String right, String rightStand, String leftStand)
     {
         // TODO
         // perhaps store icons in an array or hash table

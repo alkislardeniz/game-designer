@@ -21,6 +21,7 @@ public abstract class ComponentView // extends JComponent
         this.parent = parent;
         this.comp = comp;
         this.editing = editing;
+
         x = (int) comp.getPosition().getX();
         y = (int) comp.getPosition().getY();
 

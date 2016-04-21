@@ -12,7 +12,15 @@ public class ScreenObject extends ScreenComponent
     {
         super(par, nam);
         this.img = img;
-        // TODO change dimensions based on img
+        // TODO change dimensions and movable based on img
+    }
+
+    // copy constructor
+    public ScreenObject(ScreenObject other)
+    {
+        super(other);
+        this.movable = other.movable;
+        this.img = other.img;
     }
 
     // getters, setters

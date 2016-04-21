@@ -17,9 +17,13 @@ public class ObjectView extends ComponentView
     public ObjectView(ScreenView parent, ScreenObject obj, boolean editing)
     {
         super(parent, obj, editing);
-        this.obj = obj;
         icon = ObjectIcon.getIcon(obj.getIcon());
         icon.moving = false;
+
+        // copy obj for playing
+        if (!editing)
+            obj = new ScreenObject(obj);
+        this.obj = obj;
     }
 
     // draw object on screen
@@ -81,5 +85,23 @@ public class ObjectView extends ComponentView
     {
         // depends on whether the object is moving or not
         return icon.getImage();
+    }
+
+    // change coordinates for movable objects
+
+    @Override
+    public void setX(int x)
+    {
+        super.setX(x);
+        if (icon.movable)
+            obj.getPosition().setLocation(x, getY());
+    }
+
+    @Override
+    public void setY(int y)
+    {
+        super.setY(y);
+        if (icon.movable)
+            obj.getPosition().setLocation(getX(), y);
     }
 }

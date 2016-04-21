@@ -48,4 +48,6 @@ public class Option
     {
         screen = newScreen;
     }
+
+    public String toString() { return name; }
 }

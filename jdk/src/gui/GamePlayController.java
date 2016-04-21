@@ -8,7 +8,7 @@ import java.awt.event.*;
  * Changes ScreenPlayController based on current screen of game
  * Created by admin on 4/15/16.
  */
-public class GamePlayController extends JPanel
+public class GamePlayController extends JPanel implements Observer
 {
     GamePlayer player;
     Screen currentScreen; // if player's current screen changes, change ScreenPlayController based on it
@@ -21,15 +21,10 @@ public class GamePlayController extends JPanel
         // TODO create ScreenPlayController, include it in panel
     }
 
-    class ScreenListener implements ActionListener
+    @Override
+    public void update()
     {
-        public void actionPerformed(ActionEvent e)
-        {
-            if (!player.getCurrentScreen().equals(currentScreen))
-            {
-                currentScreen = player.getCurrentScreen(); // make sure getCurrentScreen() is playable
-                // TODO update ScreenPlayController
-            }
-        }
+        currentScreen = player.getCurrentScreen(); // make sure getCurrentScreen() is playable
+        // TODO update ScreenPlayController if currentScreen != null
     }
 }

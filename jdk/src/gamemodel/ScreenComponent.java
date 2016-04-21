@@ -27,6 +27,16 @@ public abstract class ScreenComponent implements Serializable
         position = new Point(0, 0);
     }
 
+    // copy constructor
+    public ScreenComponent(ScreenComponent other)
+    {
+        this.name = other.name;
+        this.position = new Point(other.position); // for movement
+        this.parent = other.parent;
+        this.height = other.height;
+        this.width  = other.width;
+    }
+
     public Point getPosition() { return position; }
 
     public void setPosition(Point position) { this.position = position; }

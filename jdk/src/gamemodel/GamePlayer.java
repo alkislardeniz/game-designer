@@ -1,5 +1,6 @@
 package gamemodel;
 
+import java.util.Hashtable;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -9,23 +10,31 @@ import expr.*;
  * Created by admin on 4/3/16.
  */
 // class executing a game
-public class GamePlayer implements Serializable, VariableEnv
+public class GamePlayer extends Observable implements Serializable, VariableEnv
 {
     Game game;
     Screen currentScreen;
     List<Binding> varBinds;
+    Hashtable<ScreenObject, ScreenObject> sharedObjects;
     boolean shown;
 
     // for serialization, instantiate everything as null
     public GamePlayer()
     {
-        varBinds = new ArrayList<Binding>();
+
     }
 
     // only method called from outside
     public GamePlayer(Game game)
     {
+        this.game = game;
+        currentScreen = game.startScreen;
         varBinds = new ArrayList<Binding>(game.variables);
+        sharedObjects = new Hashtable<ScreenObject, ScreenObject>();
+
+        // copy each shared object, to change their positions
+        for (ScreenObject o : game.sharedObjects)
+            sharedObjects.put(o, new ScreenObject(o));
     }
 
     // called from the constructor and individual screens
@@ -34,27 +43,20 @@ public class GamePlayer implements Serializable, VariableEnv
     // automatically sets shown to false
     public boolean call()
     {
-        if ( currentScreen == null )
-        {
+        if (currentScreen == null)
             return false;
-        }
+
         currentScreen.fromPlayer(this);
+        notifyObservers();
         return true;
     }
 
     // perhaps make this only return playable screens
     public Screen getCurrentScreen() { return currentScreen; }
 
-    public void setCurrentScreen( Screen newScreen )
-    {
-        currentScreen = newScreen;
-    }
+    // perhaps make this only return playable screens
+    public void setCurrentScreen(Screen newScreen) { currentScreen = newScreen; }
 
-    // return shown, called from GUI
-    public boolean getShown()
-    {
-        return false;
-    }
 
     public ExprValue getVariable(Var var)
     {
@@ -82,7 +84,7 @@ public class GamePlayer implements Serializable, VariableEnv
         ExprValue val = value.eval(this);
         Binding bind = getBinding(var);
 
-        return val != null
+        return val  != null
             && bind != null
             && bind.setValue(val);
     }

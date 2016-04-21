@@ -20,7 +20,7 @@ public class ScreenEditController extends JPanel implements ScreenController
         this.screen = screen;
         game = screen.getParent();
 
-        screenView = new ScreenView(this, screen, true);
+        screenView = new ScreenView(this, screen);
         add(screenView);
 
         // have screenView at the center of the panel,

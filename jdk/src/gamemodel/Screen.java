@@ -35,6 +35,10 @@ public abstract class Screen implements Serializable
         options = new ArrayList<Option>();
     }
 
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
     public boolean getPlayable() { return playable; }
 
     public Game getParent() { return parent; }
@@ -60,7 +64,8 @@ public abstract class Screen implements Serializable
 
     public boolean addOption(String name, Screen screen)
     {
-        return options.add(new Option(name, screen));
+        return (optionLimit == -1|| options.size() <= optionLimit)
+            && options.add(new Option(name, screen));
     }
 
     public Option getOption(String name)

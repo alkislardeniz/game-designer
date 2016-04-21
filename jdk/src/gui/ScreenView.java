@@ -25,7 +25,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
     private boolean showGrid, deleteObject;
 
-    public ScreenView(ScreenController parent, PlayableScreen screen, boolean editing)
+    public ScreenView(ScreenController parent, PlayableScreen screen)
     {
         // ComponentView view;
 
@@ -40,7 +40,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
         // initialize fields
         this.parent = parent;
         this.screen = screen;
-        this.editing = editing;
+        editing = parent.getPlayer() == null;
         comps = new ArrayList<ComponentView>();
 
         // Perhaps use a GridBagLayout or absolute layout

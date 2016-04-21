@@ -8,7 +8,7 @@ import expr.*;
 /**
  * Created by admin on 4/3/16.
  */
-public class Game implements Serializable, VariableSet
+public class Game extends Observable implements Serializable, VariableSet
 {
     // store dimensions of each screen of game
     // possibly make the lists maps, so as to memoize screen names and speed up program
@@ -21,27 +21,43 @@ public class Game implements Serializable, VariableSet
     // initialize empty collections, null startScreen
     public Game()
     {
+        screens = new ArrayList<Screen>();
+        sharedObjects = new ArrayList<ScreenObject>();
         variables = new ArrayList<Binding>();
         // TODO
     }
 
     // TODO getters, setters
 
+    public void setStartScreen(Screen startScreen) { this.startScreen = startScreen; }
+
     public Screen getScreen(String name)
     {
-        // TODO
+        for (Screen screen : screens)
+            if (screen.name.equals(name))
+                return screen;
+
         return null;
     }
 
     public boolean addScreen(Screen screen)
     {
-        return false;
+        return screens.add(screen);
     }
 
     public Screen removeScreen(String name)
     {
+        for (Screen screen : screens)
+            if (screen.name.equals(name))
+            {
+                screens.remove(screen);
+                return screen;
+            }
+
         return null;
     }
+
+
 
     // for lists, get() and remove() methods call objects by their names
     // return null if no objects of that name
@@ -83,7 +99,7 @@ public class Game implements Serializable, VariableSet
         if (bind == null || expr == null || !expr.valid(this))
             return false;
 
-        val = expr.eval(null);
+        val = expr.eval(null); // should I consider the game itself an environment?
 
         if (val == null)
             return false;
