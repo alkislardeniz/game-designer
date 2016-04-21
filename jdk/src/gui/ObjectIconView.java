@@ -20,7 +20,7 @@ public enum ObjectIconView
     BG4     (ObjectIcon.BG4, "bg.png"),
     BG5     (ObjectIcon.BG5, "bg.png"),
 
-    //Non movable objectS
+    //Non movable objects
     ROCK    (ObjectIcon.ROCK, "rock.png"),
     STONE   (ObjectIcon.STONE, "stone.png"),
     TREE    (ObjectIcon.TREE, "tree.png"),
@@ -34,7 +34,7 @@ public enum ObjectIconView
     HOUSE3  (ObjectIcon.HOUSE3, "house3.png"),
     HOUSE4  (ObjectIcon.HOUSE4, "house4.png"),
     CAR     (ObjectIcon.CAR, "car.png"),
-    FENCE   (ObjectIcon.FENCE, "fence.png")
+    FENCE   (ObjectIcon.FENCE, "fence.png"),
 
     CHAIR     (ObjectIcon.CHAIR, "chair.png"),
     SHELF     (ObjectIcon.SHELF, "shelf.png"),
