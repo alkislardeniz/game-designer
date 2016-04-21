@@ -17,7 +17,7 @@ public class ScreenViewTest
 
         ScreenLabel label = new ScreenLabel(screen, "", "2 + 5");
         ScreenButton button = new ScreenButton(screen, "hello");
-        ScreenObject object = new ScreenObject(screen, "rock", "rock");
+        ScreenObject object = new ScreenObject(screen, "rock", ObjectIcon.ROCK);
 
         button.setPosition(new Point(10, 10));
         object.setPosition(new Point(5, 5));

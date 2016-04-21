@@ -20,14 +20,15 @@ public enum ObjectIconView
     public static ObjectIconView getIcon(ObjectIcon icon)
     {
         for (ObjectIconView view : values())
+        {
             if (view.icon == icon)
                 return view;
+        }
         return null;
     }
 
     ObjectIcon icon;
     ImageIcon[][] images; // contains icons to show
-    ImageIcon currentImg;
     boolean movable;
     boolean moving;
     int directionIndex;
@@ -36,7 +37,11 @@ public enum ObjectIconView
     {
         this.icon = icon;
 
-        currentImg = new ImageIcon("pics/" + image);
+        images = new ImageIcon[2][2];
+        images[0][0] = images[0][1] = images[1][0] = images[1][1] = new ImageIcon("pics/" + image);
+
+        directionIndex = 1;
+        moving = false;
         movable = false;
     }
 
@@ -52,7 +57,8 @@ public enum ObjectIconView
         images[1][1] = new ImageIcon("pics/" + right);
 
         // perhaps store icons in an array or hash table
-        currentImg = images[1][1];
+        directionIndex = 1;
+        moving = false;
         movable = true;
     }
 
@@ -65,7 +71,6 @@ public enum ObjectIconView
     {
         // turn left if dx < 0, right otherwise
         setDirectionIndex(dx);
-        currentImg = images[directionIndex][getMovingIndex()];
     }
 
     public boolean getMoving() { return moving; }
