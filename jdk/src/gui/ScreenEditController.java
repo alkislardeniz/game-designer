@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 import gamemodel.*;
-import java.awt.event.*;
+import java.awt.*;
 
 /**
  * Panel containing ScreenView that allows to edit an individual screen.
@@ -28,6 +28,14 @@ public class ScreenEditController extends JPanel implements ScreenController
 
         scrollPane = new EditScrollPane();
         screenOptions = new EditScreenOptions();
+
+        setLayout (new BorderLayout());
+
+        add (screenView, BorderLayout.CENTER);
+        add (scrollPane, BorderLayout.EAST);
+        add (screenOptions, BorderLayout.SOUTH);
+
+        //setPreferredSize (new Dimension (504, 264));
 
         // have screenView at the center of the panel,
         // and a pane of components to add to the left
