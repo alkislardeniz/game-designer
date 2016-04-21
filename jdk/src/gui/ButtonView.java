@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * Created by admin on 4/17/16.
+ * Created by fatma on 4/17/16.
  */
 public class ButtonView extends ComponentView
 {
