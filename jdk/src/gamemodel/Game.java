@@ -26,7 +26,44 @@ public class Game extends Observable implements Serializable, VariableSet
         variables = new ArrayList<Binding>();
     }
 
-    // TODO getters, setters
+    // used for GUI elements
+
+    public List<Binding> getVariables()
+    {
+        return new ArrayList<Binding>(variables);
+    }
+
+    public List<ScreenObject> getSharedObjects()
+    {
+        return new ArrayList<ScreenObject>(sharedObjects);
+    }
+
+    public List<Screen> getScreens()
+    {
+        return new ArrayList<Screen>(screens);
+    }
+
+
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public void setHeight(int height)
+    {
+        this.height = height;
+    }
+
+    public void setWidth(int width)
+    {
+        this.width = width;
+    }
 
     public Screen getStartScreen() { return startScreen; }
 
@@ -120,7 +157,9 @@ public class Game extends Observable implements Serializable, VariableSet
             if (!screen.valid())
                 return false;
 
-        // TODO perhaps check variables
+        for (Binding bind : variables)
+            if (!bind.valid())
+                return false;
 
         return true;
     }

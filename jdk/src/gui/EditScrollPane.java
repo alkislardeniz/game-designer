@@ -21,7 +21,7 @@ public class EditScrollPane extends JPanel {
 
         //Add buttons to group and panel
 
-        for (ObjectIcon icon : ObjectIcon.values())
+        for (ObjectIconView icon : ObjectIconView.values())
         {
             iconButton = new JRadioButton (icon.toString());
             iconButton.addActionListener(new ButtonListener());
