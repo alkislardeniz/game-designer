@@ -53,11 +53,17 @@ public class ObjectView extends ComponentView
         y = getY() + dy;
 
         // check compatibility in obj's parent
-        if (obj.getParent().canPlaceComponent(obj, x, y))
+        if (obj.getParent().placeComponent(obj, x, y))
         {
             // if can move, change coordinates and change currentIcon to direction
 
             // TODO check if the movable object goes in front of a button (problem: putting button on top of object)
+            if (parent.parent.getPlayer() != null)
+            {
+                for (ScreenComponent comp : parent.screen.getComponents())
+                    if (comp instanceof ScreenButton && !((ScreenButton) comp).getVisible() && comp.contains(x, y))
+                        ((ScreenButton) comp).clicked(parent.parent.getPlayer());
+            }
 
             icon.moving = true;
             icon.setImage(dx, dy);
