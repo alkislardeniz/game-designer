@@ -49,8 +49,15 @@ public abstract class ScreenComponent implements Serializable
     // perhaps make abstract
     public boolean isCompatible(ScreenComponent other, int x, int y)
     {
-        return (x < position.getX() || x >= position.getX() + width)
-            || (y < position.getY() || y >= position.getY() + height);
+        return !contains(x, y);
+    }
+
+    public boolean contains(int x, int y)
+    {
+        return x >= position.getX()
+            && x >= position.getX() + width
+            && y < position.getY()
+            && y >= position.getY() + height;
     }
 
     // what to do in leaving a screen, nothing by default

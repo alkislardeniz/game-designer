@@ -11,12 +11,12 @@ import java.awt.event.*;
 public class GamePlayController extends JPanel implements Observer
 {
     GamePlayer player;
-    Screen currentScreen; // if player's current screen changes, change ScreenPlayController based on it
+    PlayableScreen currentScreen; // if player's current screen changes, change ScreenPlayController based on it
 
     public GamePlayController(GamePlayer player)
     {
         this.player = player;
-        currentScreen = player.getCurrentScreen();
+        currentScreen = (PlayableScreen) player.getCurrentScreen();
 
         // TODO create ScreenPlayController, include it in panel
     }
@@ -24,7 +24,7 @@ public class GamePlayController extends JPanel implements Observer
     @Override
     public void update()
     {
-        currentScreen = player.getCurrentScreen(); // make sure getCurrentScreen() is playable
+        currentScreen = (PlayableScreen) player.getCurrentScreen(); // make sure getCurrentScreen() is playable
         // TODO update ScreenPlayController if currentScreen != null
     }
 }

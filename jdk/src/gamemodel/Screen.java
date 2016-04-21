@@ -44,7 +44,10 @@ public abstract class Screen implements Serializable
     public Game getParent() { return parent; }
 
     // called from player, either responds directly or waits for input from GUI interface
-    public abstract void fromPlayer(GamePlayer player);
+    public void fromPlayer(GamePlayer player)
+    {
+
+    }
 
     // calls player after updating its state, sets new screen of player to option,
     // then calls the player's call() method
