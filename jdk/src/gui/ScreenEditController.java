@@ -13,6 +13,9 @@ public class ScreenEditController extends JPanel implements ScreenController
     Game game;
     PlayableScreen screen;
     ScreenView screenView;
+    EditScrollPane scrollPane;
+    EditScreenOptions screenOptions;
+
     // TODO also include a panel containing options for components to add to the screen
 
     public ScreenEditController(PlayableScreen screen)
@@ -22,6 +25,9 @@ public class ScreenEditController extends JPanel implements ScreenController
 
         screenView = new ScreenView(this, screen);
         add(screenView);
+
+        scrollPane = new EditScrollPane();
+        screenOptions = new EditScreenOptions();
 
         // have screenView at the center of the panel,
         // and a pane of components to add to the left
