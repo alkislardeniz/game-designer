@@ -9,50 +9,68 @@ import javax.swing.*;
  */
 public enum ObjectIconView
 {
-    MEGAMAN ("manLeft.gif", "manRight.gif", "manRightStand.gif", "manLeftStand.gif"),
-    HOUSE ("house.png"),
-    ROCK  ("rock.png"),
-    BG    ("bg.png");
+    MEGAMAN (ObjectIcon.MEGAMAN, "manLeft.gif", "manRight.gif", "manLeftStand.gif", "manRightStand.gif"),
+    HOUSE   (ObjectIcon.HOUSE, "house.png"),
+    ROCK    (ObjectIcon.ROCK, "rock.png"),
+    BG      (ObjectIcon.BG, "bg.png");
 
     // need to store icon and movability in ScreenObject
 
     // is this necessary?
     public static ObjectIconView getIcon(ObjectIcon icon)
     {
+        for (ObjectIconView view : values())
+        {
+            if (view.icon == icon)
+                return view;
+        }
         return null;
     }
 
-    ImageIcon[] images; // contains icons to show
-    ImageIcon currentImg;
+    ObjectIcon icon;
+    ImageIcon[][] images; // contains icons to show
     boolean movable;
     boolean moving;
-    // TODO also contain information about size
+    int directionIndex;
 
-    private ObjectIconView(String image)
+    private ObjectIconView(ObjectIcon icon, String image)
     {
-        ImageIcon img = new ImageIcon("pics/" + image);
-        // TODO initialize array of icons
-        movable = false;
+        this.icon = icon;
 
-        currentImg = img;
+        images = new ImageIcon[2][2];
+        images[0][0] = images[0][1] = images[1][0] = images[1][1] = new ImageIcon("pics/" + image);
+
+        directionIndex = 1;
+        moving = false;
+        movable = false;
     }
 
-    private ObjectIconView(String left, String right, String rightStand, String leftStand)
+    private ObjectIconView(ObjectIcon icon, String left, String right, String leftStand, String rightStand)
     {
-        // TODO
+        this.icon = icon;
+
+        images = new ImageIcon[2][2];
+
+        images[0][0] = new ImageIcon("pics/" + leftStand);
+        images[1][0] = new ImageIcon("pics/" + rightStand);
+        images[0][1] = new ImageIcon("pics/" + left);
+        images[1][1] = new ImageIcon("pics/" + right);
+
         // perhaps store icons in an array or hash table
-        currentImg = new ImageIcon("pics/" + rightStand);
+        directionIndex = 1;
+        moving = false;
         movable = true;
     }
 
     public ImageIcon getImage()
     {
-        return currentImg;
+        return images[directionIndex][getMovingIndex()];
     }
 
     public void setImage(int dx, int dy)
     {
-        // TODO change icon based on direction and moving
+        // turn left if dx < 0, right otherwise
+        setDirectionIndex(dx);
     }
 
     public boolean getMoving() { return moving; }
@@ -60,6 +78,21 @@ public enum ObjectIconView
     public void setMoving(boolean moving)
     {
         this.moving = moving;
-        // TODO update icon
+    }
+
+    // return 0 if standing, 1 if moving
+    private int getMovingIndex()
+    {
+        if (moving)
+            return 1;
+        return 0;
+    }
+
+    // return 0 if left, 1 if right
+    private void setDirectionIndex(int dx)
+    {
+        if (dx < 0)
+            directionIndex = 0;
+        directionIndex = 1;
     }
 }

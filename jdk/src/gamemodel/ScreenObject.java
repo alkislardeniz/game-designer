@@ -10,6 +10,7 @@ public class ScreenObject extends ScreenComponent
     public ScreenObject(PlayableScreen par, String nam, ObjectIcon img)
     {
         super(par, nam);
+        this.img = img;
     }
 
     // copy constructor
