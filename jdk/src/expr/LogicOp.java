@@ -9,10 +9,10 @@ package expr;
 enum LogicOp implements BinaryOp
 {
     OR  ("OR",  ExprType.BOOLEAN) {
-        private boolean boolOp(boolean a, boolean b) { return a || b; }
+        protected boolean boolOp(boolean a, boolean b) { return a || b; }
     },
     AND ("AND", ExprType.BOOLEAN) {
-        private boolean boolOp(boolean a, boolean b) { return a && b; }
+        protected boolean boolOp(boolean a, boolean b) { return a && b; }
     };
 
     public static BinaryOp getOp(String opName)
@@ -57,6 +57,6 @@ enum LogicOp implements BinaryOp
         return new ExprValue(res, ExprType.BOOLEAN);
     }
 
-    private boolean boolOp(boolean a, boolean b) { return false; }
+    protected boolean boolOp(boolean a, boolean b) { return false; }
 }
 
