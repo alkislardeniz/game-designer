@@ -57,7 +57,7 @@ public class ObjectView extends ComponentView
         {
             // if can move, change coordinates and change currentIcon to direction
 
-            // TODO check if the movable object goes in front of a button (problem: putting button on top of object)
+            // check if the movable object goes in front of a button (problem: putting button on top of object)
             if (parent.parent.getPlayer() != null)
             {
                 for (ScreenComponent comp : parent.screen.getComponents())

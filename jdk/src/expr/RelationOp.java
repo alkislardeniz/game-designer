@@ -87,7 +87,7 @@ enum RelationOp implements BinaryOp
 
     private boolean objOp(Object obj1, Object obj2)
     {
-        return false;
+        return true;
     }
 }
 
