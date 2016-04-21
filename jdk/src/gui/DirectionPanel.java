@@ -256,6 +256,7 @@ public class DirectionPanel extends JPanel
             Point p = e.getPoint();
             rX = ((int) p.getX()) - ((int) p.getX() % IMAGE_HEIGHT);
             rY = ((int) p.getY()) - ((int) p.getY() % IMAGE_HEIGHT);
+
             if (deleteObject == false)
             {
                 points.add (new Point (rX, rY));
