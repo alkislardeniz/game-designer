@@ -3,6 +3,8 @@ package gui;
 import javax.swing.*;
 import gamemodel.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Panel containing ScreenView that allows to edit an individual screen.
@@ -49,4 +51,12 @@ public class ScreenEditController extends JPanel implements ScreenController
 
     // TODO include methods to communicate with options panel and create and move objects
     // if a new component is created, update screenView.comps
+
+    class MyMouseAdapter extends MouseAdapter
+    {
+        public void mousePressed (MouseEvent e)
+        {
+           //TODO getting the point and adding it to the screen by checking radio buttons
+        }
+    }
 }
