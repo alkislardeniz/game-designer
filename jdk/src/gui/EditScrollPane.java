@@ -13,7 +13,7 @@ public class EditScrollPane extends JPanel {
     ButtonGroup group;
     JScrollPane scrollPane;
     JRadioButton iconButton;
-    ObjectIconView selectedObject;
+    String selectedObject;
 
     public EditScrollPane () //Objects scroll
     {
@@ -25,6 +25,7 @@ public class EditScrollPane extends JPanel {
         for (ObjectIconView icon : ObjectIconView.values())
         {
             iconButton = new JRadioButton (icon.toString());
+            iconButton.setName(icon.toString());
             iconButton.addActionListener(new ButtonListener());
             group.add(iconButton);
         }
@@ -36,12 +37,17 @@ public class EditScrollPane extends JPanel {
         scrollPane.setPreferredSize (new Dimension (100, 264));
     }
 
+    public String getSelectedObject() {
+        return selectedObject;
+    }
+
     class ButtonListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            
+            JButton selectedButton = (JButton) e.getSource();
+            selectedObject = selectedButton.getName();
         }
 
     }
