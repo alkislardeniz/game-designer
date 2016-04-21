@@ -97,7 +97,9 @@ public class PlayableScreen extends Screen
 
     public ScreenComponent findComponentAt(int x, int y)
     {
-        // TODO
+        for (ScreenComponent comp : components)
+            if (comp.contains(x, y))
+                return comp;
         return null;
     }
 
@@ -109,15 +111,6 @@ public class PlayableScreen extends Screen
     public void setMovable(ScreenComponent movable)
     {
         movableComponent = movable;
-    }
-
-    // alert each component (is that necessary?)
-    @Override
-    public void fromPlayer(GamePlayer player)
-    {
-        // TODO
-        for(ScreenComponent comp: components)
-            comp.playing();
     }
 
     // call components in leaving screen

@@ -47,6 +47,8 @@ public class CondScreen extends NonPlayableScreen
     @Override
     public Option getOption(GamePlayer player)
     {
+        System.out.println(pred + " = " + pred.eval(player));
+        
         if (pred.eval(player).getValue() == Boolean.TRUE)
             return options.get(0);
         return options.get(1);
