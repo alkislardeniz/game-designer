@@ -66,8 +66,6 @@ public abstract class ScreenComponent implements Serializable
 
     }
 
-    public void playing() {}
-
     public abstract void accept(ComponentVisitor visitor);
 
     public abstract boolean valid();
