@@ -12,12 +12,12 @@ import java.awt.event.KeyEvent;
 public class ObjectView extends ComponentView
 {
     ScreenObject obj;
-    ObjectIcon icon;
+    ObjectIconView icon;
 
     public ObjectView(ScreenView parent, ScreenObject obj, boolean editing)
     {
         super(parent, obj, editing);
-        icon = ObjectIcon.getIcon(obj.getIcon());
+        icon = ObjectIconView.getIcon(obj.getIcon());
         icon.moving = false;
 
         // copy obj for playing

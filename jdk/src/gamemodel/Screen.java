@@ -56,7 +56,6 @@ public abstract class Screen implements Serializable
     {
         player.setCurrentScreen( option.getScreen() );
         player.call();
-        // TODO
     }
 
     // getOptions() to be called from editor

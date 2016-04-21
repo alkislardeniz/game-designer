@@ -24,7 +24,7 @@ public class Var
     // called after addition of assignment screen
     public boolean setType(ExprType newType)
     {
-        if (type == null || type.isA(newType))
+        if (type.isA(newType))
         {
             type = newType;
             return true;

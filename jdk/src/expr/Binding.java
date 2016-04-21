@@ -49,4 +49,11 @@ public class Binding
 
         return false;
     }
+
+    public boolean valid()
+    {
+        return var != null
+            && val != null
+            && val.getType().isA(var.getType());
+    }
 }

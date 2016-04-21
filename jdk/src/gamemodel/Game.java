@@ -24,11 +24,48 @@ public class Game extends Observable implements Serializable, VariableSet
         screens = new ArrayList<Screen>();
         sharedObjects = new ArrayList<ScreenObject>();
         variables = new ArrayList<Binding>();
-        // TODO
-
     }
 
-    // TODO getters, setters
+    // used for GUI elements
+
+    public List<Binding> getVariables()
+    {
+        return new ArrayList<Binding>(variables);
+    }
+
+    public List<ScreenObject> getSharedObjects()
+    {
+        return new ArrayList<ScreenObject>(sharedObjects);
+    }
+
+    public List<Screen> getScreens()
+    {
+        return new ArrayList<Screen>(screens);
+    }
+
+
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public void setHeight(int height)
+    {
+        this.height = height;
+    }
+
+    public void setWidth(int width)
+    {
+        this.width = width;
+    }
+
+    public Screen getStartScreen() { return startScreen; }
 
     public void setStartScreen(Screen startScreen) { this.startScreen = startScreen; }
 
@@ -113,13 +150,17 @@ public class Game extends Observable implements Serializable, VariableSet
     // return whether the game is set up correctly
     public boolean valid()
     {
-        if ( startScreen == null)
-        return false;
-        for ( Screen screen : screens )
-            if ( !screen.valid() )
-            {
-                return false;
-            }
+        if (startScreen == null)
+            return false;
 
+        for (Screen screen : screens)
+            if (!screen.valid())
+                return false;
+
+        for (Binding bind : variables)
+            if (!bind.valid())
+                return false;
+
+        return true;
     }
 }

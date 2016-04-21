@@ -1,11 +1,13 @@
 package gui;
 
+import gamemodel.*;
+
 import javax.swing.*;
 
 /**
  * Created by admin on 4/12/16.
  */
-public enum ObjectIcon
+public enum ObjectIconView
 {
     MEGAMAN ("manLeft.gif", "manRight.gif", "manRightStand.gif", "manLeftStand.gif"),
     HOUSE ("house.png"),
@@ -15,10 +17,9 @@ public enum ObjectIcon
     // need to store icon and movability in ScreenObject
 
     // is this necessary?
-    public static ObjectIcon getIcon(String iconName)
+    public static ObjectIconView getIcon(ObjectIcon icon)
     {
-        // TODO
-        return MEGAMAN;
+        return null;
     }
 
     ImageIcon[] images; // contains icons to show
@@ -27,16 +28,16 @@ public enum ObjectIcon
     boolean moving;
     // TODO also contain information about size
 
-    private ObjectIcon(String image)
+    private ObjectIconView(String image)
     {
         ImageIcon img = new ImageIcon("pics/" + image);
         // TODO initialize array of icons
-        movable = true; // false
+        movable = false;
 
         currentImg = img;
     }
 
-    private ObjectIcon(String left, String right, String rightStand, String leftStand)
+    private ObjectIconView(String left, String right, String rightStand, String leftStand)
     {
         // TODO
         // perhaps store icons in an array or hash table
