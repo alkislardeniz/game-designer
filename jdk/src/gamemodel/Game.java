@@ -16,7 +16,7 @@ public class Game extends Observable implements Serializable, VariableSet
     List<ScreenObject> sharedObjects; // searched by names, represent objects shared across screens
     List<Binding> variables;
     int height = 21, width = 21; // dimensions of grid
-    Screen startScreen;
+    PlayableScreen startScreen;
 
     // initialize empty collections, null startScreen
     public Game()
@@ -65,9 +65,9 @@ public class Game extends Observable implements Serializable, VariableSet
         this.width = width;
     }
 
-    public Screen getStartScreen() { return startScreen; }
+    public PlayableScreen getStartScreen() { return startScreen; }
 
-    public void setStartScreen(Screen startScreen) { this.startScreen = startScreen; }
+    public void setStartScreen(PlayableScreen startScreen) { this.startScreen = startScreen; }
 
     public Screen getScreen(String name)
     {

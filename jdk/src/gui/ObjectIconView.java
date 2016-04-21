@@ -68,7 +68,7 @@ public enum ObjectIconView
         this.icon = icon;
 
         images = new ImageIcon[2][2];
-        images[0][0] = images[0][1] = images[1][0] = images[1][1] = new ImageIcon("pics/" + image);
+        images[1][0] = new ImageIcon("pics/" + image);
 
         directionIndex = 1;
         moving = false;
@@ -107,7 +107,8 @@ public enum ObjectIconView
 
     public void setMoving(boolean moving)
     {
-        this.moving = moving;
+        if (movable)
+            this.moving = moving;
     }
 
     // return 0 if standing, 1 if moving
@@ -123,6 +124,7 @@ public enum ObjectIconView
     {
         if (dx < 0)
             directionIndex = 0;
-        directionIndex = 1;
+        else
+            directionIndex = 1;
     }
 }

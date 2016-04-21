@@ -16,8 +16,8 @@ public class ScreenViewTest
         PlayableScreen screen = new PlayableScreen(game, "");
 
         ScreenLabel label = new ScreenLabel(screen, "", "2 + 5");
-        ScreenButton button = new ScreenButton(screen, "hello");
-        ScreenObject object = new ScreenObject(screen, "rock", ObjectIcon.ROCK);
+        ScreenObject button = new ScreenObject(screen, "rock", ObjectIcon.ROCK);
+        ScreenObject object = new ScreenObject(screen, "megaman", ObjectIcon.MEGAMAN);
 
         button.setPosition(new Point(10, 10));
         object.setPosition(new Point(5, 5));
@@ -27,6 +27,7 @@ public class ScreenViewTest
         screen.addComponent(object);
         screen.addComponent(label);
 
+        screen.setMovable(object);
 
         ImageIcon logo = new ImageIcon ("pics/logo.png");
         JFrame f = new JFrame ("Dadam - Game Designer");

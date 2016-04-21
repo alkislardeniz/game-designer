@@ -28,6 +28,11 @@ public class ScreenObject extends ScreenComponent
         this.img = img;
     }
 
+    public boolean isMovable()
+    {
+        return img.movable;
+    }
+
     @Override
     public void accept(ComponentVisitor visitor)
     {
