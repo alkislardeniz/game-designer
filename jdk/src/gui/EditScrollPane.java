@@ -33,7 +33,6 @@ public class EditScrollPane extends JPanel {
         scrollPane.setHorizontalScrollBarPolicy (JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy (JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize (new Dimension (100, 264));
-
     }
 
     class ButtonListener implements ActionListener
