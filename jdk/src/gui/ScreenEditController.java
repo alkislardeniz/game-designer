@@ -40,5 +40,6 @@ public class ScreenEditController extends JPanel implements ScreenController
     }
 
     // TODO include methods to communicate with options panel and create and move objects
+
     // if a new component is created, update screenView.comps
 }
