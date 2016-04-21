@@ -39,9 +39,10 @@ public class ExprTest
 
         set.addScreen(scr2);
 
-        set.setStartScreen(scr);
+        // set.setStartScreen(scr);
 
         env = new GamePlayer(set);
+        env.setCurrentScreen(scr);
 
         System.out.println(env.getVariable(new Var("x")));
 
