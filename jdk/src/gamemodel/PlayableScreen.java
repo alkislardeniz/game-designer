@@ -9,7 +9,7 @@ import java.util.List;
 public class PlayableScreen extends Screen
 {
     List<ScreenComponent> components; // container?
-    ScreenComponent movableComponent;
+    ScreenObject movable;
     String backgroundName;
     // store screen dimensions
 
@@ -105,12 +105,13 @@ public class PlayableScreen extends Screen
 
     public ScreenComponent getMovable()
     {
-        return movableComponent;
+        return movable;
     }
 
-    public void setMovable(ScreenComponent movable)
+    public void setMovable(ScreenObject movable)
     {
-        movableComponent = movable;
+        if (movable.isMovable())
+            this.movable = movable;
     }
 
     // call components in leaving screen

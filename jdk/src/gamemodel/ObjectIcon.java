@@ -19,7 +19,7 @@ public enum ObjectIcon
     BG4     (21, 21, false),
     BG5     (21, 21, false),
 
-    //Non movable objectS
+    //Non movable objects
     ROCK    (1, 1, false),
     STONE    (1, 2, false),
     TREE     (1, 2, false),

@@ -9,10 +9,40 @@ import javax.swing.*;
  */
 public enum ObjectIconView
 {
+    //Movable objects
     MEGAMAN (ObjectIcon.MEGAMAN, "manLeft.gif", "manRight.gif", "manLeftStand.gif", "manRightStand.gif"),
-    HOUSE   (ObjectIcon.HOUSE, "house.png"),
+    COP    (ObjectIcon.COP, "copLeft.gif", "copRight.gif", "copLeftStand.gif", "copRightStand.gif"),
+
+    //Non movable backgrounds
+    BG      (ObjectIcon.BG, "bg.png"),
+    BG2     (ObjectIcon.BG2, "bg.png"),
+    BG3     (ObjectIcon.BG3, "bg.png"),
+    BG4     (ObjectIcon.BG4, "bg.png"),
+    BG5     (ObjectIcon.BG5, "bg.png"),
+
+    //Non movable objects
     ROCK    (ObjectIcon.ROCK, "rock.png"),
-    BG      (ObjectIcon.BG, "bg.png");
+    STONE   (ObjectIcon.STONE, "stone.png"),
+    TREE    (ObjectIcon.TREE, "tree.png"),
+    TREE2   (ObjectIcon.TREE2, "tree2.png"),
+    TREE3   (ObjectIcon.TREE3, "tree3.png"),
+    TREE4   (ObjectIcon.TREE4, "tree4.png"),
+    TREE5   (ObjectIcon.TREE5, "tree5.png"),
+
+    HOUSE   (ObjectIcon.HOUSE, "house.png"),
+    HOUSE2  (ObjectIcon.HOUSE2, "house2.png"),
+    HOUSE3  (ObjectIcon.HOUSE3, "house3.png"),
+    HOUSE4  (ObjectIcon.HOUSE4, "house4.png"),
+    CAR     (ObjectIcon.CAR, "car.png"),
+    FENCE   (ObjectIcon.FENCE, "fence.png"),
+
+    CHAIR     (ObjectIcon.CHAIR, "chair.png"),
+    SHELF     (ObjectIcon.SHELF, "shelf.png"),
+    SHELF2    (ObjectIcon.SHELF2, "shelf2.png"),
+    SOFA      (ObjectIcon.SOFA, "sofa.png"),
+    SOFA2     (ObjectIcon.SOFA2, "sofa2.png"),
+    TABLE     (ObjectIcon.TABLE, "table.png"),
+    TABLE2    (ObjectIcon.TABLE, "table.png");
 
     // need to store icon and movability in ScreenObject
 
@@ -38,7 +68,7 @@ public enum ObjectIconView
         this.icon = icon;
 
         images = new ImageIcon[2][2];
-        images[0][0] = images[0][1] = images[1][0] = images[1][1] = new ImageIcon("pics/" + image);
+        images[1][0] = new ImageIcon("pics/" + image);
 
         directionIndex = 1;
         moving = false;
@@ -77,7 +107,8 @@ public enum ObjectIconView
 
     public void setMoving(boolean moving)
     {
-        this.moving = moving;
+        if (movable)
+            this.moving = moving;
     }
 
     // return 0 if standing, 1 if moving
@@ -93,6 +124,7 @@ public enum ObjectIconView
     {
         if (dx < 0)
             directionIndex = 0;
-        directionIndex = 1;
+        else
+            directionIndex = 1;
     }
 }

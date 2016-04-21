@@ -55,9 +55,9 @@ public abstract class ScreenComponent implements Serializable
     public boolean contains(int x, int y)
     {
         return x >= position.getX()
-            && x >= position.getX() + width
-            && y < position.getY()
-            && y >= position.getY() + height;
+            && x < position.getX() + width
+            && y >= position.getY()
+            && y < position.getY() + height;
     }
 
 

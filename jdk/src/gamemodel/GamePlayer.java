@@ -35,6 +35,8 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
         // copy each shared object, to change their positions
         for (ScreenObject o : game.sharedObjects)
             sharedObjects.put(o, new ScreenObject(o));
+
+        call();
     }
 
     // called from the constructor and individual screens
