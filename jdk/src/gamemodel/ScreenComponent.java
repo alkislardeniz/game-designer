@@ -60,9 +60,11 @@ public abstract class ScreenComponent implements Serializable
             && y >= position.getY() + height;
     }
 
+
     // what to do in leaving a screen, nothing by default
     public void leavingScreen(GamePlayer player)
     {
+
 
     }
 

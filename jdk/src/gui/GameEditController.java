@@ -1,10 +1,13 @@
-package gamemodel;
+package gui;
+
+import gamemodel.AssignScreen;
+import gamemodel.CondScreen;
+import gamemodel.Game;
 
 /**
  * Created by user on 21.04.2016.
  */
 public class GameEditController
-
 {
     Game newGame;
 
