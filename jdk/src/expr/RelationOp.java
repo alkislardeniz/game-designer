@@ -9,19 +9,19 @@ package expr;
 enum RelationOp implements BinaryOp
 {
     EQ  ("=",  ExprType.ALL) {
-        private boolean objOp(Object obj1, Object obj2)
+        protected boolean objOp(Object obj1, Object obj2)
         {
             return obj1.equals(obj2);
         }
     },
     NEQ ("!=", ExprType.ALL) {
-        private boolean objOp(Object obj1, Object obj2)
+        protected boolean objOp(Object obj1, Object obj2)
         {
             return !obj1.equals(obj2);
         }
     },
     LT  ("<",  ExprType.DOUBLE) {
-        private boolean objOp(Object obj1, Object obj2)
+        protected boolean objOp(Object obj1, Object obj2)
         {
             // if (typ1.equals(ExprType.INTEGER) && typ2.equals(ExprType.INTEGER))
             //     return (Integer) obj1 < (Integer) obj2;
@@ -31,19 +31,19 @@ enum RelationOp implements BinaryOp
         }
     },
     GT  (">",  ExprType.DOUBLE) {
-        private boolean objOp(Object obj1, Object obj2)
+        protected boolean objOp(Object obj1, Object obj2)
         {
             return ((Number) obj1).doubleValue() >  ((Number) obj2).doubleValue();
         }
     },
     LEQ ("<=", ExprType.DOUBLE) {
-        private boolean objOp(Object obj1, Object obj2)
+        protected boolean objOp(Object obj1, Object obj2)
         {
             return ((Number) obj1).doubleValue() <= ((Number) obj2).doubleValue();
         }
     },
     GEQ (">=", ExprType.DOUBLE) {
-        private boolean objOp(Object obj1, Object obj2)
+        protected boolean objOp(Object obj1, Object obj2)
         {
             return ((Number) obj1).doubleValue() >= ((Number) obj2).doubleValue();
         }
@@ -85,7 +85,7 @@ enum RelationOp implements BinaryOp
         return new ExprValue(objOp(obj1.getValue(), obj2.getValue()), ExprType.BOOLEAN);
     }
 
-    private boolean objOp(Object obj1, Object obj2)
+    protected boolean objOp(Object obj1, Object obj2)
     {
         return true;
     }
