@@ -13,7 +13,7 @@ public class EditScreenOptions extends JPanel{
     JRadioButton showgrid, delete, add;
     ButtonGroup group;
     boolean isDelete;
-    boolean isGridShow;
+    boolean showGrids;
 
     public EditScreenOptions ()
     {
@@ -21,7 +21,7 @@ public class EditScreenOptions extends JPanel{
         add = new JRadioButton ("Add");
         showgrid = new JRadioButton ("Show Grids");
         group = new ButtonGroup();
-        isGridShow = false;
+        showGrids = false;
 
         //Adding action listeners
         delete.addActionListener(new ButtonListener());
@@ -47,7 +47,7 @@ public class EditScreenOptions extends JPanel{
 
     public boolean isGridShow()
     {
-        return isGridShow;
+        return showGrids;
     }
 
     class ButtonListener implements ActionListener
@@ -65,7 +65,7 @@ public class EditScreenOptions extends JPanel{
             }
             else if (e.getSource() == showgrid)
             {
-                isGridShow = true;
+                showGrids = true;
             }
         }
 
