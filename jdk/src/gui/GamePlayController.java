@@ -3,6 +3,8 @@ package gui;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Changes ScreenPlayController based on current screen of game
@@ -26,7 +28,7 @@ public class GamePlayController extends JPanel implements Observer
     }
 
     @Override
-    public void update()
+    public void update(Observable o, Object arg)
     {
         currentScreen = (PlayableScreen) player.getCurrentScreen(); // currentScreen is playable every time notifyObservers() is called
 

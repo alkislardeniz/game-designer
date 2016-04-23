@@ -3,6 +3,8 @@ package gui;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by admin on 4/18/16.
@@ -34,6 +36,7 @@ public class ScreenViewTest
         screen.addOption("option 1", screen);
 
         player.addObserver(new GameObserver(player));
+        // button.clicked(player);
 
         ImageIcon logo = new ImageIcon ("pics/logo.png");
         JFrame f = new JFrame ("Dadam - Game Designer");
@@ -46,7 +49,7 @@ public class ScreenViewTest
         f.add(controller);
         f.add(new JLabel(logo), BorderLayout.NORTH);
 
-        f.setVisible( true);
+        f.setVisible(true);
     }
 
     private static class GameObserver implements Observer
@@ -59,7 +62,7 @@ public class ScreenViewTest
             // player.addObserver(this);
         }
 
-        public void update()
+        public void update(Observable o, Object arg)
         {
             // System.out.println(player.getVariable(new Var("x")));
 

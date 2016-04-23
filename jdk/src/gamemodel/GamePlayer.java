@@ -1,6 +1,6 @@
 package gamemodel;
 
-import java.util.Hashtable;
+import java.util.Observable;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -42,6 +42,7 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
             return false;
 
         currentScreen.fromPlayer(this);
+        setChanged();
         notifyObservers();
         return true;
     }
