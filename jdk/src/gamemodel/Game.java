@@ -13,7 +13,6 @@ public class Game extends Observable implements Serializable, VariableSet
     // store dimensions of each screen of game
     // possibly make the lists maps, so as to memoize screen names and speed up program
     List<Screen> screens; // search through screens by their names
-    List<ScreenObject> sharedObjects; // searched by names, represent objects shared across screens
     List<Binding> variables;
     int height = 21, width = 21; // dimensions of grid
     PlayableScreen startScreen;
@@ -22,7 +21,6 @@ public class Game extends Observable implements Serializable, VariableSet
     public Game()
     {
         screens = new ArrayList<Screen>();
-        sharedObjects = new ArrayList<ScreenObject>();
         variables = new ArrayList<Binding>();
     }
 
@@ -31,11 +29,6 @@ public class Game extends Observable implements Serializable, VariableSet
     public List<Binding> getVariables()
     {
         return new ArrayList<Binding>(variables);
-    }
-
-    public List<ScreenObject> getSharedObjects()
-    {
-        return new ArrayList<ScreenObject>(sharedObjects);
     }
 
     public List<Screen> getScreens()

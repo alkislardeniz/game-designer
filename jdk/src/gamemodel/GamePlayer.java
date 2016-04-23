@@ -15,8 +15,6 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
     Game game;
     Screen currentScreen;
     List<Binding> varBinds;
-    Hashtable<ScreenObject, ScreenObject> sharedObjects;
-    boolean shown;
 
     // for serialization, instantiate everything as null
     public GamePlayer()
@@ -30,13 +28,8 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
         this.game = game;
         currentScreen = game.startScreen;
         varBinds = new ArrayList<Binding>(game.variables);
-        sharedObjects = new Hashtable<ScreenObject, ScreenObject>();
 
-        // copy each shared object, to change their positions
-        for (ScreenObject o : game.sharedObjects)
-            sharedObjects.put(o, new ScreenObject(o));
-
-        call();
+        // call();
     }
 
     // called from the constructor and individual screens
