@@ -6,14 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by USER on 21.4.2016.
+ * Created by Deniz Alkislar on 21.4.2016.
  */
 public class EditScreenOptions extends JPanel{
 
     JRadioButton showgrid, delete, add;
     ButtonGroup group;
     boolean isDelete;
-    boolean isGridShow;
+    boolean showGrids;
 
     public EditScreenOptions ()
     {
@@ -21,7 +21,7 @@ public class EditScreenOptions extends JPanel{
         add = new JRadioButton ("Add");
         showgrid = new JRadioButton ("Show Grids");
         group = new ButtonGroup();
-        isGridShow = false;
+        showGrids = false;
 
         //Adding action listeners
         delete.addActionListener(new ButtonListener());
@@ -47,7 +47,7 @@ public class EditScreenOptions extends JPanel{
 
     public boolean isGridShow()
     {
-        return isGridShow;
+        return showGrids;
     }
 
     class ButtonListener implements ActionListener
@@ -65,7 +65,7 @@ public class EditScreenOptions extends JPanel{
             }
             else if (e.getSource() == showgrid)
             {
-                isGridShow = true;
+                showGrids = true;
             }
         }
 

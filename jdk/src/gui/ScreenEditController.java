@@ -3,6 +3,8 @@ package gui;
 import javax.swing.*;
 import gamemodel.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Panel containing ScreenView that allows to edit an individual screen.
@@ -47,6 +49,31 @@ public class ScreenEditController extends JPanel implements ScreenController
         return null;
     }
 
-    // TODO include methods to communicate with options panel and create and move objects
-    // if a new component is created, update screenView.comps
+    //this method updates gridShow and adds components to the screenView
+    public void screenViewUpdate()
+    {
+        //updating grid show
+        if (screenOptions.isGridShow()) {
+            screenView.setShowGrid(true);
+        }
+        else {
+            screenView.setShowGrid(false);
+        }
+
+        //adding components
+        if (screenOptions.getIsDelete() == false) {
+            if (scrollPane.getSelectedObject().equals("ROCK")) {
+                ScreenObject newObj = new ScreenObject(screen, "ROCK", ObjectIcon.ROCK);
+                newObj.setPosition(screenView.getObjectAddDeletePos());
+                screenView.visit(newObj);
+            }
+            else if (scrollPane.getSelectedObject().equals("TREE")) {
+                ScreenObject newObj = new ScreenObject(screen, "TREE", ObjectIcon.TREE);
+                newObj.setPosition(screenView.getObjectAddDeletePos());
+                screenView.visit(newObj);
+            }
+        }
+        //TODO find a way to add screen objects without using if statements
+        //TODO find a way to add label, button and text box
+    }
 }
