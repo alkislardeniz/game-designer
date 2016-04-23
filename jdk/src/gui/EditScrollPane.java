@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Created by Deniz Alkislar on 21.4.2016.
  */
 public class EditScrollPane extends JPanel {
 
