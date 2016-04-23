@@ -95,24 +95,35 @@ public class ScreenView extends JPanel implements ComponentVisitor
     public void visit(ScreenButton comp)
     {
         comps.add(new ButtonView(this, comp, editing));
+
+        if (editing)
+            screen.addComponent(comp);
     }
 
     public void visit(ScreenLabel comp)
     {
         comps.add(new LabelView(this, comp, editing));
+        if (editing)
+            screen.addComponent(comp);
     }
 
     public void visit(ScreenObject comp)
     {
         ObjectView view = new ObjectView(this, comp, editing);
         comps.add(view);
-        // if (comp == screen.getMovable())
+        if (comp == screen.getMovable())
             movable = view;
+
+        if (editing)
+            screen.addComponent(comp);
     }
 
     public void visit(ScreenTextBox comp)
     {
         comps.add(new TextBoxView(this, comp, editing));
+
+        if (editing)
+            screen.addComponent(comp);
     }
 
     class DirectionListener implements KeyListener
@@ -140,6 +151,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
     public void setShowGrid(boolean showGrid)
     {
         this.showGrid = showGrid;
+        repaint();
     }
 
     public Point getObjectAddDeletePos()
@@ -158,6 +170,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
             int rY = ((int) objectAddDeletePos.getY()) - ((int) objectAddDeletePos.getY() % IMAGE_HEIGHT);
 
             objectAddDeletePos.setLocation(rX, rY);
+
+            repaint();
         }
     }
 }

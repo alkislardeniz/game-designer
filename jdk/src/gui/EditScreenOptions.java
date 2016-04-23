@@ -8,66 +8,60 @@ import java.awt.event.ActionListener;
 /**
  * Created by Deniz Alkislar on 21.4.2016.
  */
-public class EditScreenOptions extends JPanel{
+public class EditScreenOptions extends JPanel
+{
+    ScreenEditController parent;
+    boolean isDelete  = false;
 
-    JRadioButton showgrid, delete, add;
-    ButtonGroup group;
-    boolean isDelete;
-    boolean showGrids;
-
-    public EditScreenOptions ()
+    public EditScreenOptions(ScreenEditController parentController)
     {
-        delete = new JRadioButton ("Delete");
-        add = new JRadioButton ("Add");
-        showgrid = new JRadioButton ("Show Grids");
+        ButtonGroup group;
+        JRadioButton showgrid, delete, add;
+
+        this.parent = parentController;
+
+        delete = new JRadioButton("Delete");
+        add = new JRadioButton("Add");
+        showgrid = new JRadioButton("Show Grids");
         group = new ButtonGroup();
-        showGrids = false;
 
-        //Adding action listeners
-        delete.addActionListener(new ButtonListener());
-        add.addActionListener(new ButtonListener());
-        showgrid.addActionListener(new ButtonListener());
-
-        //Adding grouped buttons
-        group.add (add);
-        group.add (delete);
-        setLayout (new GridLayout (1,3));
-
-        //Adding buttons to panel
-        add (showgrid);
-        add (add);
-        add (delete);
-    }
-
-    //getters and setters
-    public boolean getIsDelete()
-    {
-        return isDelete;
-    }
-
-    public boolean isGridShow()
-    {
-        return showGrids;
-    }
-
-    class ButtonListener implements ActionListener
-    {
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            if (e.getSource() == add)
-            {
-                isDelete = false;
-            }
-            else if (e.getSource() == delete)
+        // add action listeners
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
             {
                 isDelete = true;
             }
-            else if (e.getSource() == showgrid)
+        });
+        add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
             {
-                showGrids = true;
+                isDelete = false;
             }
-        }
+        });
+        showgrid.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                parent.updateShowGrid(true); // TODO should also be able to make it false
+            }
+        });
 
+        // add grouped buttons
+        group.add(add);
+        group.add(delete);
+        setLayout(new GridLayout(1,3));
+
+        // add buttons to panel
+        add(showgrid);
+        add(add);
+        add(delete);
+    }
+
+    //getters and setters
+    public boolean shouldDelete()
+    {
+        return isDelete;
     }
 }

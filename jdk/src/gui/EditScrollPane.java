@@ -8,37 +8,42 @@ import java.awt.event.ActionListener;
 /**
  * Created by Deniz Alkislar on 21.4.2016.
  */
-public class EditScrollPane extends JPanel {
+public class EditScrollPane extends JPanel
+{
+    ScreenEditController parent;
+    String selectedComponent;
 
-    ButtonGroup group;
-    JScrollPane scrollPane;
-    JRadioButton iconButton;
-    String selectedObject;
-
-    public EditScrollPane () //Objects scroll
+    public EditScrollPane(ScreenEditController parent)
     {
-        group = new ButtonGroup ();
-        setLayout (new GridLayout (11, 1));
+        ButtonGroup group;
+        JScrollPane scrollPane;
+        JRadioButton iconButton;
+
+        this.parent = parent;
+
+        group = new ButtonGroup();
+        setLayout(new GridLayout(11, 1));
 
         //Add buttons to group and panel
 
         for (ObjectIconView icon : ObjectIconView.values())
         {
-            iconButton = new JRadioButton (icon.toString());
+            iconButton = new JRadioButton(icon.toString());
             iconButton.setName(icon.toString());
             iconButton.addActionListener(new ButtonListener());
             group.add(iconButton);
         }
 
         //Add scroll bar to this panel
-        scrollPane = new JScrollPane (this);
-        scrollPane.setHorizontalScrollBarPolicy (JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy (JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize (new Dimension (100, 264));
+        scrollPane = new JScrollPane(this);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(100, 264));
     }
 
-    public String getSelectedObject() {
-        return selectedObject;
+    public String getSelectedComponent()
+    {
+        return selectedComponent;
     }
 
     class ButtonListener implements ActionListener
@@ -47,8 +52,8 @@ public class EditScrollPane extends JPanel {
         public void actionPerformed(ActionEvent e)
         {
             JButton selectedButton = (JButton) e.getSource();
-            selectedObject = selectedButton.getName();
+            selectedComponent = selectedButton.getName();
+            parent.updateSelectedComponent(selectedComponent);
         }
-
     }
 }

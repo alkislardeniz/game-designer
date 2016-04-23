@@ -3,8 +3,6 @@ package gui;
 import javax.swing.*;
 import gamemodel.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * Panel containing ScreenView that allows to edit an individual screen.
@@ -18,8 +16,6 @@ public class ScreenEditController extends JPanel implements ScreenController
     EditScrollPane scrollPane;
     EditScreenOptions screenOptions;
 
-    // TODO also include a panel containing options for components to add to the screen
-
     public ScreenEditController(PlayableScreen screen)
     {
         this.screen = screen;
@@ -28,14 +24,14 @@ public class ScreenEditController extends JPanel implements ScreenController
         screenView = new ScreenView(this, screen);
         add(screenView);
 
-        scrollPane = new EditScrollPane();
-        screenOptions = new EditScreenOptions();
+        scrollPane = new EditScrollPane(this);
+        screenOptions = new EditScreenOptions(this);
 
-        setLayout (new BorderLayout());
+        setLayout(new BorderLayout());
 
-        add (screenView, BorderLayout.CENTER);
-        add (scrollPane, BorderLayout.EAST);
-        add (screenOptions, BorderLayout.SOUTH);
+        add(screenView, BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.EAST);
+        add(screenOptions, BorderLayout.SOUTH);
 
         //setPreferredSize (new Dimension (504, 264));
 
@@ -49,31 +45,35 @@ public class ScreenEditController extends JPanel implements ScreenController
         return null;
     }
 
-    //this method updates gridShow and adds components to the screenView
-    public void screenViewUpdate()
+    // update whether to show grid
+    public void updateShowGrid(boolean shouldShowGrid)
     {
-        //updating grid show
-        if (screenOptions.isGridShow()) {
-            screenView.setShowGrid(true);
-        }
-        else {
-            screenView.setShowGrid(false);
+        screenView.setShowGrid(shouldShowGrid);
+    }
+    
+    // update selected component
+    // perhaps carry reference instead of string
+    public void updateSelectedComponent(String selectedComponent)
+    {
+        ScreenComponent newComp;
+
+        // check if can add component
+        if (!screenOptions.shouldDelete())
+        {
+            for (ObjectIcon icon : ObjectIcon.values())
+            {
+                if (selectedComponent.equals(icon.toString()))
+                {
+                    newComp = new ScreenObject(screen, icon.toString(), icon);
+                    newComp.setPosition(screenView.getObjectAddDeletePos());
+                    newComp.accept(screenView);
+                }
+            }
+
+            // TODO also check for label, button and text box
         }
 
-        //adding components
-        if (screenOptions.getIsDelete() == false) {
-            if (scrollPane.getSelectedObject().equals("ROCK")) {
-                ScreenObject newObj = new ScreenObject(screen, "ROCK", ObjectIcon.ROCK);
-                newObj.setPosition(screenView.getObjectAddDeletePos());
-                screenView.visit(newObj);
-            }
-            else if (scrollPane.getSelectedObject().equals("TREE")) {
-                ScreenObject newObj = new ScreenObject(screen, "TREE", ObjectIcon.TREE);
-                newObj.setPosition(screenView.getObjectAddDeletePos());
-                screenView.visit(newObj);
-            }
-        }
-        //TODO find a way to add screen objects without using if statements
-        //TODO find a way to add label, button and text box
+        // update screen
+        repaint();
     }
 }
