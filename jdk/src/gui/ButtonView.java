@@ -35,10 +35,9 @@ public class ButtonView extends ComponentView
         }
     }
 
-    // only update position
     public void paintComponentOn(Graphics g)
     {
-        // jButton.repaint(); // is this necessary?
+        return;
     }
 
     private class ButtonListener implements ActionListener
