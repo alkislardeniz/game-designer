@@ -9,35 +9,27 @@ import expr.*;
  */
 public class ScreenLabel extends ScreenComponent
 {
-    Expr expr; // expression whose value is to be displayed
+    ExprString expr; // expression whose value is to be displayed
 
     public ScreenLabel(PlayableScreen par, String nam, String exp)
     {
         super(par, nam);
-        expr = Expr.parse(exp); // problem if this isn't valid
+        expr = new ExprString();
+        setExpr(exp);
     }
 
     // getters, setters
 
-    public Expr getExpr() { return expr; }
+    public ExprString getExpr() { return expr; }
 
-    public ExprError setExpr(String newText)
+    public boolean setExpr(String newText)
     {
-        Expr temp = Expr.parse(newText);
-
-        if (temp == null)
-            return ExprError.UNPARSED;
-
-        if (!temp.valid(parent.parent))
-            return ExprError.INVALID;
-
-        expr = temp;
-        return ExprError.VALID;
+        return expr.setString(newText);
     }
 
     public String getText(GamePlayer env)
     {
-        return expr.eval(env).toString();
+        return expr.toString(env);
     }
 
     @Override

@@ -33,8 +33,6 @@ public class ScreenView extends JPanel implements ComponentVisitor
         final int WIDTH = screen.getWidth() * IMAGE_WIDTH;
         final int HEIGHT = screen.getHeight() * IMAGE_HEIGHT;
 
-        setPreferredSize (new Dimension (WIDTH, HEIGHT));
-
         deleteObject = false;
         showGrid = true;
 
@@ -44,16 +42,18 @@ public class ScreenView extends JPanel implements ComponentVisitor
         editing = parent.getPlayer() == null;
         comps = new ArrayList<ComponentView>();
 
-        // Perhaps use a GridBagLayout or absolute layout
-        // paintComponentOn() should automatically resize according to IMAGE_HEIGHT and IMAGE_WIDTH
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setLayout(null);
 
+        // add comp's specific component view to comps and set movable
         for (ScreenComponent comp : screen.getComponents())
-            // add comp's specific component view to comps and set movable
             comp.accept(this);
+
+        repaint();
 
         addKeyListener(new DirectionListener());
         addMouseListener(new MyMouseAdapter());
-        setFocusable (true);
+        setFocusable(true);
     }
 
     // TODO include methods to add, get and modify different component views

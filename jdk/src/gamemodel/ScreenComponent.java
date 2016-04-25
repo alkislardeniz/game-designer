@@ -37,6 +37,10 @@ public abstract class ScreenComponent implements Serializable
         this.width  = other.width;
     }
 
+    public int getHeight() { return height; }
+
+    public int getWidth() { return width; }
+
     public Point getPosition() { return position; }
 
     public void setPosition(Point position) { this.position = position; }

@@ -18,15 +18,14 @@ public class LabelView extends ComponentView
         super(parent, label, editing);
 
         this.label = label;
-
-        jLabel = new JLabel(label.getText(parent.parent.getPlayer()));
-        jLabel.setOpaque(true);
-        parent.add(jLabel);
     }
 
     // draw component on screen
+    // TODO fix the font to fit IMAGE_WIDTH and IMAGE_HEIGHT
     public void paintComponentOn(Graphics g)
     {
-        jLabel.setText(label.getText(parent.parent.getPlayer()));
+        g.drawString(label.getText(parent.parent.getPlayer()),
+                     (int) label.getPosition().getX() * parent.IMAGE_WIDTH,
+                     (int) label.getPosition().getY() * parent.IMAGE_HEIGHT);
     }
 }

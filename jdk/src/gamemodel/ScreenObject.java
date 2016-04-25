@@ -6,6 +6,7 @@ package gamemodel;
 public class ScreenObject extends ScreenComponent
 {
     ObjectIcon img;
+    // TODO add property for things such as backgrounds going behind other objects
 
     public ScreenObject(PlayableScreen par, String nam, ObjectIcon img)
     {

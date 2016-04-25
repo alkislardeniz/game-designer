@@ -1,5 +1,7 @@
 package expr;
 
+import java.lang.Math;
+
 /**
  * ArithOp
  * Represents arithmetic operations on numbers.
@@ -37,7 +39,19 @@ enum ArithOp implements BinaryOp
         {
             return arg1 % arg2;
         }
-    };
+    },
+    MAX ("MAX") {
+        protected Number applyOp(double arg1, double arg2)
+        {
+            return Math.max(arg1, arg2);
+        }
+    },
+    MIN ("MIN") {
+        protected Number applyOp(double arg1, double arg2)
+        {
+            return Math.min(arg1, arg2);
+        }
+    };;
 
     String name;
 

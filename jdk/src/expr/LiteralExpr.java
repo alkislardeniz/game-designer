@@ -57,7 +57,7 @@ class LiteralExpr extends Expr
 
     ExprValue value;
 
-    private LiteralExpr(ExprValue value) // memoize
+    protected LiteralExpr(ExprValue value)
     {
         this.value = value;
     }

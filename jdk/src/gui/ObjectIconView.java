@@ -60,7 +60,7 @@ public enum ObjectIconView
     ObjectIcon icon;
     ImageIcon[][] images; // contains icons to show
     boolean movable;
-    boolean moving;
+    int movingIndex;
     int directionIndex;
 
     private ObjectIconView(ObjectIcon icon, String image)
@@ -71,7 +71,7 @@ public enum ObjectIconView
         images[1][0] = new ImageIcon("pics/" + image);
 
         directionIndex = 1;
-        moving = false;
+        movingIndex = 0;
         movable = false;
     }
 
@@ -88,13 +88,13 @@ public enum ObjectIconView
 
         // perhaps store icons in an array or hash table
         directionIndex = 1;
-        moving = false;
+        movingIndex = 0;
         movable = true;
     }
 
     public ImageIcon getImage()
     {
-        return images[directionIndex][getMovingIndex()];
+        return images[directionIndex][movingIndex];
     }
 
     public void setImage(int dx, int dy)
@@ -103,20 +103,20 @@ public enum ObjectIconView
         setDirectionIndex(dx);
     }
 
-    public boolean getMoving() { return moving; }
+    public boolean getMoving() { return movingIndex != 0; }
 
     public void setMoving(boolean moving)
     {
-        if (movable)
-            this.moving = moving;
+        if (moving)
+            movingIndex = 1;
+        else
+            movingIndex = 0;
     }
 
     // return 0 if standing, 1 if moving
     private int getMovingIndex()
     {
-        if (moving)
-            return 1;
-        return 0;
+        return movingIndex;
     }
 
     // return 0 if left, 1 if right
