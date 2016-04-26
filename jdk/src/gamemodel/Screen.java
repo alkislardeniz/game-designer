@@ -16,7 +16,7 @@ public abstract class Screen implements Serializable
     String name;
     Game parent;
     ArrayList<Option> options; // searched by name
-    int optionLimit = -1; // affects add, changed for AssignScreen and CondScreen
+    int optionLimit = 4; // affects add, changed for AssignScreen and CondScreen
     boolean playable; // true for PlayableScreen, used to determine type w/o calling instanceof
 
     // for serialization, set everything to null
