@@ -130,6 +130,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
         if (editing)
             screen.addComponent(comp);
+
+        repaint();
     }
 
     public void visit(ScreenTextBox comp)

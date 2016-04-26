@@ -80,6 +80,7 @@ public class EditScrollPaneLeft extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
+
             ScreenComponent newComp;
 
             // check if can add component
@@ -87,6 +88,7 @@ public class EditScrollPaneLeft extends JPanel
             {
                 newComp = new ScreenObject(parent.screen, icon.toString(), icon);
                 parent.setSelectedComponent(newComp);
+
             }
         }
     }
