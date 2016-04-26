@@ -12,6 +12,8 @@ public class ScreenObject extends ScreenComponent
     {
         super(par, nam);
         this.img = img;
+        height = img.getHeight();
+        width = img.getWidth();
     }
 
     // copy constructor

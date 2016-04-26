@@ -13,7 +13,8 @@ public class ScreenEditController extends JPanel implements ScreenController
     Game game;
     PlayableScreen screen;
     ScreenView screenView;
-    EditScrollPane scrollPane;
+    EditScrollPaneRight scrollPaneRight;
+    EditScrollPaneLeft scrollPaneLeft;
     EditScreenOptions screenOptions;
 
     public ScreenEditController(PlayableScreen screen)
@@ -24,13 +25,15 @@ public class ScreenEditController extends JPanel implements ScreenController
         screenView = new ScreenView(this, screen);
         add(screenView);
 
-        scrollPane = new EditScrollPane(this);
+        scrollPaneRight = new EditScrollPaneRight(this);
+        scrollPaneLeft = new EditScrollPaneLeft(this);
         screenOptions = new EditScreenOptions(this);
 
         setLayout(new BorderLayout());
 
         add(screenView, BorderLayout.CENTER);
-        add(scrollPane, BorderLayout.EAST);
+        add(scrollPaneRight, BorderLayout.EAST);
+        add(scrollPaneLeft, BorderLayout.WEST);
         add(screenOptions, BorderLayout.SOUTH);
 
         //setPreferredSize (new Dimension (504, 264));
