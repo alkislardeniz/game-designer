@@ -32,7 +32,7 @@ public abstract class ScreenPreview extends JPanel
             JLabel nameLabel = new JLabel(name);
             add(nameLabel);
         }
-        else if (screen.getClass().equals("gamemodel.CondScreen"))
+        else if (screen instanceof CondScreen)
         {
             CondScreen condScreen = (CondScreen) screen;
             String name = condScreen.getName();
@@ -44,7 +44,7 @@ public abstract class ScreenPreview extends JPanel
             add(nameLabel);
             add(condLabel);
         }
-        else if (screen.getClass().equals("gamemodel.AssignScreen"))
+        else if (screen instanceof AssignScreen)
         {
             AssignScreen assignScreen = (AssignScreen) screen;
             String name = assignScreen.getName();
