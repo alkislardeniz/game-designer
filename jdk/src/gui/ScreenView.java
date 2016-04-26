@@ -17,7 +17,6 @@ public class ScreenView extends JPanel implements ComponentVisitor
     ArrayList<ComponentView> comps;
     ObjectView movable;
     ImageIcon bg;
-    Point objectAddDeletePos;
     boolean editing;
 
     // final int JUMP = IMAGE_HEIGHT;  // increment for image movement
@@ -52,7 +51,6 @@ public class ScreenView extends JPanel implements ComponentVisitor
         repaint();
 
         addKeyListener(new DirectionListener());
-        addMouseListener(new MyMouseAdapter());
         setFocusable(true);
     }
 
@@ -169,26 +167,5 @@ public class ScreenView extends JPanel implements ComponentVisitor
     {
         this.showGrid = showGrid;
         repaint();
-    }
-
-    public Point getObjectAddDeletePos()
-    {
-        return objectAddDeletePos;
-    }
-
-    class MyMouseAdapter extends MouseAdapter
-    {
-        @Override
-        public void mousePressed (MouseEvent e)
-        {
-            objectAddDeletePos = e.getPoint();
-
-            int rX = ((int) objectAddDeletePos.getX()) - ((int) objectAddDeletePos.getX() % IMAGE_HEIGHT);
-            int rY = ((int) objectAddDeletePos.getY()) - ((int) objectAddDeletePos.getY() % IMAGE_HEIGHT);
-
-            objectAddDeletePos.setLocation(rX, rY);
-
-            repaint();
-        }
     }
 }

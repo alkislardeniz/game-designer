@@ -43,7 +43,7 @@ public class PlayableScreen extends Screen
 
     public List<ScreenComponent> getComponents()
     {
-        return components;
+        return new ArrayList<ScreenComponent>(components);
     }
 
     public boolean addComponent(ScreenComponent comp)
@@ -128,6 +128,6 @@ public class PlayableScreen extends Screen
         for (ScreenComponent comp : components)
             if (!comp.valid())
                 return false;
-        return true;
+        return super.valid();
     }
 }

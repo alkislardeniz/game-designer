@@ -36,8 +36,9 @@ public class EditScrollPaneLeft extends JPanel
             if (icon.movable) {
                 iconButton = new JRadioButton(icon.toString());
                 iconButton.setName(icon.toString());
-                iconButton.addActionListener(new IconListener(icon.toString()));
+                iconButton.addActionListener(new IconListener(icon.icon));
                 group.add(iconButton);
+                add(iconButton);
             }
         }
         addButton = new JRadioButton("Button");
@@ -47,6 +48,13 @@ public class EditScrollPaneLeft extends JPanel
         addButton.addActionListener(new ButtonListener());
         addTextBox.addActionListener(new TextBoxListener());
         addLabel.addActionListener(new LabelListener());
+
+        group.add(addButton);
+        add(addButton);
+        group.add(addTextBox);
+        add(addTextBox);
+        group.add(addLabel);
+        add(addLabel);
 
         //Add scroll bar to this panel
         scrollPane = new JScrollPane(this);
@@ -62,38 +70,48 @@ public class EditScrollPaneLeft extends JPanel
 
     class IconListener implements ActionListener
     {
-        String name;
+        ObjectIcon icon;
 
-        public IconListener(String name)
+        public IconListener(ObjectIcon icon)
         {
-            this.name = name;
+            this.icon = icon;
         }
 
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            parent.updateSelectedComponent(name);
+            ScreenComponent newComp;
+
+            // check if can add component
+            if (!parent.screenOptions.shouldDelete())
+            {
+                newComp = new ScreenObject(parent.screen, icon.toString(), icon);
+                parent.setSelectedComponent(newComp);
+            }
         }
     }
 
     class ButtonListener implements ActionListener
     {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e)
+        {
             JPanel panel = new JPanel();
 
-            JComboBox comboBox = new JComboBox(parent.screen.getOptions().toArray());
+            JComboBox comboBox = new JComboBox<Object>(parent.screen.getOptions().toArray());
             JTextField textField = new JTextField();
 
             panel.add(new JLabel("Name: "));
             panel.add(textField);
             panel.add(new JLabel("Options: "));
             panel.add(comboBox);
+
             if (JOptionPane.showConfirmDialog(null, panel, "Create button", JOptionPane.OK_CANCEL_OPTION)
-                    == JOptionPane.OK_OPTION) {
+                == JOptionPane.OK_OPTION)
+            {
                 ScreenButton button = new ScreenButton(parent.screen, textField.getText());
                 button.setOption(comboBox.getSelectedItem().toString());
-                button.accept(parent);
+                parent.setSelectedComponent(button);
             }
         }
     }
@@ -101,28 +119,32 @@ public class EditScrollPaneLeft extends JPanel
     class TextBoxListener implements ActionListener
     {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e)
+        {
             JPanel panel = new JPanel();
 
-            JComboBox comboBox = new JComboBox(parent.screen.getParent().getVariables().toArray());
+            JComboBox comboBox = new JComboBox<Object>(parent.screen.getParent().getVariables().toArray());
             JTextField textField = new JTextField();
 
             panel.add(new JLabel("Name: "));
             panel.add(textField);
             panel.add(new JLabel("Variables: "));
             panel.add(comboBox);
+
             if (JOptionPane.showConfirmDialog(null, panel, "Create text box", JOptionPane.OK_CANCEL_OPTION)
-                    == JOptionPane.OK_OPTION) {
+                == JOptionPane.OK_OPTION)
+            {
                 ScreenTextBox textBox = new ScreenTextBox(parent.screen, textField.getText());
                 textBox.setVariable(comboBox.getSelectedItem().toString());
-                textBox.accept(parent);
+                parent.setSelectedComponent(textBox);
             }
         }
     }
     class LabelListener implements ActionListener
     {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e)
+        {
             JPanel panel = new JPanel();
 
             JTextField textField = new JTextField();
@@ -132,10 +154,13 @@ public class EditScrollPaneLeft extends JPanel
             panel.add(textField);
             panel.add(new JLabel("Text: "));
             panel.add(textField2);
+
             if (JOptionPane.showConfirmDialog(null, panel, "Create label", JOptionPane.OK_CANCEL_OPTION)
-                    == JOptionPane.OK_OPTION) {
+                == JOptionPane.OK_OPTION)
+            {
                 ScreenLabel label = new ScreenLabel(parent.screen, textField.getText(), textField2.getText());
-                label.accept(parent);
+                // TODO check if text of label is valid first
+                parent.setSelectedComponent(label);
             }
         }
     }

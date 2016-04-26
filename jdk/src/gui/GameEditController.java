@@ -8,6 +8,8 @@ import gamemodel.*;
 public class GameEditController
 {
     Game game;
+    // tabbed pane
+    // variable scroll pane
 
     public GameEditController(Game game)
     {

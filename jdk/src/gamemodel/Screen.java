@@ -1,6 +1,5 @@
 package gamemodel;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -15,9 +14,8 @@ public abstract class Screen implements Serializable
 {
     // name already defined inside game
     String name;
-    String description;
-    Game parent; // why?
-    List<Option> options; // searched by name
+    Game parent;
+    ArrayList<Option> options; // searched by name
     int optionLimit = -1; // affects add, changed for AssignScreen and CondScreen
     boolean playable; // true for PlayableScreen, used to determine type w/o calling instanceof
 
@@ -34,6 +32,8 @@ public abstract class Screen implements Serializable
         this.name = name;
         options = new ArrayList<Option>();
     }
+
+    public String toString() { return name; }
 
     public String getName() { return name; }
 
@@ -59,7 +59,7 @@ public abstract class Screen implements Serializable
     }
 
     // getOptions() to be called from editor
-    public List<Option> getOptions()
+    public ArrayList<Option> getOptions()
     {
         return options;
     }
@@ -106,5 +106,11 @@ public abstract class Screen implements Serializable
 
     // getter, setter for playable etc.
 
-    public abstract boolean valid();
+    public boolean valid()
+    {
+        for (Option op : options)
+            if (!parent.screens.contains(op.getScreen()))
+                return false;
+        return true;
+    }
 }
