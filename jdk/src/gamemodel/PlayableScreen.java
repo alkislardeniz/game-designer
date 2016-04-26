@@ -62,6 +62,11 @@ public class PlayableScreen extends Screen
         return null;
     }
 
+    public boolean removeComponent(ScreenComponent comp)
+    {
+        return components.remove(comp);
+    }
+
     // try to place comp on (x,y) on the screen
     public boolean placeComponent(ScreenComponent newComp, int x, int y)
     {
@@ -103,7 +108,7 @@ public class PlayableScreen extends Screen
         return null;
     }
 
-    public ScreenComponent getMovable()
+    public ScreenObject getMovable()
     {
         return movable;
     }

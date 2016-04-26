@@ -82,6 +82,12 @@ public class ObjectView extends ComponentView
         }
     }
 
+    public void setIcon(ObjectIconView icon)
+    {
+        this.icon = icon;
+        icon.setMoving(false);
+    }
+
     public void stopMoving()
     {
         icon.setMoving(false);

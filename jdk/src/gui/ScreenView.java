@@ -60,13 +60,24 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
         removeAll();
 
-        comps = new ArrayList<ComponentView>();
+        comps = new ArrayList<>();
 
         for (ScreenComponent comp : screen.getComponents())
             comp.accept(this);
 
         revalidate();
         repaint();
+    }
+
+    public boolean removeComponent(ScreenComponent comp)
+    {
+        for (ComponentView view : new ArrayList<>(comps))
+            if (view.comp == comp)
+            {
+                comps.remove(view);
+                return true;
+            }
+        return false;
     }
 
     // TODO include methods to add, get and modify different component views
@@ -103,6 +114,12 @@ public class ScreenView extends JPanel implements ComponentVisitor
                 xP += IMAGE_WIDTH;
             }
         }
+    }
+
+    public void setMovable(ObjectIcon icon)
+    {
+        screen.getMovable().setIcon(icon);
+        movable.setIcon(ObjectIconView.getIcon(icon));
     }
 
     public void visit(ScreenButton comp)

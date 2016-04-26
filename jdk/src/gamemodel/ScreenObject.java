@@ -25,6 +25,11 @@ public class ScreenObject extends ScreenComponent
 
     // getters, setters
 
+    public ScreenComponent copy()
+    {
+        return new ScreenObject(this);
+    }
+
     public boolean equals(Object other)
     {
         return other != null
@@ -37,6 +42,8 @@ public class ScreenObject extends ScreenComponent
     public void setIcon(ObjectIcon img)
     {
         this.img = img;
+        height = img.getHeight();
+        width = img.getWidth();
     }
 
     public boolean isMovable()
