@@ -17,6 +17,15 @@ public class GamePlayController extends JPanel implements Observer
     PlayableScreen currentScreen; // if player's current screen changes, change ScreenPlayController based on it
     ScreenPlayController controller;
 
+    public GamePlayController(GamePlayer player)
+    {
+        this.player = player;
+
+        currentScreen = (PlayableScreen) player.getCurrentScreen();
+        controller = new ScreenPlayController(player, currentScreen);
+        add(controller);
+    }
+
     public GamePlayController(PlayerWindow parent)
     {
         this.parent = parent;

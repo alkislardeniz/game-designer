@@ -14,10 +14,17 @@ public class ScreenViewTest
     public static void main( String[] args)
     {
         Game game = new Game();
-        GamePlayer player = new GamePlayer(game);
         PlayableScreen screen = new PlayableScreen(game, "a");
+        AssignScreen assign = new AssignScreen(game, "b");
 
-        ScreenLabel label = new ScreenLabel(screen, "", "2 + 5 = $(2 + 5)");
+        game.addVariable("x");
+        game.setVariable("x", "2");
+
+        game.setStartScreen(screen);
+
+        GamePlayer player = new GamePlayer(game);
+
+        ScreenLabel label = new ScreenLabel(screen, "", "$x + 5 = $(x + 5)");
         ScreenButton button = new ScreenButton(screen, "hello");
         ScreenObject object = new ScreenObject(screen, "megaman", ObjectIcon.MEGAMAN);
 
@@ -31,11 +38,15 @@ public class ScreenViewTest
 
         screen.setMovable(object);
 
-        button.setVisible(true);
+        button.setVisible(false);
         button.setOption("option 1");
-        screen.addOption("option 1", screen);
+        screen.addOption("option 1", assign);
 
-        player.addObserver(new GameObserver(player));
+        assign.setVariable("x");
+        assign.setNewValue("x + 1");
+        assign.addOption("option", screen);
+
+        player.addObserver(new GameObserver(player, object));
         // button.clicked(player);
 
         ImageIcon logo = new ImageIcon ("pics/logo.png");
@@ -44,7 +55,8 @@ public class ScreenViewTest
         f.setLocationRelativeTo(null);
         f.setSize(520, 620);
 
-        ScreenPlayController controller = new ScreenPlayController(player, screen);
+        // ScreenPlayController controller = new ScreenPlayController(player, screen);
+        GamePlayController controller = new GamePlayController(player);
 
         f.add(controller);
         f.add(new JLabel(logo), BorderLayout.NORTH);
@@ -55,16 +67,19 @@ public class ScreenViewTest
     private static class GameObserver implements Observer
     {
         private GamePlayer player;
+        private ScreenObject object;
 
-        public GameObserver(GamePlayer player)
+        public GameObserver(GamePlayer player, ScreenObject object)
         {
             this.player = player;
+            this.object = object;
             // player.addObserver(this);
         }
 
         public void update(Observable o, Object arg)
         {
-            // System.out.println(player.getVariable(new Var("x")));
+            // fix it so the position of the object is unchanged by playing, by copying movableComponent
+            System.out.println(object.getPosition());
 
             if (player.getCurrentScreen() != null)
                 System.out.println(player.getCurrentScreen().getName() + " entered");

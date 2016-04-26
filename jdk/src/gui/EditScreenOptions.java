@@ -26,6 +26,7 @@ public class EditScreenOptions extends JPanel
         group = new ButtonGroup();
 
         // add action listeners
+        // TODO should change the properties of the screen view
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
