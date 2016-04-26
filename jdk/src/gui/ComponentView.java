@@ -40,14 +40,14 @@ public abstract class ComponentView // extends JComponent
     // change position of component if editing
     public void setX(int x)
     {
-        if (editing)
+        // if (editing)
             comp.getPosition().setLocation(x, getY());
         this.x = x;
     }
 
     public void setY(int y)
     {
-        if (editing)
+        // if (editing)
             comp.getPosition().setLocation(getX(), y);
         this.y = y;
     }

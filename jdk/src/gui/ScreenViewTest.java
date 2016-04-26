@@ -24,7 +24,7 @@ public class ScreenViewTest
 
         GamePlayer player = new GamePlayer(game);
 
-        ScreenLabel label = new ScreenLabel(screen, "", "$x + 5 = $(x + 5)");
+        ScreenLabel label = new ScreenLabel(screen, "label", "$x + 5 = $(x + 5)");
         ScreenButton button = new ScreenButton(screen, "hello");
         ScreenObject object = new ScreenObject(screen, "megaman", ObjectIcon.MEGAMAN);
 
@@ -38,7 +38,7 @@ public class ScreenViewTest
 
         screen.setMovable(object);
 
-        button.setVisible(false);
+        button.setVisible(true);
         button.setOption("option 1");
         screen.addOption("option 1", assign);
 
@@ -46,7 +46,7 @@ public class ScreenViewTest
         assign.setNewValue("x + 1");
         assign.addOption("option", screen);
 
-        player.addObserver(new GameObserver(player, object));
+        // player.addObserver(new GameObserver(player, object));
         // button.clicked(player);
 
         ImageIcon logo = new ImageIcon ("pics/logo.png");
