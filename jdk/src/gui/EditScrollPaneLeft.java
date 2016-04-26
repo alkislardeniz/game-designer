@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Deniz Alkislar on 21.4.2016.
@@ -55,6 +56,8 @@ public class EditScrollPaneLeft extends JPanel
         add(addTextBox);
         group.add(addLabel);
         add(addLabel);
+
+        add(new OptionsList(parent.screen.getOptions()));
 
         //Add scroll bar to this panel
         scrollPane = new JScrollPane(this);
@@ -157,6 +160,27 @@ public class EditScrollPaneLeft extends JPanel
                 // TODO check if text of label is valid first
                 parent.setSelectedComponent(label);
             }
+        }
+    }
+
+    private class OptionsList extends JPanel
+    {
+        public OptionsList(ArrayList<Option> options)
+        {
+            Object[] columnNames = {"Name", "Screen"};
+            ArrayList<String[]> data = new ArrayList<>();
+
+            for (Option op : options)
+                data.add(new String[] {op.getName(), op.getScreen().getName()});
+
+            setLayout(new BorderLayout());
+
+            JTable table = new JTable(data.toArray(new String[][] {}), columnNames);
+
+            JComboBox comboBox = new JComboBox<>(parent.screen.getParent().getScreens().toArray());
+            table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(comboBox));
+
+            add(table);
         }
     }
 

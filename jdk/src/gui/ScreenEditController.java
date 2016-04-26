@@ -64,7 +64,7 @@ public class ScreenEditController extends JPanel implements ScreenController
     // receive
     public void setSelectedComponent(ScreenComponent comp)
     {
-        this.comp = comp;
+        this.comp = comp.copy();
     }
 
     private class ComponentListener extends MouseAdapter
@@ -72,7 +72,6 @@ public class ScreenEditController extends JPanel implements ScreenController
         @Override
         public void mousePressed (MouseEvent e)
         {
-            ScreenComponent temp;
             Point objectAddDeletePos = e.getPoint();
 
             int rX = (int) objectAddDeletePos.getX() / screenView.IMAGE_HEIGHT;
@@ -80,13 +79,10 @@ public class ScreenEditController extends JPanel implements ScreenController
 
             if (screenOptions.shouldDelete())
             {
-                temp = screen.findComponentAt(rX, rY);
+                for (ScreenComponent temp : screen.findComponentsAt(rX, rY))
+                    if (temp != null)
+                        screenView.removeComponent(temp);
 
-                if (temp != null)
-                {
-                    screen.removeComponent(temp);
-                    screenView.removeComponent(temp);
-                }
             }
             else if (comp != null)
             {

@@ -69,25 +69,4 @@ public class EditScreenOptions extends JPanel
     {
         return isDelete;
     }
-
-    private class OptionsList extends JPanel
-    {
-        public OptionsList(ArrayList<Option> options)
-        {
-            Object[] columnNames = {"Name", "Screen"};
-            ArrayList<String[]> data = new ArrayList<String[]>();
-
-            for (Option op : options)
-                data.add(new String[] {op.getName(), op.getScreen().getName()});
-
-            setLayout(new BorderLayout());
-
-            JTable table = new JTable((Object[][]) data.toArray(), columnNames);
-            JComboBox comboBox = new JComboBox<Object>(parent.screen.getParent().getScreens().toArray());
-
-            table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(comboBox));
-
-            add(table);
-        }
-    }
 }
