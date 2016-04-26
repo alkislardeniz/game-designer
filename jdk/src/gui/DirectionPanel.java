@@ -54,8 +54,8 @@ public class DirectionPanel extends JPanel
         right = new ImageIcon ("pics/manRight.gif");
         rightStand = new ImageIcon ("pics/manRightStand.gif");
         leftStand = new ImageIcon ("pics/manLeftStand.gif");
-        bg = new ImageIcon ("pics/bg.png");
-        rock = new ImageIcon ("pics/rock.png");
+        bg = new ImageIcon ("pics/bg4.png");
+        rock = new ImageIcon ("pics/tree.png");
         house = new ImageIcon ("pics/house.png");
         currentImage = rightStand;
 

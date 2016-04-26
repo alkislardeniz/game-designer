@@ -8,12 +8,12 @@ import java.awt.event.ActionListener;
 /**
  * Created by Deniz Alkislar on 21.4.2016.
  */
-public class EditScrollPane extends JPanel
+public class EditScrollPaneRight extends JPanel
 {
     ScreenEditController parent;
     String selectedComponent;
 
-    public EditScrollPane(ScreenEditController parent)
+    public EditScrollPaneRight(ScreenEditController parent)
     {
         ButtonGroup group;
         JScrollPane scrollPane;
@@ -22,23 +22,25 @@ public class EditScrollPane extends JPanel
         this.parent = parent;
 
         group = new ButtonGroup();
-        setLayout(new GridLayout(11, 1));
+        setLayout(new GridLayout(ObjectIconView.values().length, 1));
 
         //Add buttons to group and panel
 
         for (ObjectIconView icon : ObjectIconView.values())
         {
-            iconButton = new JRadioButton(icon.toString());
-            iconButton.setName(icon.toString());
-            iconButton.addActionListener(new ButtonListener());
-            group.add(iconButton);
+            if (!icon.movable) {
+                iconButton = new JRadioButton(icon.toString());
+                iconButton.setName(icon.toString());
+                iconButton.addActionListener(new ButtonListener());
+                group.add(iconButton);
+            }
         }
 
         //Add scroll bar to this panel
         scrollPane = new JScrollPane(this);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(100, 264));
+        scrollPane.setPreferredSize(new Dimension(100, 504));
     }
 
     public String getSelectedComponent()
