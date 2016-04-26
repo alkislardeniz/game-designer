@@ -45,17 +45,25 @@ public enum ObjectIcon
 
     //properties
     boolean movable;
+    boolean collidable;
 
     //size of the image
     int width;
     int height;
 
-    private ObjectIcon(int width, int height, boolean isMovable)
+    private ObjectIcon(int width, int height, boolean movable)
     {
-        this.width = width;
-        this.height = height;
+        this.width   = width;
+        this.height  = height;
+        this.movable = movable;
+    }
 
-        movable = isMovable;
+    private ObjectIcon(int width, int height, boolean movable, boolean collidable)
+    {
+        this.width      = width;
+        this.height     = height;
+        this.movable    = movable;
+        this.collidable = collidable;
     }
 
 

@@ -1,15 +1,20 @@
 package gui;
+
+import gamemodel.Option;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
+
 /**
  * Created by Deniz Alkislar on 21.4.2016.
  */
 public class EditScreenOptions extends JPanel
 {
     ScreenEditController parent;
-    boolean isDelete  = false;
+    boolean isDelete = false;
 
     public EditScreenOptions(ScreenEditController parentController)
     {
@@ -62,5 +67,15 @@ public class EditScreenOptions extends JPanel
     public boolean shouldDelete()
     {
         return isDelete;
+    }
+
+    private class OptionsList extends JTable
+    {
+        public OptionsList(ArrayList<Option> options)
+        {
+            String[] columnNames = {"Name", "Screen"};
+
+            
+        }
     }
 }

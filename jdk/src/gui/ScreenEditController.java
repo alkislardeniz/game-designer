@@ -3,6 +3,7 @@ package gui;
 import javax.swing.*;
 import gamemodel.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Panel containing ScreenView that allows to edit an individual screen.
@@ -16,11 +17,15 @@ public class ScreenEditController extends JPanel implements ScreenController
     EditScrollPaneRight scrollPaneRight;
     EditScrollPaneLeft scrollPaneLeft;
     EditScreenOptions screenOptions;
+    ComponentListener listener;
+    ScreenComponent comp;
 
     public ScreenEditController(PlayableScreen screen)
     {
         this.screen = screen;
         game = screen.getParent();
+
+        listener = new ComponentListener();
 
         screenView = new ScreenView(this, screen);
         add(screenView);
@@ -40,6 +45,7 @@ public class ScreenEditController extends JPanel implements ScreenController
 
         // have screenView at the center of the panel,
         // and a pane of components to add to the left
+        screenView.addMouseListener(new ComponentListener());
         setFocusable(true);
     }
 
@@ -53,30 +59,32 @@ public class ScreenEditController extends JPanel implements ScreenController
     {
         screenView.setShowGrid(shouldShowGrid);
     }
-    
-    // update selected component
-    // perhaps carry reference instead of string
-    public void updateSelectedComponent(String selectedComponent)
-    {
-        ScreenComponent newComp;
 
-        // check if can add component
-        if (!screenOptions.shouldDelete())
+    // receive
+    public void setSelectedComponent(ScreenComponent comp)
+    {
+        this.comp = comp;
+    }
+
+    private class ComponentListener extends MouseAdapter
+    {
+
+        @Override
+        public void mousePressed (MouseEvent e)
         {
-            for (ObjectIcon icon : ObjectIcon.values())
+            Point objectAddDeletePos = e.getPoint();
+
+            int rX = ((int) objectAddDeletePos.getX() / screenView.IMAGE_HEIGHT);
+            int rY = ((int) objectAddDeletePos.getY() / screenView.IMAGE_HEIGHT);
+
+            if (comp != null)
             {
-                if (selectedComponent.equals(icon.toString()))
-                {
-                    newComp = new ScreenObject(screen, icon.toString(), icon);
-                    newComp.setPosition(screenView.getObjectAddDeletePos());
-                    newComp.accept(screenView);
-                }
+                System.out.println("test");
+                comp.setPosition(new Point(rX, rY));
+                comp.accept(screenView);
             }
 
-            // TODO also check for label, button and text box
+            repaint();
         }
-
-        // update screen
-        repaint();
     }
 }

@@ -25,8 +25,8 @@ public class ExprTest
 
         set.addVariable("x");
         set.setVariable("x", "2 + 3");
-        scr.setVariable("x");
 
+        scr.setVariable("x");
         scr.setNewValue("2 + x"); // assign initial values in the GamePlayer class
 
         set.addScreen(scr);

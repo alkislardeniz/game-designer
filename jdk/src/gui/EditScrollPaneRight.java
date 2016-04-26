@@ -1,5 +1,7 @@
 package gui;
 
+import gamemodel.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,8 +33,9 @@ public class EditScrollPaneRight extends JPanel
             if (!icon.movable) {
                 iconButton = new JRadioButton(icon.toString());
                 iconButton.setName(icon.toString());
-                iconButton.addActionListener(new ButtonListener());
+                iconButton.addActionListener(new ButtonListener(icon.icon));
                 group.add(iconButton);
+                add(iconButton);
             }
         }
 
@@ -40,7 +43,7 @@ public class EditScrollPaneRight extends JPanel
         scrollPane = new JScrollPane(this);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(100, 504));
+        scrollPane.setPreferredSize(new Dimension(100, 300));
     }
 
     public String getSelectedComponent()
@@ -50,12 +53,24 @@ public class EditScrollPaneRight extends JPanel
 
     class ButtonListener implements ActionListener
     {
+        ObjectIcon icon;
+
+        public ButtonListener(ObjectIcon icon)
+        {
+            this.icon = icon;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            JButton selectedButton = (JButton) e.getSource();
-            selectedComponent = selectedButton.getName();
-            parent.updateSelectedComponent(selectedComponent);
+            ScreenComponent newComp;
+
+            // check if can add component
+            if (!parent.screenOptions.shouldDelete())
+            {
+                newComp = new ScreenObject(parent.screen, icon.toString(), icon);
+                parent.setSelectedComponent(newComp);
+            }
         }
     }
 }

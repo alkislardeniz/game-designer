@@ -1,6 +1,5 @@
 package gamemodel;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.io.Serializable;
@@ -13,8 +12,8 @@ public class Game extends Observable implements Serializable, VariableSet
 {
     // store dimensions of each screen of game
     // possibly make the lists maps, so as to memoize screen names and speed up program
-    List<Screen> screens; // search through screens by their names
-    List<Binding> variables;
+    ArrayList<Screen> screens; // search through screens by their names
+    ArrayList<Binding> variables;
     int height = 21, width = 21; // dimensions of grid
     PlayableScreen startScreen;
 
@@ -27,12 +26,12 @@ public class Game extends Observable implements Serializable, VariableSet
 
     // used for GUI elements
 
-    public List<Binding> getVariables()
+    public ArrayList<Binding> getVariables()
     {
         return new ArrayList<Binding>(variables);
     }
 
-    public List<Screen> getScreens()
+    public ArrayList<Screen> getScreens()
     {
         return new ArrayList<Screen>(screens);
     }
