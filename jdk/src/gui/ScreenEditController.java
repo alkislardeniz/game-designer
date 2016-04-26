@@ -19,6 +19,7 @@ public class ScreenEditController extends JPanel implements ScreenController
     EditScreenOptions screenOptions;
     ComponentListener listener;
     ScreenComponent comp;
+    ScreenObject movable;
 
     public ScreenEditController(PlayableScreen screen)
     {
@@ -68,18 +69,28 @@ public class ScreenEditController extends JPanel implements ScreenController
 
     private class ComponentListener extends MouseAdapter
     {
-
         @Override
         public void mousePressed (MouseEvent e)
         {
+            ScreenComponent temp;
             Point objectAddDeletePos = e.getPoint();
 
-            int rX = ((int) objectAddDeletePos.getX() / screenView.IMAGE_HEIGHT);
-            int rY = ((int) objectAddDeletePos.getY() / screenView.IMAGE_HEIGHT);
+            int rX = (int) objectAddDeletePos.getX() / screenView.IMAGE_HEIGHT;
+            int rY = (int) objectAddDeletePos.getY() / screenView.IMAGE_HEIGHT;
 
-            if (comp != null)
+            if (screenOptions.shouldDelete())
             {
-                System.out.println("test");
+                temp = screen.findComponentAt(rX, rY);
+
+                if (temp != null)
+                {
+                    screen.removeComponent(temp);
+                    screenView.removeComponent(temp);
+                }
+            }
+            else if (comp != null)
+            {
+                comp = comp.copy();
                 comp.setPosition(new Point(rX, rY));
                 comp.accept(screenView);
             }

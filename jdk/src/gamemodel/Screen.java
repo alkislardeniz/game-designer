@@ -54,8 +54,11 @@ public abstract class Screen implements Serializable
     // can be called either from fromPlayer or from GUI action listeners
     public void toPlayer(GamePlayer player, Option option)
     {
-        player.setCurrentScreen(option.getScreen());
-        player.call();
+        if (player != null)
+        {
+            player.setCurrentScreen(option.getScreen());
+            player.call();
+        }
     }
 
     // getOptions() to be called from editor

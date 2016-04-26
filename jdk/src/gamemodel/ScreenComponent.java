@@ -37,6 +37,8 @@ public abstract class ScreenComponent implements Serializable
         this.width  = other.width;
     }
 
+    public abstract ScreenComponent copy();
+
     public String getName() { return name; }
 
     public int getHeight() { return height; }
