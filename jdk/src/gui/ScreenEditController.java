@@ -8,7 +8,7 @@ import java.awt.*;
  * Panel containing ScreenView that allows to edit an individual screen.
  * Created by Ata Deniz Aydin on 4/12/16.
  */
-public class ScreenEditController extends JPanel implements ScreenController
+public class ScreenEditController extends JPanel implements ScreenController, ComponentVisitor
 {
     Game game;
     PlayableScreen screen;
@@ -78,5 +78,24 @@ public class ScreenEditController extends JPanel implements ScreenController
 
         // update screen
         repaint();
+    }
+
+    public void visit(ScreenButton comp)
+    {
+
+    }
+
+    public void visit(ScreenLabel comp)
+    {
+
+    }
+
+    public void visit(ScreenObject comp)
+    {
+
+    }
+    public void visit(ScreenTextBox comp)
+    {
+
     }
 }
