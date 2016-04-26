@@ -3,6 +3,8 @@ package gui;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by admin on 4/18/16.
@@ -15,13 +17,13 @@ public class ScreenViewTest
         GamePlayer player = new GamePlayer(game);
         PlayableScreen screen = new PlayableScreen(game, "a");
 
-        ScreenLabel label = new ScreenLabel(screen, "", "2 + 5");
+        ScreenLabel label = new ScreenLabel(screen, "", "2 + 5 = $(2 + 5)");
         ScreenButton button = new ScreenButton(screen, "hello");
         ScreenObject object = new ScreenObject(screen, "megaman", ObjectIcon.MEGAMAN);
 
         button.setPosition(new Point(1, 1));
         object.setPosition(new Point(5, 5));
-        label.setPosition(new Point(2, 2));
+        label.setPosition(new Point(7, 7));
 
         screen.addComponent(button);
         screen.addComponent(object);
@@ -29,11 +31,12 @@ public class ScreenViewTest
 
         screen.setMovable(object);
 
-        button.setVisible(false);
+        button.setVisible(true);
         button.setOption("option 1");
         screen.addOption("option 1", screen);
 
         player.addObserver(new GameObserver(player));
+        // button.clicked(player);
 
         ImageIcon logo = new ImageIcon ("pics/logo.png");
         JFrame f = new JFrame ("Dadam - Game Designer");
@@ -46,7 +49,7 @@ public class ScreenViewTest
         f.add(controller);
         f.add(new JLabel(logo), BorderLayout.NORTH);
 
-        f.setVisible( true);
+        f.setVisible(true);
     }
 
     private static class GameObserver implements Observer
@@ -59,7 +62,7 @@ public class ScreenViewTest
             // player.addObserver(this);
         }
 
-        public void update()
+        public void update(Observable o, Object arg)
         {
             // System.out.println(player.getVariable(new Var("x")));
 

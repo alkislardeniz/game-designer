@@ -17,6 +17,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
     ArrayList<ComponentView> comps;
     ObjectView movable;
     ImageIcon bg;
+    Point objectAddDeletePos;
     boolean editing;
 
     // final int JUMP = IMAGE_HEIGHT;  // increment for image movement
@@ -32,8 +33,6 @@ public class ScreenView extends JPanel implements ComponentVisitor
         final int WIDTH = screen.getWidth() * IMAGE_WIDTH;
         final int HEIGHT = screen.getHeight() * IMAGE_HEIGHT;
 
-        setPreferredSize (new Dimension (WIDTH, HEIGHT));
-
         deleteObject = false;
         showGrid = true;
 
@@ -43,16 +42,18 @@ public class ScreenView extends JPanel implements ComponentVisitor
         editing = parent.getPlayer() == null;
         comps = new ArrayList<ComponentView>();
 
-        // Perhaps use a GridBagLayout or absolute layout
-        // paintComponentOn() should automatically resize according to IMAGE_HEIGHT and IMAGE_WIDTH
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setLayout(null);
 
+        // add comp's specific component view to comps and set movable
         for (ScreenComponent comp : screen.getComponents())
-            // add comp's specific component view to comps and set movable
             comp.accept(this);
 
-        addKeyListener(new DirectionListener());
+        repaint();
 
-        setFocusable (true);
+        addKeyListener(new DirectionListener());
+        addMouseListener(new MyMouseAdapter());
+        setFocusable(true);
     }
 
     // TODO include methods to add, get and modify different component views
@@ -94,24 +95,35 @@ public class ScreenView extends JPanel implements ComponentVisitor
     public void visit(ScreenButton comp)
     {
         comps.add(new ButtonView(this, comp, editing));
+
+        if (editing)
+            screen.addComponent(comp);
     }
 
     public void visit(ScreenLabel comp)
     {
         comps.add(new LabelView(this, comp, editing));
+        if (editing)
+            screen.addComponent(comp);
     }
 
     public void visit(ScreenObject comp)
     {
         ObjectView view = new ObjectView(this, comp, editing);
         comps.add(view);
-        // if (comp == screen.getMovable())
+        if (comp == screen.getMovable())
             movable = view;
+
+        if (editing)
+            screen.addComponent(comp);
     }
 
     public void visit(ScreenTextBox comp)
     {
         comps.add(new TextBoxView(this, comp, editing));
+
+        if (editing)
+            screen.addComponent(comp);
     }
 
     class DirectionListener implements KeyListener
@@ -129,5 +141,37 @@ public class ScreenView extends JPanel implements ComponentVisitor
         }
 
         public void keyTyped (KeyEvent event) {}
+    }
+
+    public boolean getShowGrid()
+    {
+        return showGrid;
+    }
+
+    public void setShowGrid(boolean showGrid)
+    {
+        this.showGrid = showGrid;
+        repaint();
+    }
+
+    public Point getObjectAddDeletePos()
+    {
+        return objectAddDeletePos;
+    }
+
+    class MyMouseAdapter extends MouseAdapter
+    {
+        @Override
+        public void mousePressed (MouseEvent e)
+        {
+            objectAddDeletePos = e.getPoint();
+
+            int rX = ((int) objectAddDeletePos.getX()) - ((int) objectAddDeletePos.getX() % IMAGE_HEIGHT);
+            int rY = ((int) objectAddDeletePos.getY()) - ((int) objectAddDeletePos.getY() % IMAGE_HEIGHT);
+
+            objectAddDeletePos.setLocation(rX, rY);
+
+            repaint();
+        }
     }
 }

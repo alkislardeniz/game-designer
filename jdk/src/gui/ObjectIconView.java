@@ -15,10 +15,10 @@ public enum ObjectIconView
 
     //Non movable backgrounds
     BG      (ObjectIcon.BG, "bg.png"),
-    BG2     (ObjectIcon.BG2, "bg.png"),
-    BG3     (ObjectIcon.BG3, "bg.png"),
-    BG4     (ObjectIcon.BG4, "bg.png"),
-    BG5     (ObjectIcon.BG5, "bg.png"),
+    BG2     (ObjectIcon.BG2, "bg2.png"),
+    BG3     (ObjectIcon.BG3, "bg3.png"),
+    BG4     (ObjectIcon.BG4, "bg4.png"),
+    BG5     (ObjectIcon.BG5, "bg5.png"),
 
     //Non movable objects
     ROCK    (ObjectIcon.ROCK, "rock.png"),
@@ -42,7 +42,7 @@ public enum ObjectIconView
     SOFA      (ObjectIcon.SOFA, "sofa.png"),
     SOFA2     (ObjectIcon.SOFA2, "sofa2.png"),
     TABLE     (ObjectIcon.TABLE, "table.png"),
-    TABLE2    (ObjectIcon.TABLE, "table.png");
+    TABLE2    (ObjectIcon.TABLE, "table2.png");
 
     // need to store icon and movability in ScreenObject
 
@@ -60,7 +60,7 @@ public enum ObjectIconView
     ObjectIcon icon;
     ImageIcon[][] images; // contains icons to show
     boolean movable;
-    boolean moving;
+    int movingIndex;
     int directionIndex;
 
     private ObjectIconView(ObjectIcon icon, String image)
@@ -71,7 +71,7 @@ public enum ObjectIconView
         images[1][0] = new ImageIcon("pics/" + image);
 
         directionIndex = 1;
-        moving = false;
+        movingIndex = 0;
         movable = false;
     }
 
@@ -88,13 +88,13 @@ public enum ObjectIconView
 
         // perhaps store icons in an array or hash table
         directionIndex = 1;
-        moving = false;
+        movingIndex = 0;
         movable = true;
     }
 
     public ImageIcon getImage()
     {
-        return images[directionIndex][getMovingIndex()];
+        return images[directionIndex][movingIndex];
     }
 
     public void setImage(int dx, int dy)
@@ -103,20 +103,20 @@ public enum ObjectIconView
         setDirectionIndex(dx);
     }
 
-    public boolean getMoving() { return moving; }
+    public boolean getMoving() { return movingIndex != 0; }
 
     public void setMoving(boolean moving)
     {
-        if (movable)
-            this.moving = moving;
+        if (moving)
+            movingIndex = 1;
+        else
+            movingIndex = 0;
     }
 
     // return 0 if standing, 1 if moving
     private int getMovingIndex()
     {
-        if (moving)
-            return 1;
-        return 0;
+        return movingIndex;
     }
 
     // return 0 if left, 1 if right

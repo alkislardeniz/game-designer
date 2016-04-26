@@ -20,6 +20,8 @@ public class ScreenTextBox extends ScreenComponent
 
         variable = null;
         text = null;
+        
+        width = 10;
     }
 
     // getters, setters go here

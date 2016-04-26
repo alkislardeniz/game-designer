@@ -2,6 +2,9 @@ package expr;
 
 import gamemodel.*;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Created by admin on 4/9/16.
  */
@@ -70,7 +73,7 @@ public class ExprTest
             // player.addObserver(this);
         }
 
-        public void update()
+        public void update(Observable o, Object arg)
         {
             // System.out.println(player.getVariable(new Var("x")));
 

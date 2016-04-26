@@ -92,6 +92,10 @@ class BinaryOpExpr extends Expr
             parseString = parseString.substring(1);
         } while (!parseString.isEmpty() && (i != 0 || !parseString.matches(regex + ".*")));
 
+        // if parentheses unmatched
+        if (i != 0)
+            return null;
+
         if (parseString.isEmpty())
             return new String[] {start};
 

@@ -23,15 +23,21 @@ public class ButtonView extends ComponentView
         {
             jButton = new JButton(button.getText());
             jButton.addActionListener(new ButtonListener(parent.parent.getPlayer()));
+
+            jButton.setBounds((int) button.getPosition().getX() * parent.IMAGE_WIDTH,
+                              (int) button.getPosition().getY() * parent.IMAGE_HEIGHT,
+                              button.getWidth()  * parent.IMAGE_WIDTH,
+                              button.getHeight() * parent.IMAGE_HEIGHT);
+
+            jButton.setVisible(true);
             jButton.setEnabled(true);
             parent.add(jButton);
         }
     }
 
-    // only update position
     public void paintComponentOn(Graphics g)
     {
-        // jButton.repaint(); // is this necessary?
+        return;
     }
 
     private class ButtonListener implements ActionListener

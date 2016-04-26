@@ -18,11 +18,11 @@ public class ObjectView extends ComponentView
     {
         super(parent, obj, editing);
         icon = ObjectIconView.getIcon(obj.getIcon());
-        icon.moving = false;
+        icon.setMoving(false);
 
         // copy obj for playing
         if (!editing)
-            obj = new ScreenObject(obj);
+            obj = new ScreenObject(obj); // parent.parent.getPlayer().getSharedObject(obj);
         this.obj = obj;
     }
 
@@ -65,7 +65,7 @@ public class ObjectView extends ComponentView
                         ((ScreenButton) comp).clicked(parent.parent.getPlayer());
             }
 
-            icon.moving = true;
+            icon.setMoving(true);
             icon.setImage(dx, dy);
 
             setX(x);
@@ -76,7 +76,7 @@ public class ObjectView extends ComponentView
         else
         {
             // otherwise do not move and do not update icon
-            icon.moving = false;
+            icon.setMoving(false);
 
             return false;
         }
@@ -84,7 +84,7 @@ public class ObjectView extends ComponentView
 
     public void stopMoving()
     {
-        icon.moving = false;
+        icon.setMoving(false);
     }
 
     public ImageIcon getImage()

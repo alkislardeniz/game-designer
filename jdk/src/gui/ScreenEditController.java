@@ -16,8 +16,6 @@ public class ScreenEditController extends JPanel implements ScreenController
     EditScrollPane scrollPane;
     EditScreenOptions screenOptions;
 
-    // TODO also include a panel containing options for components to add to the screen
-
     public ScreenEditController(PlayableScreen screen)
     {
         this.screen = screen;
@@ -26,14 +24,14 @@ public class ScreenEditController extends JPanel implements ScreenController
         screenView = new ScreenView(this, screen);
         add(screenView);
 
-        scrollPane = new EditScrollPane();
-        screenOptions = new EditScreenOptions();
+        scrollPane = new EditScrollPane(this);
+        screenOptions = new EditScreenOptions(this);
 
-        setLayout (new BorderLayout());
+        setLayout(new BorderLayout());
 
-        add (screenView, BorderLayout.CENTER);
-        add (scrollPane, BorderLayout.EAST);
-        add (screenOptions, BorderLayout.SOUTH);
+        add(screenView, BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.EAST);
+        add(screenOptions, BorderLayout.SOUTH);
 
         //setPreferredSize (new Dimension (504, 264));
 
@@ -47,7 +45,35 @@ public class ScreenEditController extends JPanel implements ScreenController
         return null;
     }
 
-    // TODO include methods to communicate with options panel and create and move objects
+    // update whether to show grid
+    public void updateShowGrid(boolean shouldShowGrid)
+    {
+        screenView.setShowGrid(shouldShowGrid);
+    }
+    
+    // update selected component
+    // perhaps carry reference instead of string
+    public void updateSelectedComponent(String selectedComponent)
+    {
+        ScreenComponent newComp;
 
-    // if a new component is created, update screenView.comps
+        // check if can add component
+        if (!screenOptions.shouldDelete())
+        {
+            for (ObjectIcon icon : ObjectIcon.values())
+            {
+                if (selectedComponent.equals(icon.toString()))
+                {
+                    newComp = new ScreenObject(screen, icon.toString(), icon);
+                    newComp.setPosition(screenView.getObjectAddDeletePos());
+                    newComp.accept(screenView);
+                }
+            }
+
+            // TODO also check for label, button and text box
+        }
+
+        // update screen
+        repaint();
+    }
 }
