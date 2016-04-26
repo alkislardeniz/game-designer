@@ -53,5 +53,6 @@ public class ButtonView extends ComponentView
         {
             button.clicked(player);
         }
+
     }
 }

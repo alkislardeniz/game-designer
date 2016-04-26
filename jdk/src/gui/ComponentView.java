@@ -23,8 +23,9 @@ public abstract class ComponentView // extends JComponent
         this.editing = editing;
 
         x = (int) comp.getPosition().getX();
+        System.out.println("x:" + x);
         y = (int) comp.getPosition().getY();
-
+        System.out.println("y:" + y);
         // GUI operations about the representation of the component go hee
     }
 

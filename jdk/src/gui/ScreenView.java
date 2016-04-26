@@ -81,6 +81,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
         for (ComponentView comp : comps)
         {
+            System.out.println("paint");
             // different for labels, objects, etc.
             comp.paintComponentOn(g);
         }

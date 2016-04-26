@@ -43,7 +43,10 @@ public abstract class ScreenComponent implements Serializable
 
     public Point getPosition() { return position; }
 
-    public void setPosition(Point position) { this.position = position; }
+    public void setPosition(Point position)
+    {
+        this.position = position;
+    }
 
     public PlayableScreen getParent() { return parent; }
 

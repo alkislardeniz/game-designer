@@ -29,6 +29,7 @@ public class ObjectView extends ComponentView
     // draw object on screen
     public void paintComponentOn(Graphics g)
     {
+        System.out.println("ObjectView::paintComponentOn");
         // handle the icon work on this class as well
         getImage().paintIcon(parent, g, getX() * parent.IMAGE_WIDTH, getY() * parent.IMAGE_HEIGHT);
     }
@@ -38,6 +39,7 @@ public class ObjectView extends ComponentView
     {
         int x, y, dx, dy;
 
+        System.out.println("ObjectView::move" + direction );
         dx = dy = 0;
 
         if (direction == KeyEvent.VK_UP)

@@ -66,7 +66,7 @@ public enum ObjectIconView
     private ObjectIconView(ObjectIcon icon, String image)
     {
         this.icon = icon;
-
+        //C:/Users/user/IdeaProjects/game-designer/jdk/src/pics\
         images = new ImageIcon[2][2];
         images[1][0] = new ImageIcon("pics/" + image);
 
