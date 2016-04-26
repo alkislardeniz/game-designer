@@ -66,7 +66,7 @@ public abstract class Screen implements Serializable
 
     public boolean addOption(String name, Screen screen)
     {
-        return (optionLimit == -1|| options.size() <= optionLimit)
+        return (optionLimit == -1 || options.size() <= optionLimit)
             && options.add(new Option(name, screen));
     }
 

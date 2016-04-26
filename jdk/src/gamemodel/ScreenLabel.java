@@ -29,6 +29,8 @@ public class ScreenLabel extends ScreenComponent
 
     public String getText(GamePlayer env)
     {
+        if (env == null)
+            return expr.toString();
         return expr.toString(env);
     }
 

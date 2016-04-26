@@ -17,6 +17,16 @@ public class GamePlayController extends JPanel implements Observer
     PlayableScreen currentScreen; // if player's current screen changes, change ScreenPlayController based on it
     ScreenPlayController controller;
 
+    public GamePlayController(GamePlayer player)
+    {
+        this.player = player;
+
+        currentScreen = (PlayableScreen) player.getCurrentScreen();
+        controller = new ScreenPlayController(player, currentScreen);
+        player.addObserver(this);
+        add(controller);
+    }
+
     public GamePlayController(PlayerWindow parent)
     {
         this.parent = parent;
@@ -24,24 +34,24 @@ public class GamePlayController extends JPanel implements Observer
 
         currentScreen = (PlayableScreen) player.getCurrentScreen();
         controller = new ScreenPlayController(player, currentScreen);
+        player.addObserver(this);
         add(controller);
     }
 
     @Override
     public void update(Observable o, Object arg)
     {
+        // controller.setFocusable(false);
         currentScreen = (PlayableScreen) player.getCurrentScreen(); // currentScreen is playable every time notifyObservers() is called
 
         if (currentScreen != null)
         {
-            remove(controller);
-            controller = new ScreenPlayController(player, currentScreen);
-            add(controller);
+            controller.setScreen(currentScreen);
 
-            validate();
+            revalidate();
             repaint();
         }
-        else
+        else if (parent != null)
         {
             // handle game over
             parent.gameOver();

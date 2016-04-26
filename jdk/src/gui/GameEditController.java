@@ -1,36 +1,49 @@
 package gui;
 
-import gamemodel.AssignScreen;
-import gamemodel.CondScreen;
-import gamemodel.Game;
+import gamemodel.*;
 
 /**
- * Created by user on 21.04.2016.
+ * Created by admin on 4/26/16.
  */
 public class GameEditController
 {
-    Game newGame;
+    Game game;
 
-    public GameEditController(Game newGame )
+    public GameEditController(Game game)
     {
-        this.newGame = newGame;
+        this.game = game;
     }
 
     // methods
-    public void createAssignScreen(String name)
+
+    // create new assignment screen
+    public void createAssignScreen(String name, String varName, String newValue, String newScreen)
     {
-        newGame.addScreen(  new AssignScreen(newGame,name) );
+        AssignScreen assign = new AssignScreen(game, name);
+
+        assign.setVariable(varName);
+        assign.setNewValue(newValue);
+        assign.addOption("default", game.getScreen(newScreen));
+
+        game.addScreen(assign);
     }
-    public void createCondScreen(String name)
+
+    public void createCondScreen(String name, String pred, String trueScreen, String falseScreen)
     {
-        newGame.addScreen( new CondScreen(newGame, name));
+        CondScreen cond = new CondScreen(game, name);
+
+        cond.setPred(pred);
+        cond.addOption("true", game.getScreen(trueScreen));
+        cond.addOption("false", game.getScreen(falseScreen));
+
+        game.addScreen(new CondScreen(game, name));
 
     }
     public void createPlayableScreen(String name)
     {
-        //TODO tell the gui
+        // TODO tell the gui
 
     }
 
-
+    // have previews for each screen
 }

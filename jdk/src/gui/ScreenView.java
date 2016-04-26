@@ -56,6 +56,21 @@ public class ScreenView extends JPanel implements ComponentVisitor
         setFocusable(true);
     }
 
+    public void setScreen(PlayableScreen screen)
+    {
+        this.screen = screen;
+
+        removeAll();
+
+        comps = new ArrayList<ComponentView>();
+
+        for (ScreenComponent comp : screen.getComponents())
+            comp.accept(this);
+
+        revalidate();
+        repaint();
+    }
+
     // TODO include methods to add, get and modify different component views
 
     public void paintComponent (Graphics g)
@@ -111,7 +126,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
     {
         ObjectView view = new ObjectView(this, comp, editing);
         comps.add(view);
-        if (comp == screen.getMovable())
+
+        if (comp.equals(screen.getMovable()))
             movable = view;
 
         if (editing)
@@ -130,6 +146,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
     {
         public void keyPressed (KeyEvent event)
         {
+            // System.out.println("test");
             movable.move(event.getKeyCode());
             repaint();
         }

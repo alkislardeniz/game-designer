@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class ExprString
 {
     ArrayList<Expr> exprs;
+    String exprString;
 
     public ExprString()
     {
@@ -28,6 +29,7 @@ public class ExprString
     {
         Expr expr;
 
+        exprString = exprStr;
         exprs = new ArrayList<Expr>();
 
         // find first instance of $ in exprStr
@@ -86,6 +88,13 @@ public class ExprString
         return true;
     }
 
+    // return non-evaluated string
+    public String toString()
+    {
+        return exprString;
+    }
+
+    // return string after evaluating expressions
     public String toString(VariableEnv env)
     {
         String res = "";

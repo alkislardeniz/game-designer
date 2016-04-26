@@ -18,9 +18,17 @@ public class ScreenObject extends ScreenComponent
     public ScreenObject(ScreenObject other)
     {
         super(other);
+        this.img = other.img;
     }
 
     // getters, setters
+
+    public boolean equals(Object other)
+    {
+        return other != null
+                && other instanceof ScreenObject
+                && name.equals(((ScreenObject) other).name);
+    }
 
     public ObjectIcon getIcon() { return img; }
 

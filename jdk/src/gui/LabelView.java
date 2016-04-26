@@ -21,9 +21,9 @@ public class LabelView extends ComponentView
     }
 
     // draw component on screen
-    // TODO fix the font to fit IMAGE_WIDTH and IMAGE_HEIGHT
     public void paintComponentOn(Graphics g)
     {
+        // TODO fix the font to fit IMAGE_WIDTH and IMAGE_HEIGHT and adjust getPosition() based on text
         g.drawString(label.getText(parent.parent.getPlayer()),
                      (int) label.getPosition().getX() * parent.IMAGE_WIDTH,
                      (int) label.getPosition().getY() * parent.IMAGE_HEIGHT);

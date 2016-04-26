@@ -21,13 +21,20 @@ public class ScreenPlayController extends JPanel implements ScreenController
         this.screen = screen;
 
         view = new ScreenView(this, screen);
-        setPreferredSize(new Dimension(504, 504));
         add(view);
+
+        setPreferredSize(new Dimension(504, 504));
         // setFocusable(true);
     }
 
     public GamePlayer getPlayer()
     {
         return player;
+    }
+
+    public void setScreen(PlayableScreen screen)
+    {
+        this.screen = screen;
+        view.setScreen(screen);
     }
 }
