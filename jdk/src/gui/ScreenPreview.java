@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * Displays preview image for screens, to be used inside GameEditController.
+ * Mehmet was here on 26 April 2016
  * Created by admin on 4/26/16.
  */
 public abstract class ScreenPreview extends JPanel
