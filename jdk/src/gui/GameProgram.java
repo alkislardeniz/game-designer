@@ -57,10 +57,10 @@ public class GameProgram extends JFrame
         setJMenuBar(bar);
 
     }
-/*
+
     private class MenuBarListener implements MenuListener
     {
 
     }
-*/
+
 }

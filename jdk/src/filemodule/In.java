@@ -9,7 +9,8 @@ import java.io.*;
  * @author Mehmet Can Altuntaş
  * @version 28 April 2016
  */
-public class In extends FileIO {
+public class In extends FileIO
+{
 
     //properties
 
@@ -28,15 +29,21 @@ public class In extends FileIO {
      * Takes a path as a parameter, finds the file in it and opens it
      * @param path
      */
-    public In(String path) {
+    public In(String path)
+    {
         file = new File(path);
         this.path = path;
 
-        try {
+        try
+        {
             deserializeFile();
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
         }
     }
@@ -49,7 +56,8 @@ public class In extends FileIO {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Object deserializeFile() throws IOException, ClassNotFoundException {
+    public Object deserializeFile() throws IOException, ClassNotFoundException
+    {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 
         return ois.readObject();
