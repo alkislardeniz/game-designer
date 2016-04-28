@@ -60,9 +60,8 @@ public class GameProgram extends JFrame
 
     }
 
-    private class MenuBarListener implements MenuListener
-    {
+    // TODO
+    // private class MenuBarListener implements MenuListener
 
-    }
 
 }
