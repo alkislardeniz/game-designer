@@ -107,6 +107,17 @@ public class VariableList extends JPanel
         }
 
         @Override
+        public String getColumnName(int index)
+        {
+            final String[] columns = {"Variable", "Value"};
+
+            if (index >= 2)
+                return "";
+
+            return columns[index];
+        }
+
+        @Override
         public Object getValueAt(int rowIndex, int columnIndex)
         {
             Binding bind = game.getVariables().get(rowIndex);

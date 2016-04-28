@@ -241,7 +241,7 @@ public class EditScrollPaneLeft extends JPanel
                 // add option to screen and update combo box
                 parent.screen.addOption(nameField.getText(), (Screen) screenField.getSelectedItem());
 
-                repaint();
+                model.fireTableStructureChanged();
             }
         }
 
@@ -253,7 +253,7 @@ public class EditScrollPaneLeft extends JPanel
             {
                 parent.screen.removeOption((String) model.getValueAt(table.getSelectedRow(), 0));
 
-                repaint();
+                model.fireTableStructureChanged();
             }
         }
 
@@ -269,6 +269,17 @@ public class EditScrollPaneLeft extends JPanel
             public int getColumnCount()
             {
                 return 2;
+            }
+
+            @Override
+            public String getColumnName(int index)
+            {
+                final String[] columns = {"Name", "Screen"};
+
+                if (index >= 2)
+                    return "";
+
+                return columns[index];
             }
 
             @Override
