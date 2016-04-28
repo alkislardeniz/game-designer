@@ -34,7 +34,7 @@ public class VariableList extends JPanel
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(150, 200));
+        scrollPane.setPreferredSize(new Dimension(150, 400));
 
         add(scrollPane);
 
@@ -60,8 +60,6 @@ public class VariableList extends JPanel
 
         add(panel, BorderLayout.SOUTH);
     }
-
-    // TODO table does not update
 
     class AddListener implements ActionListener
     {
