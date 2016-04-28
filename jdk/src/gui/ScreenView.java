@@ -84,7 +84,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
     {
         super.paintComponent(g);
 
-        // g.drawImage(bg.getImage(), 0, 0, null); // make this the screen's property
+        if (bg != null)
+            bg.paintComponentOn(g);
 
         // first paint grid
         if (showGrid)
@@ -110,8 +111,6 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
         // then paint each component
 
-        if (bg != null)
-            bg.paintComponentOn(g);
         for (ComponentView comp : comps)
         {
             comp.paintComponentOn(g);
@@ -166,7 +165,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
     {
         ObjectView view = new ObjectView(this, comp, editing);
 
-        if (comp.equals(screen.getBackground()))
+        if (comp.isBackground())
         {
             bg = view;
         }

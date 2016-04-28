@@ -78,7 +78,6 @@ public class ScreenViewTest
         {
             this.player = player;
             this.object = object;
-            // player.addObserver(this);
         }
 
         public void update(Observable o, Object arg)

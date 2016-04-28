@@ -68,11 +68,13 @@ public class PlayableScreen extends Screen
 
             if (obj.isBackground())
             {
+                System.out.println(background.getIcon() + ", " + obj.getIcon());
                 removeComponent(background);
                 background = obj;
             }
         }
-        return components.add(comp);
+
+        return !hasComponent(comp) && components.add(comp);
     }
 
     public ScreenComponent removeComponent(String name)
@@ -89,6 +91,11 @@ public class PlayableScreen extends Screen
     public boolean removeComponent(ScreenComponent comp)
     {
         return components.remove(comp);
+    }
+
+    public boolean hasComponent(ScreenComponent comp)
+    {
+        return components.contains(comp);
     }
 
     // try to place comp on (x,y) on the screen

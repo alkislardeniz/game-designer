@@ -142,7 +142,7 @@ public class EditScrollPaneLeft extends JPanel
         {
             JPanel panel = new JPanel();
 
-            JComboBox comboBox = new JComboBox<Object>(parent.screen.getParent().getVariables().toArray());
+            JComboBox comboBox = new JComboBox<>(parent.screen.getParent().getVariables().toArray());
             JTextField textField = new JTextField();
 
             panel.setLayout(new GridLayout(2, 2));
@@ -161,6 +161,8 @@ public class EditScrollPaneLeft extends JPanel
             }
         }
     }
+
+    // TODO label is added one block above
     class LabelListener implements ActionListener
     {
         @Override

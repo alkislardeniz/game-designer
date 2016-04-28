@@ -64,7 +64,15 @@ public class ScreenEditController extends JPanel implements ScreenController
     // receive
     public void setSelectedComponent(ScreenComponent comp)
     {
-        this.comp = comp.copy();
+        if (comp instanceof ScreenObject && ((ScreenObject) comp).isBackground())
+        {
+            comp.accept(screenView);
+            repaint();
+        }
+        else
+        {
+            this.comp = comp.copy();
+        }
     }
 
     private class ComponentListener extends MouseAdapter
