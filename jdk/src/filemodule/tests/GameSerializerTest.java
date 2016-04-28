@@ -12,8 +12,8 @@ public class GameSerializerTest
 {
     public static void main(String[] args)
     {
-        Game game = new Game;
-        Out out = new Out("", game);
+        Game game = new Game();
+        Out out = new Out("C:\\Users\\user\\Desktop\\serialize", game);
         
         try
         {
