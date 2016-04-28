@@ -71,12 +71,15 @@ public class EditTab extends JPanel {
         GamePlayer player = new gamemodel.GamePlayer(game);
         PlayableScreen screen = new gamemodel.PlayableScreen(game, "Screen 1");
         PlayableScreen screen2 = new gamemodel.PlayableScreen(game, "Screen 2");
+        PlayableScreen screen3 = new gamemodel.PlayableScreen(game, "Screen 3");
+
         ScreenButton button = new ScreenButton(screen, "hello");
         screen.addComponent(button);
-        for(int i = 0;i < 3;i++) {
-            game.addScreen(screen);
-            game.addScreen(screen2);
-        }
+
+        game.addScreen(screen);
+        game.addScreen(screen2);
+        game.addScreen(screen3);
+
         ArrayList<gamemodel.Screen> screenList = (ArrayList) game.getScreens();
 
 
