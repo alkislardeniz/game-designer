@@ -39,6 +39,7 @@ public class GameView extends JPanel
     public void add(ScreenPreview screen)
     {
         // TODO detect position of screen in grid first
+        screen.addMouseListener(new PreviewListener(screen));
         super.add(screen);
     }
 
