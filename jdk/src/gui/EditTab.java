@@ -87,8 +87,7 @@ public class EditTab extends JPanel {
         for (int i = 0; i < screenList.size();i++) {
             String title = "Screen " + i;
             ScreenEditController controller = new ScreenEditController((gamemodel.PlayableScreen) screenList.get(i));
-            ScreenView screenPanel = new ScreenView(controller,(gamemodel.PlayableScreen) screenList.get(i));
-            pane.addTab(title,screenPanel);
+            pane.addTab(title,controller);
             initTabComponent(i);
         }
 
