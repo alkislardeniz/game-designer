@@ -36,6 +36,7 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
             public void paintComponent(Graphics g)
             {
                 setText(name);
+                setVisible(true);
             }
         };
 
@@ -67,6 +68,7 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
             public void paintComponent(Graphics g)
             {
                 setText(screen.getText());
+                setVisible(true);
             }
         });
     }
@@ -79,6 +81,7 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
             public void paintComponent(Graphics g)
             {
                 setText(screen.getText());
+                setVisible(true);
             }
         });
     }
