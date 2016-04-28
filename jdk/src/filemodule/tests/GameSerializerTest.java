@@ -12,9 +12,9 @@ public class GameSerializerTest
 {
     public static void main(String[] args)
     {
-        Game game = new Game;
+        Game game = new Game();
         Out out = new Out("", game);
-        
+
         try
         {
             out.serializeFile();
