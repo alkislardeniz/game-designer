@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * Mehmet was here lolz
  * @Deniz Alkýþlar
  * @Program Name 1.0
- * @Ankara - 00.00.2016
+ * @malesef Ankara - 00.00.2016
  */
 
 public class Direction
