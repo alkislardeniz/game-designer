@@ -36,8 +36,6 @@ public class Game extends Observable implements Serializable, VariableSet
         return new ArrayList<Screen>(screens);
     }
 
-
-
     public int getHeight()
     {
         return height;

@@ -32,4 +32,6 @@ public class GameView extends JPanel
         // TODO detect position of screen in grid first
         super.add(screen);
     }
+    //TODO paint topological graph
+
 }

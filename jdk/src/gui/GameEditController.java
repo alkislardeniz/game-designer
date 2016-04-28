@@ -59,6 +59,13 @@ public class GameEditController extends JPanel
         game.addScreen(screen);
         gameView.add(new ScreenPreview(screen));
     }
+    public void previewsCreator()
+    {
+
+
+
+
+    }
 
     // have previews for each screen
 }
