@@ -55,7 +55,10 @@ public abstract class ScreenComponent implements Serializable
 
     public Point getPosition() { return position; }
 
-    public void setPosition(Point position) { this.position = position; }
+    public void setPosition(Point position)
+    {
+        this.position = position;
+    }
 
     public PlayableScreen getParent() { return parent; }
 
@@ -76,9 +79,11 @@ public abstract class ScreenComponent implements Serializable
             && y < position.getY() + height;
     }
 
+
     // what to do in leaving a screen, nothing by default
     public void leavingScreen(GamePlayer player)
     {
+
 
     }
 

@@ -53,10 +53,16 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
     }
 
     // perhaps make this only return playable screens
-    public Screen getCurrentScreen() { return currentScreen; }
+    public Screen getCurrentScreen()
+    {
+        return currentScreen;
+    }
 
     // perhaps make this only return playable screens
-    public void setCurrentScreen(Screen newScreen) { currentScreen = newScreen; }
+    public void setCurrentScreen(Screen newScreen)
+    {
+        currentScreen = newScreen;
+    }
 
 
     public ExprValue getVariable(Var var)
