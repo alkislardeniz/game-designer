@@ -29,7 +29,9 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         setPreferredSize(new Dimension(100, 75));
         setLayout(new GridLayout(2, 1));
 
-        add(new JLabel(name));
+        JLabel nameLabel = new JLabel(name);
+        nameLabel.setToolTipText(screen.getOptions().toString());
+        add(nameLabel);
 
         // manipulate panel based on type of screen
         screen.accept(this);
@@ -55,19 +57,5 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         add(new JLabel(screen.getText()));
     }
 
-    // use clicks and double clicks to open a dialog to edit properties or the corresponding ScreenEditController
-    public class MouseClicked extends MouseAdapter
-    {
-        public void mouseClicked(MouseEvent e)
-        {
-            if (e.getClickCount() == 2 && screen.getPlayable())
-            {
-                // TODO open new ScreenEditController for screen
-            }
-            else
-            {
-                // TODO open dialog to change properties of screen, such as expressions for AssignScreen
-            }
-        }
-    }
+
 }
