@@ -1,6 +1,9 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.event.MenuListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Program to be run, creates/opens/saves games and plays the open game.
@@ -50,4 +53,10 @@ public class GameProgram extends JFrame
         setJMenuBar(bar);
 
     }
+/*
+    private class MenuBarListener implements MenuListener
+    {
+
+    }
+*/
 }
