@@ -31,7 +31,14 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setLayout(new GridLayout(2, 1));
 
-        JLabel nameLabel = new JLabel(name);
+        JLabel nameLabel = new JLabel(name) {
+            @Override
+            public void paintComponent(Graphics g)
+            {
+                setText(name);
+            }
+        };
+
         nameLabel.setToolTipText(screen.getOptions().toString());
         add(nameLabel);
 
@@ -55,13 +62,25 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     // add label describing the assignment made
     public void visit(AssignScreen screen)
     {
-        add(new JLabel(screen.getText()));
+        add(new JLabel(screen.getText()) {
+            @Override
+            public void paintComponent(Graphics g)
+            {
+                setText(screen.getText());
+            }
+        });
     }
 
     // add label describing the condition in question
     public void visit(CondScreen screen)
     {
-        add(new JLabel(screen.getText()));
+        add(new JLabel(screen.getText()) {
+            @Override
+            public void paintComponent(Graphics g)
+            {
+                setText(screen.getText());
+            }
+        });
     }
 
 

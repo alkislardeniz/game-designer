@@ -63,6 +63,7 @@ public class GameView extends JPanel
             else
             {
                 view.getDialog();
+                repaint();
             }
         }
     }
