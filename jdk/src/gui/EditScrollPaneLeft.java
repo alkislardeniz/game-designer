@@ -212,7 +212,7 @@ public class EditScrollPaneLeft extends JPanel
             panel.setPreferredSize(new Dimension(150, 50));
 
             nameField = new JTextField();
-            System.out.println(parent.screen.getParent().getScreens());
+            // System.out.println(parent.screen.getParent().getScreens());
             screenField = new JComboBox<>(parent.screen.getParent().getScreens().toArray(new Screen[0]));
 
             panel.add(new JLabel("Name: "));

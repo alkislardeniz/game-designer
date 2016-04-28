@@ -15,9 +15,12 @@ public class ExprTest
         String str = "-2 + 3 * (x - 7) + 3";
         Game set = new Game();
         GamePlayer env;
+
         AssignScreen scr = new AssignScreen(set, "a");
         PlayableScreen scr1 = new PlayableScreen(set, "b");
+
         CondScreen scr2 = new CondScreen(set, "c");
+
         ScreenButton button = new ScreenButton(scr1, "button");
 
         set.addVariable("x");
@@ -33,7 +36,9 @@ public class ExprTest
         scr1.addOption("option 1", scr);
 
         button.setOption("option 1");
+
         scr1.addComponent(button);
+
 
         scr2.addOption("option 1", scr);
         scr2.addOption("option 2", null);

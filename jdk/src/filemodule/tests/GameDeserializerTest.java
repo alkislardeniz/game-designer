@@ -12,7 +12,7 @@ public class GameDeserializerTest
 {
     public static void main(String[] args)
     {
-        In in = new In("");
+        In in = new In("C:\\Users\\user\\Desktop\\serialize");
 
         try
         {

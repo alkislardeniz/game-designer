@@ -68,7 +68,7 @@ public class PlayableScreen extends Screen
 
             if (obj.isBackground())
             {
-                System.out.println(background.getIcon() + ", " + obj.getIcon());
+                // System.out.println(background.getIcon() + ", " + obj.getIcon());
                 removeComponent(background);
                 background = obj;
             }
