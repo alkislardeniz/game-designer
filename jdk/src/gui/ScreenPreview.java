@@ -2,6 +2,7 @@ package gui;
 
 import gamemodel.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,7 +11,7 @@ import java.awt.event.MouseEvent;
  * Mehmet was here on 26 April 2016
  * Created by admin on 4/26/16.
  */
-public abstract class ScreenPreview extends JPanel
+public class ScreenPreview extends JPanel implements ScreenVisitor
 {
     Screen screen;
 
@@ -25,52 +26,47 @@ public abstract class ScreenPreview extends JPanel
         this.screen = screen;
         name = screen.getName();
 
+        setPreferredSize(new Dimension(100, 75));
+        setLayout(new GridLayout(2, 1));
 
+        add(new JLabel(name));
 
-        if (screen.getPlayable())
-        {
-            JLabel nameLabel = new JLabel(name);
-            add(nameLabel);
-        }
-        else if (screen instanceof CondScreen)
-        {
-            CondScreen condScreen = (CondScreen) screen;
-            String name = condScreen.getName();
-            String condString = condScreen.getPred().toString();
-
-            JLabel nameLabel = new JLabel(name);
-            JLabel condLabel = new JLabel(condString);
-
-            add(nameLabel);
-            add(condLabel);
-        }
-        else if (screen instanceof AssignScreen)
-        {
-            AssignScreen assignScreen = (AssignScreen) screen;
-            String name = assignScreen.getName();
-            String assignment = assignScreen.getName();
-
-            JLabel nameLabel = new JLabel(name);
-            JLabel assignLabel = new JLabel(assignment);
-
-            add(nameLabel);
-            add(assignLabel);
-        }
+        // manipulate panel based on type of screen
+        screen.accept(this);
     }
 
+    // modifying preview based on type of screen
+
+    // add nothing other than name
+    public void visit(PlayableScreen screen)
+    {
+        return;
+    }
+
+    // add label describing the assignment made
+    public void visit(AssignScreen screen)
+    {
+        add(new JLabel(screen.toString()));
+    }
+
+    // add label describing the condition in question
+    public void visit(CondScreen screen)
+    {
+        add(new JLabel(screen.toString()));
+    }
 
     // use clicks and double clicks to open a dialog to edit properties or the corresponding ScreenEditController
     public class MouseClicked extends MouseAdapter
     {
-        public void MouseClicked(MouseEvent e)
+        public void mouseClicked(MouseEvent e)
         {
-            if (e.getClickCount() == 2)
+            if (e.getClickCount() == 2 && screen.getPlayable())
             {
-                // ToDo
+                // TODO open new ScreenEditController for screen
             }
             else
             {
-                // ToDo
+                // TODO open dialog to change properties of screen, such as expressions for AssignScreen
             }
         }
     }

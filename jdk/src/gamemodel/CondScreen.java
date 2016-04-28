@@ -42,6 +42,11 @@ public class CondScreen extends NonPlayableScreen
 
     public Expr getPred() { return pred; }
 
+    public String toString()
+    {
+        return pred.toString();
+    }
+
     // evaluates pred in the current state of the game, then calls toPlayer() based on
     // the result of the evaluation
     @Override
@@ -62,5 +67,10 @@ public class CondScreen extends NonPlayableScreen
         return pred != null
             && pred.valid(parent)
             && pred.getType(parent) == ExprType.BOOLEAN;
+    }
+
+    public void accept(ScreenVisitor visitor)
+    {
+        visitor.visit(this);
     }
 }

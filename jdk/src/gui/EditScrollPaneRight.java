@@ -20,30 +20,42 @@ public class EditScrollPaneRight extends JPanel
         ButtonGroup group;
         JScrollPane scrollPane;
         JRadioButton iconButton;
+        JPanel scrollPanel;
 
         this.parent = parent;
 
         group = new ButtonGroup();
-        setLayout(new GridLayout(ObjectIconView.values().length, 1));
+        scrollPanel = new JPanel();
+        scrollPanel.setLayout(new GridLayout(ObjectIconView.values().length, 1));
 
         //Add buttons to group and panel
 
         for (ObjectIconView icon : ObjectIconView.values())
         {
-            if (!icon.movable) {
-                iconButton = new JRadioButton(icon.toString());
+            if (!icon.movable)
+            {
+                if (icon.getImage().getIconHeight() <= 50 && icon.getImage().getIconWidth() <= 50)
+                    iconButton = new JRadioButton(icon.toString(), icon.getImage());
+                else
+                    iconButton = new JRadioButton(icon.toString());
+
                 iconButton.setName(icon.toString());
                 iconButton.addActionListener(new ButtonListener(icon.icon));
+
                 group.add(iconButton);
-                add(iconButton);
+                scrollPanel.add(iconButton);
             }
         }
 
         //Add scroll bar to this panel
-        scrollPane = new JScrollPane(this);
+        scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(100, 300));
+        scrollPane.setPreferredSize(new Dimension(150, 500));
+
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(150, 500));
+        add(scrollPane);
     }
 
     public String getSelectedComponent()

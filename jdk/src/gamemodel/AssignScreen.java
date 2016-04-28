@@ -25,6 +25,15 @@ public class AssignScreen extends NonPlayableScreen
     // getters, setters
     // parse newValue automatically within the setter, which takes a String
 
+    public Var getVariable() { return variable; }
+
+    public Expr getNewValue() { return newValue; }
+
+    public String toString()
+    {
+        return variable + " := " + newValue;
+    }
+
     public boolean setVariable(String var)
     {
         Var temp = parent.getVariable(var);
@@ -66,5 +75,10 @@ public class AssignScreen extends NonPlayableScreen
         return newValue != null
             && newValue.valid(parent)
             && parent.hasVariable(variable);
+    }
+
+    public void accept(ScreenVisitor visitor)
+    {
+        visitor.visit(this);
     }
 }
