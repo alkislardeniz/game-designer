@@ -13,17 +13,21 @@ public abstract class FileIO {
     File file;
     String path;
 
-    public String getPath() {
-        if (path != null) {
+    public String getPath()
+    {
+        if (path != null)
+        {
             return path;
         }
 
         return file.getPath();
     }
 
-    public String getFileExtension() {
+    public String getFileExtension()
+    {
         int lastIndex;
-        if (path != null) {
+        if (path != null)
+        {
             lastIndex = path.lastIndexOf('.');
             return path.substring(lastIndex + 1);
         }
