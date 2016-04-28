@@ -20,6 +20,8 @@ public class EditScreenViewTest
         game.addVariable("x");
         game.setVariable("x", "2");
 
+        game.addScreen(screen);
+        game.addScreen(assign);
         game.setStartScreen(screen);
 
         GamePlayer player = new GamePlayer(game);

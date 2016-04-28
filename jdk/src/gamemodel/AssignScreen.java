@@ -29,7 +29,7 @@ public class AssignScreen extends NonPlayableScreen
 
     public Expr getNewValue() { return newValue; }
 
-    public String toString()
+    public String getText()
     {
         return variable + " := " + newValue;
     }

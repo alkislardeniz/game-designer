@@ -30,7 +30,7 @@ public abstract class Screen implements Serializable
     {
         this.parent = parent;
         this.name = name;
-        options = new ArrayList<Option>();
+        options = new ArrayList<>();
     }
 
     public String toString() { return name; }

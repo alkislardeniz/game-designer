@@ -42,7 +42,7 @@ public class CondScreen extends NonPlayableScreen
 
     public Expr getPred() { return pred; }
 
-    public String toString()
+    public String getText()
     {
         return pred.toString();
     }

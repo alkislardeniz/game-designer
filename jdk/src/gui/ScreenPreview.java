@@ -46,13 +46,13 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     // add label describing the assignment made
     public void visit(AssignScreen screen)
     {
-        add(new JLabel(screen.toString()));
+        add(new JLabel(screen.getText()));
     }
 
     // add label describing the condition in question
     public void visit(CondScreen screen)
     {
-        add(new JLabel(screen.toString()));
+        add(new JLabel(screen.getText()));
     }
 
     // use clicks and double clicks to open a dialog to edit properties or the corresponding ScreenEditController
