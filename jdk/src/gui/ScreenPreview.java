@@ -3,8 +3,6 @@ package gui;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * Displays preview image for screens, to be used inside GameEditController.
@@ -17,8 +15,7 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     static final int WIDTH = 100;
     static final int HEIGHT = 75;
 
-    //properties
-    private String name;
+    JLabel nameLabel, textLabel;
 
     // for assignment screens, show the screen's name and assignment
     // for conditional screens, show its name and predicate
@@ -26,19 +23,11 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     public ScreenPreview(Screen screen)
     {
         this.screen = screen;
-        name = screen.getName();
 
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setLayout(new GridLayout(2, 1));
 
-        JLabel nameLabel = new JLabel(name) {
-            @Override
-            public void paintComponent(Graphics g)
-            {
-                setText(name);
-                setVisible(true);
-            }
-        };
+        nameLabel = new JLabel(screen.getName());
 
         nameLabel.setToolTipText(screen.getOptions().toString());
         add(nameLabel);
@@ -52,6 +41,14 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         screen.accept(new ScreenDialog());
     }
 
+    public void update()
+    {
+        nameLabel.setText(screen.getName());
+
+        if (!screen.getPlayable())
+            textLabel.setText(((NonPlayableScreen) screen).getText());
+    }
+
     // modifying preview based on type of screen
 
     // add nothing other than name
@@ -63,27 +60,15 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     // add label describing the assignment made
     public void visit(AssignScreen screen)
     {
-        add(new JLabel(screen.getText()) {
-            @Override
-            public void paintComponent(Graphics g)
-            {
-                setText(screen.getText());
-                setVisible(true);
-            }
-        });
+        textLabel = new JLabel(screen.getText());
+        add(textLabel);
     }
 
     // add label describing the condition in question
     public void visit(CondScreen screen)
     {
-        add(new JLabel(screen.getText()) {
-            @Override
-            public void paintComponent(Graphics g)
-            {
-                setText(screen.getText());
-                setVisible(true);
-            }
-        });
+        textLabel = new JLabel(screen.getText());
+        add(textLabel);
     }
 
 
