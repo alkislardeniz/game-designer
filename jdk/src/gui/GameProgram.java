@@ -50,10 +50,4 @@ public class GameProgram extends JFrame
         setJMenuBar(bar);
 
     }
-
-    // test
-    public static void main(String[] args)
-    {
-        new GameProgram();
-    }
 }
