@@ -26,16 +26,16 @@ public class GameEditController extends JPanel
         // add components to panel
         setLayout(new BorderLayout());
         add(pane);
-        add(vars, BorderLayout.WEST);
+
+        JPanel leftPanel = new JPanel();
+
+        leftPanel.setLayout(new BorderLayout());
+        leftPanel.add(new ScreenAddPanel(this), BorderLayout.NORTH);
+        leftPanel.add(vars, BorderLayout.SOUTH);
+        add(leftPanel, BorderLayout.WEST);
     }
 
     // methods
-
-    /* TODO
-     * - include tabbed pane to add game view and screen edit controllers to
-     * - create graphical interface for game view
-     * - create panel containing screen add/delete buttons and a scroll pane for variables
-     */
 
     // create new assignment screen
     public void createAssignScreen(String name, String varName, String newValue, String newScreen)

@@ -67,6 +67,13 @@ public abstract class Screen implements Serializable
         return options;
     }
 
+    public void setOption(String name, Screen screen)
+    {
+        Option op = getOption(name);
+        if (op != null)
+            op.setScreen(screen);
+    }
+
     public boolean addOption(String name, Screen screen)
     {
         return (optionLimit == -1 || options.size() <= optionLimit)

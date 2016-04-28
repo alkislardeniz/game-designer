@@ -113,15 +113,16 @@ public class EditScrollPaneLeft extends JPanel
 
             JComboBox comboBox = new JComboBox<>(parent.screen.getOptions().toArray());
             JTextField textField = new JTextField();
+            JCheckBox visible = new JCheckBox();
 
-            panel.setLayout(new GridLayout(2, 2));
+            panel.setLayout(new GridLayout(3, 2));
 
             panel.add(new JLabel("Name: "));
             panel.add(textField);
             panel.add(new JLabel("Options: "));
             panel.add(comboBox);
-
-            // TODO also add checkbox for visibility
+            panel.add(new JLabel("Visible: "));
+            panel.add(visible);
 
             if (JOptionPane.showConfirmDialog(null, panel, "Create button", JOptionPane.OK_CANCEL_OPTION)
                 == JOptionPane.OK_OPTION)
@@ -233,8 +234,6 @@ public class EditScrollPaneLeft extends JPanel
 
             add(panel, BorderLayout.SOUTH);
         }
-
-        // TODO table does not update
 
         class AddListener implements ActionListener
         {

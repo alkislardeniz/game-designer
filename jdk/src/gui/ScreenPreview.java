@@ -1,5 +1,6 @@
 package gui;
 
+import expr.Binding;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
@@ -47,6 +48,8 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
 
         if (!screen.getPlayable())
             textLabel.setText(((NonPlayableScreen) screen).getText());
+
+        repaint();
     }
 
     // modifying preview based on type of screen
@@ -79,13 +82,14 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         {
             JPanel panel = new JPanel();
             JTextField name, newValue;
-            JComboBox variable;
+            JComboBox variable, next;
 
             name = new JTextField(screen.getName());
             newValue = new JTextField(screen.getNewValue().toString());
-            variable = new JComboBox<>(screen.getParent().getVariables().toArray());
+            variable = new JComboBox<>(screen.getParent().getVariables().toArray(new Binding[0]));
+            next = new JComboBox<>(screen.getParent().getScreens().toArray(new Screen[0]));
 
-            panel.setLayout(new GridLayout(3, 2));
+            panel.setLayout(new GridLayout(4, 2));
 
             panel.add(new JLabel("Name: "));
             panel.add(name);
@@ -93,13 +97,16 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
             panel.add(variable);
             panel.add(new JLabel("Value: "));
             panel.add(newValue);
+            panel.add(new JLabel("Next screen: "));
+            panel.add(next);
 
-            if (JOptionPane.showConfirmDialog(null, panel, "Create assignment screen", JOptionPane.OK_CANCEL_OPTION)
+            if (JOptionPane.showConfirmDialog(null, panel, "Modify assignment screen", JOptionPane.OK_CANCEL_OPTION)
                 == JOptionPane.OK_OPTION)
             {
                 screen.setName(name.getText());
                 screen.setVariable(variable.getSelectedItem().toString());
                 screen.setNewValue(newValue.getText());
+                screen.setOption("default", (Screen) next.getSelectedItem());
             }
         }
 
@@ -107,22 +114,32 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         {
             JPanel panel = new JPanel();
             JTextField name, pred;
+            JComboBox trueScreen, falseScreen;
 
             name = new JTextField(screen.getName());
             pred = new JTextField(screen.getPred().toString());
 
-            panel.setLayout(new GridLayout(3, 2));
+            trueScreen  = new JComboBox<>(screen.getParent().getScreens().toArray(new Screen[0]));
+            falseScreen = new JComboBox<>(screen.getParent().getScreens().toArray(new Screen[0]));
+
+            panel.setLayout(new GridLayout(4, 2));
 
             panel.add(new JLabel("Name: "));
             panel.add(name);
             panel.add(new JLabel("Condition: "));
             panel.add(pred);
+            panel.add(new JLabel("True screen: "));
+            panel.add(trueScreen);
+            panel.add(new JLabel("False screen: "));
+            panel.add(falseScreen);
 
-            if (JOptionPane.showConfirmDialog(null, panel, "Create conditional screen", JOptionPane.OK_CANCEL_OPTION)
+            if (JOptionPane.showConfirmDialog(null, panel, "Modify conditional screen", JOptionPane.OK_CANCEL_OPTION)
                 == JOptionPane.OK_OPTION)
             {
                 screen.setName(name.getText());
                 screen.setPred(pred.getText());
+                screen.setOption("true", (Screen) trueScreen.getSelectedItem());
+                screen.setOption("false", (Screen) falseScreen.getSelectedItem());
             }
         }
     }
