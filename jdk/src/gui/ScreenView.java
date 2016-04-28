@@ -71,18 +71,24 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
     public boolean removeComponent(ScreenComponent comp)
     {
+        screen.removeComponent(comp);
+
+        if (comp == screen.getMovable())
+        {
+            screen.setMovable(null);
+            movable = null;
+        }
+
         for (ComponentView view : new ArrayList<>(comps))
             if (view.comp == comp)
-            {
-                comps.remove(view);
-                return true;
-            }
+                return comps.remove(view);
+
         return false;
     }
 
     // TODO include methods to add, get and modify different component views
 
-    public void paintComponent (Graphics g)
+    public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
 
@@ -118,8 +124,18 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
     public void setMovable(ObjectIcon icon)
     {
-        screen.getMovable().setIcon(icon);
-        movable.setIcon(ObjectIconView.getIcon(icon));
+        if (screen.getMovable() != null)
+        {
+            screen.getMovable().setIcon(icon);
+            movable.setIcon(ObjectIconView.getIcon(icon));
+        }
+        else
+        {
+            ScreenObject object = new ScreenObject(screen, icon.toString(), icon);
+            screen.addComponent(object);
+            screen.setMovable(object);
+            object.accept(this);
+        }
     }
 
     public void visit(ScreenButton comp)
@@ -164,13 +180,16 @@ public class ScreenView extends JPanel implements ComponentVisitor
         public void keyPressed (KeyEvent event)
         {
             // System.out.println("test");
-            movable.move(event.getKeyCode());
+            if (movable != null)
+                movable.move(event.getKeyCode());
+
             repaint();
         }
 
         public void keyReleased(KeyEvent event)
         {
-            movable.stopMoving();
+            if (movable != null)
+                movable.stopMoving();
             repaint();
         }
 

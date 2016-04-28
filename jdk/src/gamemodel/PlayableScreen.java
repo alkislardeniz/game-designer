@@ -100,12 +100,14 @@ public class PlayableScreen extends Screen
         return true;
     }
 
-    public ScreenComponent findComponentAt(int x, int y)
+    public ArrayList<ScreenComponent> findComponentsAt(int x, int y)
     {
+        ArrayList<ScreenComponent> res = new ArrayList<>();
+
         for (ScreenComponent comp : components)
             if (comp.contains(x, y))
-                return comp;
-        return null;
+                res.add(comp);
+        return res;
     }
 
     public ScreenObject getMovable()
@@ -115,7 +117,7 @@ public class PlayableScreen extends Screen
 
     public void setMovable(ScreenObject movable)
     {
-        if (movable.isMovable())
+        if (movable == null || movable.isMovable())
             this.movable = movable;
     }
 
