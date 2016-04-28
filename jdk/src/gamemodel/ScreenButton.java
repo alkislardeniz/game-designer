@@ -19,11 +19,23 @@ public class ScreenButton extends ScreenComponent
         width = 3;
     }
 
-    // getters, setters
-    public String getOption()
+    public ScreenButton(ScreenButton other)
     {
-        return option;
+        super(other);
+        option = other.option;
+        text = other.text;
+        visible = other.visible;
+        width = 3;
     }
+
+    // getters, setters
+
+    public ScreenComponent copy()
+    {
+        return new ScreenButton(this);
+    }
+
+    public String getOption() { return option; }
     public void setOption(String option) { this.option = option; }
 
     public String getText() { return text; }

@@ -18,7 +18,18 @@ public class ScreenLabel extends ScreenComponent
         setExpr(exp);
     }
 
+    public ScreenLabel(ScreenLabel other)
+    {
+        super(other);
+        expr = other.expr;
+    }
+
     // getters, setters
+
+    public ScreenComponent copy()
+    {
+        return new ScreenLabel(this);
+    }
 
     public ExprString getExpr() { return expr; }
 

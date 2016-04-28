@@ -28,6 +28,7 @@ public class ScreenViewTest
         ScreenButton button = new ScreenButton(screen, "hello");
         ScreenObject object = new ScreenObject(screen, "megaman", ObjectIcon.MEGAMAN);
         ScreenObject tree = new ScreenObject(screen, "tree", ObjectIcon.SOFA);
+        ScreenObject bg = new ScreenObject(screen, "bg", ObjectIcon.BG);
 
 
         button.setPosition(new Point(1, 1));
@@ -35,6 +36,7 @@ public class ScreenViewTest
         label.setPosition(new Point(7, 7));
         tree.setPosition(new Point(3, 4));
 
+        screen.addComponent(bg);
         screen.addComponent(button);
         screen.addComponent(object);
         screen.addComponent(label);
@@ -42,7 +44,7 @@ public class ScreenViewTest
 
         screen.setMovable(object);
 
-        button.setVisible(true);
+        button.setVisible(false);
         button.setOption("option 1");
         screen.addOption("option 1", assign);
 
@@ -77,7 +79,6 @@ public class ScreenViewTest
         {
             this.player = player;
             this.object = object;
-            // player.addObserver(this);
         }
 
         public void update(Observable o, Object arg)

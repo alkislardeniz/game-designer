@@ -31,10 +31,20 @@ public abstract class ScreenComponent implements Serializable
     public ScreenComponent(ScreenComponent other)
     {
         this.name = other.name;
-        this.position = new Point(other.position); // for movement
+        this.position = new Point(other.position); // copy for movement
         this.parent = other.parent;
         this.height = other.height;
         this.width  = other.width;
+    }
+
+    public abstract ScreenComponent copy();
+
+    public boolean equals(Object other)
+    {
+        return other != null
+            && other instanceof ScreenComponent
+            && ((ScreenComponent) other).name.equals(name)
+            && ((ScreenComponent) other).position.equals(position);
     }
 
     public String getName() { return name; }

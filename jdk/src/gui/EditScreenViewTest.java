@@ -54,8 +54,7 @@ public class EditScreenViewTest
 
         ImageIcon logo = new ImageIcon ("pics/logo.png");
         JFrame f = new JFrame ("Dadam - Game Designer");
-        f.setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE);
-        f.setLocationRelativeTo(null);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setSize(520, 620);
         f.add(new ScreenEditController(screen));
 
@@ -63,6 +62,7 @@ public class EditScreenViewTest
 
         f.add(new JLabel(logo), BorderLayout.NORTH);
         f.pack();
+        f.setLocationRelativeTo(null);
 
         f.setVisible(true);
     }

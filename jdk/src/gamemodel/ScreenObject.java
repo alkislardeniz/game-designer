@@ -6,7 +6,7 @@ package gamemodel;
 public class ScreenObject extends ScreenComponent
 {
     ObjectIcon img;
-    // TODO add property for things such as backgrounds going behind other objects
+    boolean collidable;
 
     public ScreenObject(PlayableScreen par, String nam, ObjectIcon img)
     {
@@ -14,6 +14,7 @@ public class ScreenObject extends ScreenComponent
         this.img = img;
         height = img.getHeight();
         width = img.getWidth();
+        collidable = img.collidable;
     }
 
     // copy constructor
@@ -21,15 +22,30 @@ public class ScreenObject extends ScreenComponent
     {
         super(other);
         this.img = other.img;
+        height = img.getHeight();
+        width = img.getWidth();
+        collidable = img.collidable;
     }
 
     // getters, setters
+
+    @Override
+    public boolean contains(int x, int y)
+    {
+        return !collidable && super.contains(x, y);
+    }
+
+    public ScreenComponent copy()
+    {
+        return new ScreenObject(this);
+    }
 
     public boolean equals(Object other)
     {
         return other != null
                 && other instanceof ScreenObject
-                && name.equals(((ScreenObject) other).name);
+                && super.equals(other)
+                && ((ScreenObject) other).img.equals(img);
     }
 
     public ObjectIcon getIcon() { return img; }
@@ -37,12 +53,16 @@ public class ScreenObject extends ScreenComponent
     public void setIcon(ObjectIcon img)
     {
         this.img = img;
+        height = img.getHeight();
+        width = img.getWidth();
     }
 
     public boolean isMovable()
     {
         return img.movable;
     }
+
+    public boolean isBackground() { return img.isBackground; }
 
     @Override
     public void accept(ComponentVisitor visitor)

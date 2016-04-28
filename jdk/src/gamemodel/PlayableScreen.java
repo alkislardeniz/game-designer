@@ -9,8 +9,7 @@ import java.util.List;
 public class PlayableScreen extends Screen
 {
     List<ScreenComponent> components; // container?
-    ScreenObject movable;
-    String backgroundName;
+    ScreenObject movable, background;
     // store screen dimensions
 
     public PlayableScreen()
@@ -24,10 +23,19 @@ public class PlayableScreen extends Screen
     {
         super(parent, name);
         playable = true;
-        components = new ArrayList<ScreenComponent>();
+        components = new ArrayList<>();
+        background = new ScreenObject(this, "BG0", ObjectIcon.BG0);
     }
 
-    public String getBackgroundName() { return backgroundName; }
+    public ScreenObject getBackground()
+    {
+        return background;
+    }
+
+    public void setBackground(ScreenObject bg)
+    {
+        background = bg;
+    }
 
     public ScreenComponent getComponent(String name)
     {
@@ -43,12 +51,30 @@ public class PlayableScreen extends Screen
 
     public List<ScreenComponent> getComponents()
     {
-        return new ArrayList<ScreenComponent>(components);
+        return new ArrayList<>(components);
     }
 
     public boolean addComponent(ScreenComponent comp)
     {
-        return components.add(comp);
+        if (comp instanceof ScreenObject)
+        {
+            ScreenObject obj = (ScreenObject) comp;
+
+            if (obj.isMovable())
+            {
+                removeComponent(movable);
+                movable = obj;
+            }
+
+            if (obj.isBackground())
+            {
+                System.out.println(background.getIcon() + ", " + obj.getIcon());
+                removeComponent(background);
+                background = obj;
+            }
+        }
+
+        return !hasComponent(comp) && components.add(comp);
     }
 
     public ScreenComponent removeComponent(String name)
@@ -60,6 +86,16 @@ public class PlayableScreen extends Screen
                 return comp;
             }
         return null;
+    }
+
+    public boolean removeComponent(ScreenComponent comp)
+    {
+        return components.remove(comp);
+    }
+
+    public boolean hasComponent(ScreenComponent comp)
+    {
+        return components.contains(comp);
     }
 
     // try to place comp on (x,y) on the screen
@@ -95,22 +131,24 @@ public class PlayableScreen extends Screen
         return true;
     }
 
-    public ScreenComponent findComponentAt(int x, int y)
+    public ArrayList<ScreenComponent> findComponentsAt(int x, int y)
     {
+        ArrayList<ScreenComponent> res = new ArrayList<>();
+
         for (ScreenComponent comp : components)
             if (comp.contains(x, y))
-                return comp;
-        return null;
+                res.add(comp);
+        return res;
     }
 
-    public ScreenComponent getMovable()
+    public ScreenObject getMovable()
     {
         return movable;
     }
 
     public void setMovable(ScreenObject movable)
     {
-        if (movable.isMovable())
+        if (movable == null || movable.isMovable())
             this.movable = movable;
     }
 
@@ -129,5 +167,10 @@ public class PlayableScreen extends Screen
             if (!comp.valid())
                 return false;
         return super.valid();
+    }
+
+    public void accept(ScreenVisitor visitor)
+    {
+        visitor.visit(this);
     }
 }

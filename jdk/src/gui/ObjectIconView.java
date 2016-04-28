@@ -11,9 +11,10 @@ public enum ObjectIconView
 {
     //Movable objects
     MEGAMAN (ObjectIcon.MEGAMAN, "manLeft.gif", "manRight.gif", "manLeftStand.gif", "manRightStand.gif"),
-    COP    (ObjectIcon.COP, "copLeft.gif", "copRight.gif", "copLeftStand.gif", "copRightStand.gif"),
+    COP     (ObjectIcon.COP, "copLeft.gif", "copRight.gif", "copLeftStand.gif", "copRightStand.gif"),
 
     //Non movable backgrounds
+    BG0     (ObjectIcon.BG0, "bg0.png"),
     BG      (ObjectIcon.BG, "bg.png"),
     BG2     (ObjectIcon.BG2, "bg2.png"),
     BG3     (ObjectIcon.BG3, "bg3.png"),
@@ -21,6 +22,7 @@ public enum ObjectIconView
     BG5     (ObjectIcon.BG5, "bg5.png"),
 
     //Non movable objects
+    BLOCK   (ObjectIcon.BLOCK, "block.png"),
     ROCK    (ObjectIcon.ROCK, "rock.png"),
     STONE   (ObjectIcon.STONE, "stone.png"),
     TREE    (ObjectIcon.TREE, "tree.png"),

@@ -24,7 +24,20 @@ public class ScreenTextBox extends ScreenComponent
         width = 10;
     }
 
+    public ScreenTextBox(ScreenTextBox other)
+    {
+        super(other);
+        variable = other.variable;
+        text = other.text;
+        width = 10;
+    }
+
     // getters, setters go here
+
+    public ScreenComponent copy()
+    {
+        return new ScreenTextBox(this);
+    }
 
     public boolean setVariable(String newVar)
     {

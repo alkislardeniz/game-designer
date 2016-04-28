@@ -16,7 +16,7 @@ public abstract class Screen implements Serializable
     String name;
     Game parent;
     ArrayList<Option> options; // searched by name
-    int optionLimit = -1; // affects add, changed for AssignScreen and CondScreen
+    int optionLimit = 4; // affects add, changed for AssignScreen and CondScreen
     boolean playable; // true for PlayableScreen, used to determine type w/o calling instanceof
 
     // for serialization, set everything to null
@@ -54,8 +54,11 @@ public abstract class Screen implements Serializable
     // can be called either from fromPlayer or from GUI action listeners
     public void toPlayer(GamePlayer player, Option option)
     {
-        player.setCurrentScreen( option.getScreen() );
-        player.call();
+        if (player != null)
+        {
+            player.setCurrentScreen(option.getScreen());
+            player.call();
+        }
     }
 
     // getOptions() to be called from editor
@@ -113,4 +116,6 @@ public abstract class Screen implements Serializable
                 return false;
         return true;
     }
+
+    public abstract void accept(ScreenVisitor visitor);
 }

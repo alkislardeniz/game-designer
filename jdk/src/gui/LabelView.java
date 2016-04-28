@@ -26,6 +26,6 @@ public class LabelView extends ComponentView
         // TODO fix the font to fit IMAGE_WIDTH and IMAGE_HEIGHT and adjust getPosition() based on text
         g.drawString(label.getText(parent.parent.getPlayer()),
                      (int) label.getPosition().getX() * parent.IMAGE_WIDTH,
-                     (int) label.getPosition().getY() * parent.IMAGE_HEIGHT);
+                     (int) (label.getPosition().getY() + 1) * parent.IMAGE_HEIGHT);
     }
 }
