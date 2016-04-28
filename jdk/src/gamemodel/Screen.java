@@ -116,4 +116,6 @@ public abstract class Screen implements Serializable
                 return false;
         return true;
     }
+
+    public abstract void accept(ScreenVisitor visitor);
 }

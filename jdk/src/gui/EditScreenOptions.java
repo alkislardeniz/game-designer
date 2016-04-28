@@ -15,7 +15,7 @@ import java.util.*;
 public class EditScreenOptions extends JPanel
 {
     ScreenEditController parent;
-    boolean isDelete = false;
+    boolean isDelete;
 
     public EditScreenOptions(ScreenEditController parentController)
     {
@@ -30,7 +30,6 @@ public class EditScreenOptions extends JPanel
         group = new ButtonGroup();
 
         // add action listeners
-        // TODO should change the properties of the screen view
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -49,7 +48,7 @@ public class EditScreenOptions extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                parent.updateShowGrid(true); // TODO should also be able to make it false
+                parent.updateShowGrid(showgrid.isSelected());
             }
         });
 
@@ -57,6 +56,10 @@ public class EditScreenOptions extends JPanel
         group.add(add);
         group.add(delete);
         setLayout(new GridLayout(1,3));
+
+        // clicked at start
+        showgrid.doClick();
+        add.doClick();
 
         // add buttons to panel
         add(showgrid);

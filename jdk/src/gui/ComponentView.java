@@ -1,17 +1,15 @@
 package gui;
 
 import gamemodel.*;
-import javax.swing.*;
 import java.awt.*;
 
 /**
  * Represents screen component graphically
  * Created by admin on 4/12/16.
  */
-public abstract class ComponentView // extends JComponent
+public abstract class ComponentView
 {
     ScreenView parent;
-
     ScreenComponent comp;
     boolean editing; // whether the component is editable or not
     int x, y;
@@ -24,8 +22,6 @@ public abstract class ComponentView // extends JComponent
 
         x = (int) comp.getPosition().getX();
         y = (int) comp.getPosition().getY();
-
-        // GUI operations about the representation of the component go hee
     }
 
     public ScreenComponent getComponent() { return comp; }
@@ -40,15 +36,13 @@ public abstract class ComponentView // extends JComponent
     // change position of component if editing
     public void setX(int x)
     {
-        // if (editing)
-            comp.getPosition().setLocation(x, getY());
+        comp.getPosition().setLocation(x, getY());
         this.x = x;
     }
 
     public void setY(int y)
     {
-        // if (editing)
-            comp.getPosition().setLocation(getX(), y);
+        comp.getPosition().setLocation(getX(), y);
         this.y = y;
     }
 }

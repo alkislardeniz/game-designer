@@ -11,7 +11,7 @@ public enum ObjectIconView
 {
     //Movable objects
     MEGAMAN (ObjectIcon.MEGAMAN, "manLeft.gif", "manRight.gif", "manLeftStand.gif", "manRightStand.gif"),
-    COP    (ObjectIcon.COP, "copLeft.gif", "copRight.gif", "copLeftStand.gif", "copRightStand.gif"),
+    COP     (ObjectIcon.COP, "copLeft.gif", "copRight.gif", "copLeftStand.gif", "copRightStand.gif"),
 
     //Non movable backgrounds
     BG      (ObjectIcon.BG, "bg.png"),

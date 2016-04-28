@@ -137,4 +137,9 @@ public class PlayableScreen extends Screen
                 return false;
         return super.valid();
     }
+
+    public void accept(ScreenVisitor visitor)
+    {
+        visitor.visit(this);
+    }
 }

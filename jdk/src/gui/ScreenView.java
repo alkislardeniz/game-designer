@@ -12,34 +12,29 @@ import java.util.ArrayList;
  */
 public class ScreenView extends JPanel implements ComponentVisitor
 {
+    final int IMAGE_HEIGHT = 24;
+    final int IMAGE_WIDTH  = 24;
+
     ScreenController parent;
     PlayableScreen screen;
     ArrayList<ComponentView> comps;
     ObjectView movable;
     ImageIcon bg;
     boolean editing;
-
-    // final int JUMP = IMAGE_HEIGHT;  // increment for image movement
-    int IMAGE_HEIGHT = 24;
-    int IMAGE_WIDTH  = 24;
-
-    private boolean showGrid, deleteObject;
+    boolean showGrid;
 
     public ScreenView(ScreenController parent, PlayableScreen screen)
     {
-        // ComponentView view;
-
         final int WIDTH = screen.getWidth() * IMAGE_WIDTH;
         final int HEIGHT = screen.getHeight() * IMAGE_HEIGHT;
 
-        deleteObject = false;
         showGrid = true;
 
         // initialize fields
         this.parent = parent;
         this.screen = screen;
         editing = parent.getPlayer() == null;
-        comps = new ArrayList<ComponentView>();
+        comps = new ArrayList<>();
 
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setLayout(null);
@@ -86,20 +81,13 @@ public class ScreenView extends JPanel implements ComponentVisitor
         return false;
     }
 
-    // TODO include methods to add, get and modify different component views
-
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
 
         // g.drawImage(bg.getImage(), 0, 0, null); // make this the screen's property
 
-        for (ComponentView comp : comps)
-        {
-            // different for labels, objects, etc.
-            comp.paintComponentOn(g);
-        }
-
+        // first paint grid
         if (showGrid)
         {
             int xP = 0;
@@ -120,6 +108,14 @@ public class ScreenView extends JPanel implements ComponentVisitor
                 xP += IMAGE_WIDTH;
             }
         }
+
+        // then paint each component
+        for (ComponentView comp : comps)
+        {
+            // different for labels, objects, etc.
+            // TODO somehow prioritize backgrounds
+            comp.paintComponentOn(g);
+        }
     }
 
     public void setMovable(ObjectIcon icon)
@@ -137,6 +133,19 @@ public class ScreenView extends JPanel implements ComponentVisitor
             object.accept(this);
         }
     }
+
+    public boolean getShowGrid()
+    {
+        return showGrid;
+    }
+
+    public void setShowGrid(boolean showGrid)
+    {
+        this.showGrid = showGrid;
+        repaint();
+    }
+
+    // visitor methods to add components
 
     public void visit(ScreenButton comp)
     {
@@ -175,11 +184,12 @@ public class ScreenView extends JPanel implements ComponentVisitor
             screen.addComponent(comp);
     }
 
+    // inner classes
+
     class DirectionListener implements KeyListener
     {
-        public void keyPressed (KeyEvent event)
+        public void keyPressed(KeyEvent event)
         {
-            // System.out.println("test");
             if (movable != null)
                 movable.move(event.getKeyCode());
 
@@ -190,20 +200,10 @@ public class ScreenView extends JPanel implements ComponentVisitor
         {
             if (movable != null)
                 movable.stopMoving();
+
             repaint();
         }
 
         public void keyTyped (KeyEvent event) {}
-    }
-
-    public boolean getShowGrid()
-    {
-        return showGrid;
-    }
-
-    public void setShowGrid(boolean showGrid)
-    {
-        this.showGrid = showGrid;
-        repaint();
     }
 }
