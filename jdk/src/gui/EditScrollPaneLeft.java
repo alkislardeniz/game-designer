@@ -98,6 +98,7 @@ public class EditScrollPaneLeft extends JPanel
         public void actionPerformed(ActionEvent e)
         {
             parent.screenView.setMovable(icon);
+            parent.comp = null;
 
             parent.repaint();
         }
@@ -119,6 +120,8 @@ public class EditScrollPaneLeft extends JPanel
             panel.add(textField);
             panel.add(new JLabel("Options: "));
             panel.add(comboBox);
+
+            // TODO also add checkbox for visibility
 
             if (JOptionPane.showConfirmDialog(null, panel, "Create button", JOptionPane.OK_CANCEL_OPTION)
                 == JOptionPane.OK_OPTION)

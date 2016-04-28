@@ -3,9 +3,7 @@ package gui;
 /**
  * Created by sev on 26.04.2016.
  */
-import gamemodel.GamePlayer;
-import gamemodel.PlayableScreen;
-import gamemodel.ScreenButton;
+import gamemodel.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +18,7 @@ public class EditTab extends JPanel {
 
     private final int tabNumber = 5;
     private final JTabbedPane pane = new JTabbedPane();
+    Game game;
 
     public static void main(String[] args) {
         //Schedule a job for the event dispatch thread:
@@ -39,16 +38,16 @@ public class EditTab extends JPanel {
         });
     }
 
-    public EditTab(String title) {
+    public EditTab(String title)
+    {
         add(pane);
-
     }
 
 
     private void addPlus() {
 
         String title = "+";
-        pane.add(title,new JLabel(title));
+        pane.add(title, new JLabel(title));
     }
 
     public void runTest() {
@@ -64,14 +63,13 @@ public class EditTab extends JPanel {
         setVisible(true);
     }
 
-    gamemodel.Game game;
     private void runTestWithDadam() {
         pane.removeAll();
-        game = new gamemodel.Game();
-        GamePlayer player = new gamemodel.GamePlayer(game);
-        PlayableScreen screen = new gamemodel.PlayableScreen(game, "Screen 1");
-        PlayableScreen screen2 = new gamemodel.PlayableScreen(game, "Screen 2");
-        PlayableScreen screen3 = new gamemodel.PlayableScreen(game, "Screen 3");
+        game = new Game();
+        GamePlayer player = new GamePlayer(game);
+        PlayableScreen screen = new PlayableScreen(game, "Screen 1");
+        PlayableScreen screen2 = new PlayableScreen(game, "Screen 2");
+        PlayableScreen screen3 = new PlayableScreen(game, "Screen 3");
 
         ScreenButton button = new ScreenButton(screen, "hello");
         screen.addComponent(button);
@@ -80,7 +78,7 @@ public class EditTab extends JPanel {
         game.addScreen(screen2);
         game.addScreen(screen3);
 
-        ArrayList<gamemodel.Screen> screenList = (ArrayList) game.getScreens();
+        ArrayList<Screen> screenList = (ArrayList) game.getScreens();
 
 
 
@@ -89,7 +87,7 @@ public class EditTab extends JPanel {
         //Getting each Screen from Game and creating a screenview for them then adds it to TABPane
         for (int i = 0; i < screenList.size();i++) {
             String title = "Screen " + i;
-            ScreenEditController controller = new ScreenEditController((gamemodel.PlayableScreen) screenList.get(i));
+            ScreenEditController controller = new ScreenEditController((PlayableScreen) screenList.get(i));
             pane.addTab(title,controller);
             initTabComponent(i);
         }
@@ -98,10 +96,6 @@ public class EditTab extends JPanel {
         pane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         setSize(new Dimension(400, 200));
         setVisible(true);
-
-
-
-
     }
 
     private void initTabComponent(int i) {

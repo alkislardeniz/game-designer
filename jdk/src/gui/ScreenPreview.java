@@ -39,6 +39,11 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         screen.accept(this);
     }
 
+    public void getDialog()
+    {
+        screen.accept(new ScreenDialog());
+    }
+
     // modifying preview based on type of screen
 
     // add nothing other than name
@@ -60,4 +65,60 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     }
 
 
+
+    class ScreenDialog implements ScreenVisitor
+    {
+        public void visit(PlayableScreen screen) {}
+
+        public void visit(AssignScreen screen)
+        {
+            JPanel panel = new JPanel();
+            JTextField name, newValue;
+            JComboBox variable;
+
+            name = new JTextField(screen.getName());
+            newValue = new JTextField(screen.getNewValue().toString());
+            variable = new JComboBox<>(screen.getParent().getVariables().toArray());
+
+            panel.setLayout(new GridLayout(3, 2));
+
+            panel.add(new JLabel("Name: "));
+            panel.add(name);
+            panel.add(new JLabel("Variable: "));
+            panel.add(variable);
+            panel.add(new JLabel("Value: "));
+            panel.add(newValue);
+
+            if (JOptionPane.showConfirmDialog(null, panel, "Create assignment screen", JOptionPane.OK_CANCEL_OPTION)
+                == JOptionPane.OK_OPTION)
+            {
+                screen.setName(name.getText());
+                screen.setVariable(variable.getSelectedItem().toString());
+                screen.setNewValue(newValue.getText());
+            }
+        }
+
+        public void visit(CondScreen screen)
+        {
+            JPanel panel = new JPanel();
+            JTextField name, pred;
+
+            name = new JTextField(screen.getName());
+            pred = new JTextField(screen.getPred().toString());
+
+            panel.setLayout(new GridLayout(3, 2));
+
+            panel.add(new JLabel("Name: "));
+            panel.add(name);
+            panel.add(new JLabel("Condition: "));
+            panel.add(pred);
+
+            if (JOptionPane.showConfirmDialog(null, panel, "Create conditional screen", JOptionPane.OK_CANCEL_OPTION)
+                == JOptionPane.OK_OPTION)
+            {
+                screen.setName(name.getText());
+                screen.setPred(pred.getText());
+            }
+        }
+    }
 }

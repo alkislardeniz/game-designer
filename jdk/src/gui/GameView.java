@@ -13,11 +13,13 @@ import java.util.ArrayList;
  */
 public class GameView extends JPanel
 {
+    GameEditController controller;
     Game game;
     ArrayList<ScreenPreview> screens;
 
     public GameView(GameEditController controller)
     {
+        this.controller = controller;
         game = controller.game;
 
         screens = new ArrayList<>();
@@ -36,11 +38,31 @@ public class GameView extends JPanel
 
     public void add(ScreenPreview screen)
     {
-        screens.add(screen);
-
         // TODO detect position of screen in grid first
         super.add(screen);
     }
 
+    public class PreviewListener extends MouseAdapter
+    {
+        ScreenPreview view;
 
+        public PreviewListener(ScreenPreview view)
+        {
+            this.view = view;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+            if (view.screen.getPlayable())
+            {
+                // open new screen edit controller
+                controller.pane.addScreen((PlayableScreen) view.screen);
+            }
+            else
+            {
+                view.getDialog();
+            }
+        }
+    }
 }

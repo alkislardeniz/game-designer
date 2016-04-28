@@ -75,14 +75,7 @@ public class EditScrollPaneRight extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            ScreenComponent newComp;
-
-            // check if can add component
-            if (!parent.screenOptions.shouldDelete())
-            {
-                newComp = new ScreenObject(parent.screen, icon.toString(), icon);
-                parent.setSelectedComponent(newComp);
-            }
+            parent.setSelectedComponent(new ScreenObject(parent.screen, icon.toString(), icon));
         }
     }
 }

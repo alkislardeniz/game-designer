@@ -3,6 +3,8 @@ package gui;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -51,11 +53,28 @@ public class EditScreenViewTest
         JFrame f = new JFrame ("Dadam - Game Designer");
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setSize(520, 620);
+
+        JButton play = new JButton("Play game");
+        play.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                GamePlayController playController = new GamePlayController(new GamePlayer(game));
+                JFrame frame = new JFrame("play");
+                frame.setSize(520, 620);
+                frame.add(playController);
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
+        });
+
         f.add(new ScreenEditController(screen));
 
         // ScreenPlayController controller = new ScreenPlayController(player, screen);
 
-        f.add(new JLabel(logo), BorderLayout.NORTH);
+        f.add(play, BorderLayout.NORTH);
         f.pack();
         f.setLocationRelativeTo(null);
 
