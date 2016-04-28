@@ -16,6 +16,8 @@ public class GameView extends JPanel
     GameEditController controller;
     Game game;
     ArrayList<ScreenPreview> screens;
+    PlayableScreen screen = new PlayableScreen(game, "a");
+    AssignScreen assign = new AssignScreen(game, "b");
 
     public GameView(GameEditController controller)
     {
@@ -42,6 +44,7 @@ public class GameView extends JPanel
         screen.addMouseListener(new PreviewListener(screen));
         super.add(screen);
     }
+
 
     public class PreviewListener extends MouseAdapter
     {
