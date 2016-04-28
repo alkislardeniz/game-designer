@@ -47,7 +47,7 @@ public class ScreenEditController extends JPanel implements ScreenController
         // have screenView at the center of the panel,
         // and a pane of components to add to the left
         screenView.addMouseListener(new ComponentListener());
-        setFocusable(true);
+        screenView.setFocusable(true);
     }
 
     public GamePlayer getPlayer()

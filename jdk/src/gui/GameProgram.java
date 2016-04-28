@@ -1,6 +1,9 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.event.MenuListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Program to be run, creates/opens/saves games and plays the open game.
@@ -14,7 +17,7 @@ public class GameProgram extends JFrame
         createMenu();
         pack();
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void createMenu()
@@ -23,9 +26,11 @@ public class GameProgram extends JFrame
 
         // file menu
         JMenu file = new JMenu("File");
+
         // create new game
         JMenuItem createNew = new JMenuItem("New");
         file.add(createNew);
+
         // open a game
         JMenu openGame = new JMenu("Open");
         JMenuItem openEditable = new JMenuItem("Open Editable Game");
@@ -34,12 +39,14 @@ public class GameProgram extends JFrame
         openGame.add(openPlayable);
         file.add(openGame);
         // save menu item
+
         JMenu saveGame = new JMenu("Save");
         JMenuItem saveEditable = new JMenuItem("Create Editable Game");
         JMenuItem savePlayable = new JMenuItem("Create Playable Game");
         saveGame.add(saveEditable);
         saveGame.add(savePlayable);
         file.add(saveGame);
+
         // play game
         JMenuItem playGame = new JMenuItem("Play");
         file.add(playGame);
@@ -50,4 +57,10 @@ public class GameProgram extends JFrame
         setJMenuBar(bar);
 
     }
+
+    private class MenuBarListener implements MenuListener
+    {
+
+    }
+
 }

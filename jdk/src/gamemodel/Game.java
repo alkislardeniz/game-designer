@@ -138,6 +138,16 @@ public class Game extends Observable implements Serializable, VariableSet
         return true;
     }
 
+    public boolean removeVariable(String varName)
+    {
+        return variables.remove(getBinding(varName));
+    }
+
+    public boolean hasBinding(String varName)
+    {
+        return getBinding(varName) != null;
+    }
+
     // return whether the game is set up correctly
     public boolean valid()
     {

@@ -3,6 +3,8 @@ package gui;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
@@ -18,11 +20,17 @@ public class GameView extends JPanel
     {
         game = controller.game;
 
-        setLayout(new GridLayout());
-
         screens = new ArrayList<>();
         for (Screen screen : game.getScreens())
-            add(new ScreenPreview(screen));
+        {
+            screens.add(new ScreenPreview(screen));
+        }
+
+        setLayout(new GridLayout(screens.size(), 1));
+        for (ScreenPreview screenPreview : screens)
+        {
+            add(screenPreview);
+        }
     }
 
     public void add(ScreenPreview screen)
@@ -32,6 +40,6 @@ public class GameView extends JPanel
         // TODO detect position of screen in grid first
         super.add(screen);
     }
-    //TODO paint topological graph
+
 
 }
