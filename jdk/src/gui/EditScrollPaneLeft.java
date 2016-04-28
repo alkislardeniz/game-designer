@@ -74,13 +74,7 @@ public class EditScrollPaneLeft extends JPanel
 
         add(scrollPane);
 
-        // create scroll pane for option list
-        scrollPane = new JScrollPane(new OptionsList(parent.screen.getOptions()));
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(150, 250));
-
-        add(scrollPane);
+        add(new OptionsList(parent.screen.getOptions()));
 
         // TODO button can't be deleted, textbox can't be added or deleted
 
@@ -207,16 +201,21 @@ public class EditScrollPaneLeft extends JPanel
 
             setLayout(new BorderLayout());
 
-            model = new MyTableModel();
-
-            JTable table = new JTable(model);
-
             add(new JLabel("Options"), BorderLayout.NORTH);
-            add(table);
+
+            model = new MyTableModel();
+            table = new JTable(model);
+
+            JScrollPane scrollPane = new JScrollPane(table);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+            scrollPane.setPreferredSize(new Dimension(150, 200));
+
+            add(scrollPane);
 
             JPanel panel = new JPanel(new GridLayout(3, 2));
 
-            panel.setPreferredSize(new Dimension(100, 50));
+            panel.setPreferredSize(new Dimension(150, 50));
 
             nameField = new JTextField();
             System.out.println(parent.screen.getParent().getScreens());
@@ -238,6 +237,8 @@ public class EditScrollPaneLeft extends JPanel
             add(panel, BorderLayout.SOUTH);
         }
 
+        // TODO table does not update
+
         class AddListener implements ActionListener
         {
             @Override
@@ -257,6 +258,8 @@ public class EditScrollPaneLeft extends JPanel
             public void actionPerformed(ActionEvent e)
             {
                 parent.screen.removeOption((String) model.getValueAt(table.getSelectedRow(), 0));
+
+                repaint();
             }
         }
 
