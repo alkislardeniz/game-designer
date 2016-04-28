@@ -14,6 +14,8 @@ import java.awt.event.MouseEvent;
 public class ScreenPreview extends JPanel implements ScreenVisitor
 {
     Screen screen;
+    static final int WIDTH = 100;
+    static final int HEIGHT = 75;
 
     //properties
     private String name;
@@ -26,7 +28,7 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         this.screen = screen;
         name = screen.getName();
 
-        setPreferredSize(new Dimension(100, 75));
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setLayout(new GridLayout(2, 1));
 
         JLabel nameLabel = new JLabel(name);
