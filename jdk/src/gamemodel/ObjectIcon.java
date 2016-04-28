@@ -13,6 +13,7 @@ public enum ObjectIcon
     COP     (1, 1, true),
 
     //Non movable backgrounds
+    BG0     (),
     BG      (),
     BG2     (),
     BG3     (),
@@ -20,6 +21,7 @@ public enum ObjectIcon
     BG5     (),
 
     //Non movable objects
+    BLOCK   (1, 1, false),
     ROCK    (1, 1, false),
     STONE   (1, 2, false),
     TREE    (1, 2, false),
