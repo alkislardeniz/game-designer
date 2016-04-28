@@ -9,8 +9,7 @@ import java.util.List;
 public class PlayableScreen extends Screen
 {
     List<ScreenComponent> components; // container?
-    ScreenObject movable;
-    String backgroundName;
+    ScreenObject movable, background;
     // store screen dimensions
 
     public PlayableScreen()
@@ -24,10 +23,18 @@ public class PlayableScreen extends Screen
     {
         super(parent, name);
         playable = true;
-        components = new ArrayList<ScreenComponent>();
+        components = new ArrayList<>();
     }
 
-    public String getBackgroundName() { return backgroundName; }
+    public ScreenObject getBackground()
+    {
+        return background;
+    }
+
+    public void setBackground(ScreenObject bg)
+    {
+        background = bg;
+    }
 
     public ScreenComponent getComponent(String name)
     {
@@ -43,11 +50,27 @@ public class PlayableScreen extends Screen
 
     public List<ScreenComponent> getComponents()
     {
-        return new ArrayList<ScreenComponent>(components);
+        return new ArrayList<>(components);
     }
 
     public boolean addComponent(ScreenComponent comp)
     {
+        if (comp instanceof ScreenObject)
+        {
+            ScreenObject obj = (ScreenObject) comp;
+
+            if (obj.isMovable())
+            {
+                removeComponent(movable);
+                movable = obj;
+            }
+
+            if (obj.isBackground())
+            {
+                removeComponent(background);
+                background = obj;
+            }
+        }
         return components.add(comp);
     }
 

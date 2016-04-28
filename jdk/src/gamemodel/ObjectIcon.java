@@ -13,11 +13,11 @@ public enum ObjectIcon
     COP     (1, 1, true),
 
     //Non movable backgrounds
-    BG      (21, 21, false, true),
-    BG2     (21, 21, false, true),
-    BG3     (21, 21, false, true),
-    BG4     (21, 21, false, true),
-    BG5     (21, 21, false, true),
+    BG      (),
+    BG2     (),
+    BG3     (),
+    BG4     (),
+    BG5     (),
 
     //Non movable objects
     ROCK    (1, 1, false),
@@ -46,6 +46,7 @@ public enum ObjectIcon
     //properties
     boolean movable;
     boolean collidable;
+    boolean isBackground;
 
     //size of the image
     int width;
@@ -67,6 +68,16 @@ public enum ObjectIcon
         this.collidable = collidable;
     }
 
+    // for backgrounds only
+    private ObjectIcon()
+    {
+        width = 21;
+        height = 21;
+        movable = false;
+        collidable = true;
+        isBackground = true;
+    }
+
 
     //getters and setters
     public int getWidth()
@@ -84,4 +95,5 @@ public enum ObjectIcon
         movable = isMovable;
     }
 
+    public boolean isBackground() { return isBackground; }
 }

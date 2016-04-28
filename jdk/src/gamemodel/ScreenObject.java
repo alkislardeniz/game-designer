@@ -62,6 +62,8 @@ public class ScreenObject extends ScreenComponent
         return img.movable;
     }
 
+    public boolean isBackground() { return img.isBackground; }
+
     @Override
     public void accept(ComponentVisitor visitor)
     {

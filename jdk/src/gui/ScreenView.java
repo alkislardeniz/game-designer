@@ -18,8 +18,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
     ScreenController parent;
     PlayableScreen screen;
     ArrayList<ComponentView> comps;
-    ObjectView movable;
-    ImageIcon bg;
+    ObjectView movable, bg;
     boolean editing;
     boolean showGrid;
 
@@ -110,10 +109,10 @@ public class ScreenView extends JPanel implements ComponentVisitor
         }
 
         // then paint each component
+
+        bg.paintComponentOn(g);
         for (ComponentView comp : comps)
         {
-            // different for labels, objects, etc.
-            // TODO somehow prioritize backgrounds
             comp.paintComponentOn(g);
         }
     }
@@ -165,15 +164,21 @@ public class ScreenView extends JPanel implements ComponentVisitor
     public void visit(ScreenObject comp)
     {
         ObjectView view = new ObjectView(this, comp, editing);
-        comps.add(view);
 
-        if (comp.equals(screen.getMovable()))
-            movable = view;
+        if (comp.equals(screen.getBackground()))
+        {
+            bg = view;
+        }
+        else
+        {
+            if (comp.equals(screen.getMovable()))
+                movable = view;
+
+            comps.add(view);
+        }
 
         if (editing)
             screen.addComponent(comp);
-
-        repaint();
     }
 
     public void visit(ScreenTextBox comp)
