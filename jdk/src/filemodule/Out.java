@@ -12,7 +12,8 @@ import java.io.ObjectOutputStream;
  * @author Mehmet Can Altuntaş
  * @version 28 April 2016
  */
-public class Out extends FileIO {
+public class Out extends FileIO
+{
 
     //properties
     private Object object;
@@ -25,16 +26,22 @@ public class Out extends FileIO {
      * @param path save path
      * @param object class to be saved
      */
-    public Out(String path, Object object) {
+    public Out(String path, Object object)
+    {
         file = new File(path);
         this.path = path;
         this.object = object;
 
-        try {
+        try
+        {
             serializeFile();
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
@@ -47,7 +54,8 @@ public class Out extends FileIO {
      * @throws ClassNotFoundException
      * @throws IOException
      */
-    public void serializeFile() throws ClassNotFoundException, IOException {
+    public void serializeFile() throws ClassNotFoundException, IOException
+    {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(object);
         oos.flush();
