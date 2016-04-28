@@ -14,6 +14,8 @@ public class GameProgram extends JFrame
 {
     public GameProgram()
     {
+        super("Game");
+
         createMenu();
         pack();
         setVisible(true);
@@ -58,9 +60,8 @@ public class GameProgram extends JFrame
 
     }
 
-    private class MenuBarListener implements MenuListener
-    {
+    // TODO
+    // private class MenuBarListener implements MenuListener
 
-    }
 
 }

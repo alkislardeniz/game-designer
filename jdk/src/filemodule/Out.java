@@ -31,19 +31,6 @@ public class Out extends FileIO
         file = new File(path);
         this.path = path;
         this.object = object;
-
-        try
-        {
-            serializeFile();
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 
 

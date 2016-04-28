@@ -33,19 +33,6 @@ public class In extends FileIO
     {
         file = new File(path);
         this.path = path;
-
-        try
-        {
-            deserializeFile();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     //methods
