@@ -12,11 +12,14 @@ public class GameEditController extends JPanel
     // tabbed pane
     // variable scroll pane and 3 buttons for creating new screens
     GameView gameView;
+    VariableList vars;
 
     public GameEditController(Game game)
     {
         this.game = game;
         this.gameView = new GameView(this);
+
+        vars = new VariableList(game);
     }
 
     // methods

@@ -184,7 +184,6 @@ public class EditScrollPaneLeft extends JPanel
         }
     }
 
-    // TODO add buttons for add and delete
     class OptionsList extends JPanel
     {
         AbstractTableModel model;
@@ -194,11 +193,6 @@ public class EditScrollPaneLeft extends JPanel
 
         public OptionsList(ArrayList<Option> options)
         {
-            ArrayList<String[]> data = new ArrayList<>();
-
-            for (Option op : options)
-                data.add(new String[] {op.getName(), op.getScreen().getName()});
-
             setLayout(new BorderLayout());
 
             add(new JLabel("Options"), BorderLayout.NORTH);
