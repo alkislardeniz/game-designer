@@ -56,7 +56,7 @@ public class In extends FileIO
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Object deserializeFile() throws IOException, ClassNotFoundException
+    private Object deserializeFile() throws IOException, ClassNotFoundException
     {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 

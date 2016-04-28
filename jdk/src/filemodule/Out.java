@@ -54,7 +54,7 @@ public class Out extends FileIO
      * @throws ClassNotFoundException
      * @throws IOException
      */
-    public void serializeFile() throws ClassNotFoundException, IOException
+    private void serializeFile() throws ClassNotFoundException, IOException
     {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(object);

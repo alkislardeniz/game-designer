@@ -13,13 +13,6 @@ public class DeserializeTest extends JFrame {
         filemodule.tests.SerializeTest test = new filemodule.tests.SerializeTest();
         In in = new In("");
 
-        try {
-            in.deserializeFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     JPanel testPanel;

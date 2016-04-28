@@ -12,13 +12,6 @@ public class SerializeTest extends JFrame {
     public static void main(String[] args) {
         SerializeTest test = new SerializeTest();
         Out out = new Out("", test);
-        try {
-            out.serializeFile();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     JPanel testPanel;

@@ -14,6 +14,8 @@ public class GameProgram extends JFrame
 {
     public GameProgram()
     {
+        super("Game");
+
         createMenu();
         pack();
         setVisible(true);
