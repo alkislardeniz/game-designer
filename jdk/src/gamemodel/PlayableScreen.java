@@ -24,6 +24,7 @@ public class PlayableScreen extends Screen
         super(parent, name);
         playable = true;
         components = new ArrayList<>();
+        background = new ScreenObject(this, "BG0", ObjectIcon.BG0);
     }
 
     public ScreenObject getBackground()

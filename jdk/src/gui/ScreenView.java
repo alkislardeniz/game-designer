@@ -110,7 +110,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
         // then paint each component
 
-        bg.paintComponentOn(g);
+        if (bg != null)
+            bg.paintComponentOn(g);
         for (ComponentView comp : comps)
         {
             comp.paintComponentOn(g);

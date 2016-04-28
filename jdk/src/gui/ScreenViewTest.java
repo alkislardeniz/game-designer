@@ -43,7 +43,7 @@ public class ScreenViewTest
 
         screen.setMovable(object);
 
-        button.setVisible(true);
+        button.setVisible(false);
         button.setOption("option 1");
         screen.addOption("option 1", assign);
 
