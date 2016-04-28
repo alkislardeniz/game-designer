@@ -2,6 +2,7 @@ package gui;
 
 import gamemodel.*;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by admin on 4/26/16.
@@ -9,17 +10,23 @@ import javax.swing.*;
 public class GameEditController extends JPanel
 {
     Game game;
-    // tabbed pane
-    // variable scroll pane and 3 buttons for creating new screens
     GameView gameView;
+    GameEditTabbedPane pane;
     VariableList vars;
 
     public GameEditController(Game game)
     {
         this.game = game;
-        this.gameView = new GameView(this);
 
+        gameView = new GameView(this);
+
+        pane = new GameEditTabbedPane(this);
         vars = new VariableList(game);
+
+        // add components to panel
+        setLayout(new BorderLayout());
+        add(pane);
+        add(vars, BorderLayout.WEST);
     }
 
     // methods
