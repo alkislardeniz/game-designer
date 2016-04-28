@@ -33,19 +33,6 @@ public class In extends FileIO
     {
         file = new File(path);
         this.path = path;
-
-        try
-        {
-            deserializeFile();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     //methods
@@ -56,7 +43,7 @@ public class In extends FileIO
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private Object deserializeFile() throws IOException, ClassNotFoundException
+    public Object deserializeFile() throws IOException, ClassNotFoundException
     {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 
