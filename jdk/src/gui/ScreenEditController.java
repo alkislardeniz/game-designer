@@ -74,6 +74,9 @@ public class ScreenEditController extends JPanel implements ScreenController
         {
             Point objectAddDeletePos = e.getPoint();
 
+            screenView.setFocusable(true);
+            screenView.requestFocusInWindow();
+
             int rX = (int) objectAddDeletePos.getX() / screenView.IMAGE_HEIGHT;
             int rY = (int) objectAddDeletePos.getY() / screenView.IMAGE_HEIGHT;
 

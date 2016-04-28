@@ -6,5 +6,8 @@ package gui;
  */
 public class GameProgram
 {
+    public GameProgram()
+    {
 
+    }
 }
