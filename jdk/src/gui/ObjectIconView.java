@@ -44,7 +44,7 @@ public enum ObjectIconView
     SOFA      (ObjectIcon.SOFA, "sofa.png"),
     SOFA2     (ObjectIcon.SOFA2, "sofa2.png"),
     TABLE     (ObjectIcon.TABLE, "table.png"),
-    TABLE2    (ObjectIcon.TABLE, "table2.png");
+    TABLE2    (ObjectIcon.TABLE2, "table2.png");
 
     // need to store icon and movability in ScreenObject
 

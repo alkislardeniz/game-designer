@@ -31,6 +31,7 @@ public class GameView extends JPanel
         {
             add(screenPreview);
         }
+        setPreferredSize(new Dimension(ScreenPreview.WIDTH, ScreenPreview.HEIGHT * screens.size()));
     }
 
     public void add(ScreenPreview screen)
