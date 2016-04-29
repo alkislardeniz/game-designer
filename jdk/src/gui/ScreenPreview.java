@@ -25,22 +25,20 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     {
         this.screen = screen;
 
+        setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setMaximumSize(new Dimension(WIDTH, HEIGHT));
         setLayout(new GridLayout(2, 1));
+        setBorder(BorderFactory.createLineBorder(Color.black));
 
         nameLabel = new JLabel(screen.getName());
+        nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        nameLabel.setToolTipText(screen.getOptions().toString());
+        setToolTipText(getOptionList());
         add(nameLabel);
 
         // manipulate panel based on type of screen
         screen.accept(this);
-    }
-
-    @Override
-    public void paintComponent(Graphics g)
-    {
-        g.drawRect(0, 0, WIDTH, HEIGHT);
     }
 
     public void getDialog()
@@ -50,12 +48,24 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
 
     public void update()
     {
+        setToolTipText(getOptionList());
+
         nameLabel.setText(screen.getName());
 
         if (!screen.getPlayable())
             textLabel.setText(((NonPlayableScreen) screen).getText());
 
         repaint();
+    }
+
+    private String getOptionList()
+    {
+        String res = "";
+
+        for (Option o : screen.getOptions())
+            res = res + "\n" + o.getName() + " : " + o.getScreen();
+
+        return res.substring(1);
     }
 
     // modifying preview based on type of screen
@@ -70,6 +80,7 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     public void visit(AssignScreen screen)
     {
         textLabel = new JLabel(screen.getText());
+        textLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(textLabel);
     }
 
@@ -77,6 +88,7 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     public void visit(CondScreen screen)
     {
         textLabel = new JLabel(screen.getText());
+        textLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(textLabel);
     }
 

@@ -5,6 +5,7 @@ import gamemodel.GamePlayer;
 import gamemodel.PlayableScreen;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by user on 28.04.2016.
@@ -43,5 +44,4 @@ public class GameViewTest
         f.setVisible(true);
 
     }
-
 }

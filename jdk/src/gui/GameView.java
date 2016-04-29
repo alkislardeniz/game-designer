@@ -18,35 +18,41 @@ public class GameView extends JPanel
     ArrayList<ScreenPreview> screens;
     PlayableScreen screen = new PlayableScreen(game, "a");
     AssignScreen assign = new AssignScreen(game, "b");
+    JPanel panel;
 
     public GameView(GameEditController controller)
     {
+        super(new BorderLayout());
+
+        JScrollPane scrollPane;
+
         this.controller = controller;
         game = controller.game;
 
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
         screens = new ArrayList<>();
+
         for (Screen screen : game.getScreens())
-        {
-            screens.add(new ScreenPreview(screen));
-        }
+            addScreen(screen);
 
-        setLayout(new GridLayout(screens.size(), 1));
-        for (ScreenPreview screenPreview : screens)
-        {
-            add(screenPreview);
-        }
-        setPreferredSize(new Dimension(ScreenPreview.WIDTH, ScreenPreview.HEIGHT * screens.size()));
+        // add scroll pane
+        scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(800, 500));
+
+        add(scrollPane);
     }
 
-
-    public void add(ScreenPreview screen)
+    public void addScreen(Screen screen)
     {
-        // TODO detect position of screen in grid first
-        screen.addMouseListener(new PreviewListener(screen));
-        super.add(screen);
+        ScreenPreview preview = new ScreenPreview(screen);
+        screens.add(preview); // estne hoc necesse?
+        preview.addMouseListener(new PreviewListener(preview));
+        panel.add(preview);
     }
-
-
 
 
     public class PreviewListener extends MouseAdapter
