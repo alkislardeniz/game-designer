@@ -55,20 +55,23 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         if (!screen.getPlayable())
             textLabel.setText(((NonPlayableScreen) screen).getText());
 
+        System.out.println(getOptionList());
+
         repaint();
     }
 
     private String getOptionList()
     {
-        String res = "";
+        String res;
 
         if (screen.getOptions().isEmpty())
-            return res;
+            return "No options";
 
+        res = "Options:";
         for (Option o : screen.getOptions())
             res = res + "\n" + o.getName() + " : " + o.getScreen();
 
-        return res.substring(1);
+        return res;
     }
 
     // modifying preview based on type of screen
@@ -97,7 +100,20 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
 
     class ScreenDialog implements ScreenVisitor
     {
-        public void visit(PlayableScreen screen) {}
+        public void visit(PlayableScreen screen)
+        {
+            JPanel panel = new JPanel(new GridLayout(1, 2));
+            JTextField name = new JTextField(screen.getName());
+
+            panel.add(new JLabel("Name: "));
+            panel.add(name);
+
+            if (JOptionPane.showConfirmDialog(null, panel, "Modify playable screen", JOptionPane.OK_CANCEL_OPTION)
+                    == JOptionPane.OK_OPTION)
+            {
+                screen.setName(name.getText());
+            }
+        }
 
         public void visit(AssignScreen screen)
         {

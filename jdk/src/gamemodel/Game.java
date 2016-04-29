@@ -105,6 +105,13 @@ public class Game extends Observable implements Serializable, VariableSet
             if (screen.name.equals(name))
             {
                 screens.remove(screen);
+
+                // remove screen from options of other screens
+                for (Screen other : screens)
+                    for (Option op : new ArrayList<>(other.getOptions()))
+                        if (op.getScreen().equals(screen))
+                            other.removeOption(op.getName());
+
                 return screen;
             }
 

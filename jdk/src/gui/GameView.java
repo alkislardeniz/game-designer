@@ -58,6 +58,13 @@ public class GameView extends JPanel
         repaint();
     }
 
+    public void removePreview(ScreenPreview view)
+    {
+        screens.remove(view);
+        panel.remove(view);
+        game.removeScreen(view.screen.getName());
+    }
+
 
     public class PreviewListener extends MouseAdapter
     {
@@ -71,16 +78,28 @@ public class GameView extends JPanel
         @Override
         public void mouseClicked(MouseEvent e)
         {
-            if (view.screen.getPlayable())
+            // TODO check for double clicks
+
+            // open new screen edit controller
+            if (view.screen.getPlayable() && e.getClickCount() == 2)
             {
-                // open new screen edit controller
                 controller.pane.addScreen((PlayableScreen) view.screen);
+                validate();
+            }
+            else if (controller.deleting)
+            {
+                removePreview(view);
+                validate();
             }
             else
             {
                 view.getDialog();
-                repaint();
             }
+
+            for (ScreenPreview view : screens)
+                view.update();
+
+            repaint();
         }
     }
 }

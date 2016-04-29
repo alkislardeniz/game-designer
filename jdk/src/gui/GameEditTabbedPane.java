@@ -21,6 +21,8 @@ public class GameEditTabbedPane extends JPanel
         game = controller.game;
         pane = new JTabbedPane();
 
+        setPreferredSize(new Dimension(825, 550));
+
         // add game view to pane
         pane.addTab("Game", controller.gameView);
 
@@ -31,8 +33,14 @@ public class GameEditTabbedPane extends JPanel
 
     protected void addScreen(PlayableScreen screen)
     {
-        pane.addTab(screen.getName(), new ScreenEditController(screen));
-        pane.setTabComponentAt(pane.indexOfTab(screen.getName()), new ButtonTabComponent(pane));
+        // if there isn't already a tab for screen
+        if (pane.indexOfTab(screen.getName()) == -1)
+        {
+            pane.addTab(screen.getName(), new ScreenEditController(screen));
+            pane.setTabComponentAt(pane.indexOfTab(screen.getName()), new ButtonTabComponent(pane));
+        }
+
+        pane.setSelectedIndex(pane.indexOfTab(screen.getName()));
     }
 }
 

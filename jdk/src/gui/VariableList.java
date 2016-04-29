@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
 /**
@@ -22,11 +23,15 @@ public class VariableList extends JPanel
 
     public VariableList(Game game)
     {
+        JLabel label;
+
         this.game = game;
 
         setLayout(new BorderLayout());
 
-        add(new JLabel("Variables"), BorderLayout.NORTH);
+        label = new JLabel("Variables");
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        add(label, BorderLayout.NORTH);
 
         model = new MyTableModel();
         table = new JTable(model);
@@ -74,7 +79,7 @@ public class VariableList extends JPanel
 
             game.setVariable(varName, valueField.getText());
 
-            repaint();
+            model.fireTableStructureChanged();
         }
     }
 
@@ -84,9 +89,9 @@ public class VariableList extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            game.removeVariable((String) model.getValueAt(table.getSelectedRow(), 0));
+            game.removeVariable(model.getValueAt(table.getSelectedRow(), 0).toString());
 
-            repaint();
+            model.fireTableStructureChanged();
         }
     }
 

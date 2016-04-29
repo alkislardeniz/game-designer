@@ -53,6 +53,9 @@ public class GameEditControllerTest
         assign.setNewValue("x + 1");
         assign.addOption("option", screen);
 
+        game.addScreen(screen);
+        game.addScreen(assign);
+
         // player.addObserver(new GameObserver(player, object));
         // button.clicked(player);
 

@@ -13,6 +13,7 @@ public class GameEditController extends JPanel
     GameView gameView;
     GameEditTabbedPane pane;
     VariableList vars;
+    boolean deleting = false;
 
     public GameEditController(Game game)
     {
@@ -47,7 +48,7 @@ public class GameEditController extends JPanel
         assign.addOption("default", game.getScreen(newScreen));
 
         game.addScreen(assign);
-        gameView.add(new ScreenPreview(assign));
+        gameView.addScreen(assign);
 
         gameView.repaint();
     }
@@ -61,7 +62,7 @@ public class GameEditController extends JPanel
         cond.addOption("false", game.getScreen(falseScreen));
 
         game.addScreen(cond);
-        gameView.add(new ScreenPreview(cond));
+        gameView.addScreen(cond);
 
         gameView.repaint();
 
@@ -71,7 +72,7 @@ public class GameEditController extends JPanel
         PlayableScreen screen = new PlayableScreen(game, name);
 
         game.addScreen(screen);
-        gameView.add(new ScreenPreview(screen));
+        gameView.addScreen(screen);
 
         gameView.repaint();
     }

@@ -108,8 +108,6 @@ public class ScreenView extends JPanel implements ComponentVisitor
                 g.drawLine (xP, yP, xP, yP + (IMAGE_WIDTH * 21));
                 xP += IMAGE_WIDTH;
             }
-
-            // TODO denote points movable can move to with 1 and 0
         }
 
         // then paint each component

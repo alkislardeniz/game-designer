@@ -17,24 +17,40 @@ public class ScreenAddPanel extends JPanel
 
     public ScreenAddPanel(GameEditController controller)
     {
+        JLabel label;
+
         this.controller = controller;
 
-        setLayout(new GridLayout(4, 1));
-        setPreferredSize(new Dimension(150, 100));
+        setLayout(new GridLayout(5, 1));
+        setPreferredSize(new Dimension(150, 125));
 
-        add(new JLabel("Create new screen"));
+        label = new JLabel("Screen options");
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        add(label);
 
-        JButton button = new JButton("Playable screen");
+        JButton button = new JButton("Add playable screen");
         button.addActionListener(new PlayableListener());
         add(button);
 
-        button = new JButton("Assignment screen");
+        button = new JButton("Add assignment screen");
         button.addActionListener(new AssignListener());
         add(button);
 
-        button = new JButton("Conditional screen");
+        button = new JButton("Add conditional screen");
         button.addActionListener(new CondListener());
         add(button);
+
+        // TODO also add radio button to delete screen double clicked
+        JRadioButton radio = new JRadioButton("Delete screen");
+        radio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                controller.deleting = radio.isSelected();
+            }
+        });
+        radio.setEnabled(true);
+        add(radio);
     }
 
     class PlayableListener implements ActionListener
@@ -46,8 +62,9 @@ public class ScreenAddPanel extends JPanel
             JTextField name;
 
             name = new JTextField();
+            name.setEditable(true);
 
-            panel.setLayout(new GridLayout(1, 2));
+            panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 
             panel.add(new JLabel("Name: "));
             panel.add(name);
@@ -55,7 +72,7 @@ public class ScreenAddPanel extends JPanel
             if (JOptionPane.showConfirmDialog(null, panel, "Create playable screen", JOptionPane.OK_CANCEL_OPTION)
                     == JOptionPane.OK_OPTION)
             {
-                controller.createPlayableScreen(name.getSelectedText());
+                controller.createPlayableScreen(name.getText());
             }
 
             controller.repaint();
@@ -88,7 +105,7 @@ public class ScreenAddPanel extends JPanel
             panel.add(next);
 
             if (JOptionPane.showConfirmDialog(null, panel, "Create assignment screen", JOptionPane.OK_CANCEL_OPTION)
-                    == JOptionPane.OK_OPTION)
+                == JOptionPane.OK_OPTION)
             {
                 controller.createAssignScreen(name.getText(), variable.getSelectedItem().toString(),
                                               newValue.getText(), next.getSelectedItem().toString());
