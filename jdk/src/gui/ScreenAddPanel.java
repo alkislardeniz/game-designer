@@ -57,6 +57,8 @@ public class ScreenAddPanel extends JPanel
             {
                 controller.createPlayableScreen(name.getSelectedText());
             }
+
+            controller.repaint();
         }
     }
 
@@ -91,6 +93,8 @@ public class ScreenAddPanel extends JPanel
                 controller.createAssignScreen(name.getText(), variable.getSelectedItem().toString(),
                                               newValue.getText(), next.getSelectedItem().toString());
             }
+
+            controller.repaint();
 
         }
     }
@@ -127,6 +131,8 @@ public class ScreenAddPanel extends JPanel
                 controller.createCondScreen(name.getText(), pred.getText(),
                                             trueScreen.getSelectedItem().toString(), falseScreen.getSelectedItem().toString());
             }
+
+            controller.repaint();
         }
     }
 }

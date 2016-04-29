@@ -38,8 +38,8 @@ public class GameProgram extends JFrame
         openGame.add(openEditable);
         openGame.add(openPlayable);
         file.add(openGame);
-        // save menu item
 
+        // save menu item
         JMenu saveGame = new JMenu("Save");
         JMenuItem saveEditable = new JMenuItem("Create Editable Game");
         JMenuItem savePlayable = new JMenuItem("Create Playable Game");
@@ -52,6 +52,7 @@ public class GameProgram extends JFrame
         file.add(playGame);
 
         bar.add(file);
+
         // file menu ends
 
         setJMenuBar(bar);

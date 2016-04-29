@@ -1,5 +1,6 @@
 package expr;
 
+import java.io.Serializable;
 import java.lang.Math;
 
 /**
@@ -8,7 +9,7 @@ import java.lang.Math;
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-enum ArithOp implements BinaryOp
+enum ArithOp implements BinaryOp, Serializable
 {
     ADD ("+") {
         protected Number applyOp(double arg1, double arg2)
@@ -54,6 +55,8 @@ enum ArithOp implements BinaryOp
     };;
 
     String name;
+
+    private ArithOp() {}
 
     private ArithOp(String name) { this.name = name; }
 

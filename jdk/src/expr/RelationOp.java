@@ -1,12 +1,14 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * RelationOp
  * Represents relational operations comparing two objects.
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-enum RelationOp implements BinaryOp
+enum RelationOp implements BinaryOp, Serializable
 {
     EQ  ("=",  ExprType.ALL) {
         protected boolean objOp(Object obj1, Object obj2)
@@ -60,6 +62,8 @@ enum RelationOp implements BinaryOp
 
     String   name;
     ExprType args;
+
+    private RelationOp() {}
 
     private RelationOp(String name, ExprType args)
     {

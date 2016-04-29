@@ -1,5 +1,6 @@
 package expr;
 
+import java.io.Serializable;
 import java.lang.Math;
 
 /**
@@ -8,12 +9,12 @@ import java.lang.Math;
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-enum UnaryOp
+enum UnaryOp implements Serializable
 {
     NOT ("NOT", ExprType.BOOLEAN) {
         public ExprValue apply(ExprValue value)
         {
-            Object  val;
+            Serializable val;
             ExprType typ;
 
             val = ! (Boolean) value.getValue();
@@ -25,7 +26,7 @@ enum UnaryOp
     NEG ("-", ExprType.DOUBLE) {
         public ExprValue apply(ExprValue value)
         {
-            Object   val = null;
+            Serializable val = null;
             ExprType typ = null;
 
             Number num = (Number) value.getValue();
@@ -39,7 +40,7 @@ enum UnaryOp
     SQRT ("sqrt", ExprType.DOUBLE) {
         public ExprValue apply(ExprValue value)
         {
-            Object   val = null;
+            Serializable val = null;
             ExprType typ = null;
 
             Number num = (Number) value.getValue();

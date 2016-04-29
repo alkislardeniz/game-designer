@@ -1,5 +1,7 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * Var
  * A variable with a type.
@@ -7,7 +9,7 @@ package expr;
  * @version 03/04/16
  */
 // static type checking
-public class Var
+public class Var implements Serializable
 {
     String name;
     ExprType type;

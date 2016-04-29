@@ -1,12 +1,14 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * Binding
  * Binds a variable to a value.
  * @author  Ata Deniz Aydin
  * @version 15/04/16
  */
-public class Binding
+public class Binding implements Serializable
 {
     Var var;
     ExprValue val;

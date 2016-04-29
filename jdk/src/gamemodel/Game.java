@@ -84,7 +84,7 @@ public class Game extends Observable implements Serializable, VariableSet
 
     public Screen getScreen(String name)
     {
-        if (name.equals("end"))
+        if (name.equals("End"))
             return null;
 
         for (Screen screen : screens)

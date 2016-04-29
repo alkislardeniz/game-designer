@@ -43,6 +43,8 @@ public class GameView extends JPanel
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(800, 500));
 
+        setPreferredSize(new Dimension(800, 500));
+
         add(scrollPane);
     }
 
@@ -52,6 +54,8 @@ public class GameView extends JPanel
         screens.add(preview); // estne hoc necesse?
         preview.addMouseListener(new PreviewListener(preview));
         panel.add(preview);
+
+        repaint();
     }
 
 

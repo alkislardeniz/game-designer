@@ -62,6 +62,9 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
     {
         String res = "";
 
+        if (screen.getOptions().isEmpty())
+            return res;
+
         for (Option o : screen.getOptions())
             res = res + "\n" + o.getName() + " : " + o.getScreen();
 

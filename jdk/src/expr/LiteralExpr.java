@@ -1,5 +1,7 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * LiteralExpr
  * Class representing literal expressions
@@ -11,7 +13,7 @@ class LiteralExpr extends Expr
     // return non-null LiteralExpr if it represents a literal object
     public static Expr parse(String parseString)
     {
-        Object   val = null;
+        Serializable val = null;
         ExprType typ = null;
 
         // check for boolean

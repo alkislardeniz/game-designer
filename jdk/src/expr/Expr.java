@@ -1,5 +1,7 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * Expr
  * Parses and evaluates expressions.
@@ -7,7 +9,7 @@ package expr;
  * @version 03/04/16
  */
 // parse string expression into tree, evaluate its value
-public abstract class Expr
+public abstract class Expr implements Serializable
 {
     // WIP
     // return null if parseString not a valid Expr, a non-null Expr otherwise

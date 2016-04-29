@@ -1,12 +1,14 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * LogicOp
  * Represents logical operations.
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-enum LogicOp implements BinaryOp
+enum LogicOp implements BinaryOp, Serializable
 {
     OR  ("OR",  ExprType.BOOLEAN) {
         protected boolean boolOp(boolean a, boolean b) { return a || b; }
@@ -25,6 +27,8 @@ enum LogicOp implements BinaryOp
 
     private String name;
     private ExprType argType;
+
+    private LogicOp() {}
 
     private LogicOp(String name, ExprType argType)
     {

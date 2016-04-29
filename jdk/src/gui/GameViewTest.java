@@ -26,7 +26,7 @@ public class GameViewTest
         screen.setVariable("x");
         screen2.setPred("true");
 
-        screen.setNewValue("x+1");
+        screen.setNewValue("x+1+2+3+4+5+6");
 
         GamePlayer player = new GamePlayer(game);
 

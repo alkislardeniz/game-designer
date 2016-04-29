@@ -1,5 +1,6 @@
 package expr;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author  Ata Deniz Aydin
  * @version 25/04/16
  */
-public class ExprString
+public class ExprString implements Serializable
 {
     ArrayList<Expr> exprs;
     String exprString;

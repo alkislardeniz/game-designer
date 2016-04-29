@@ -48,6 +48,8 @@ public class GameEditController extends JPanel
 
         game.addScreen(assign);
         gameView.add(new ScreenPreview(assign));
+
+        gameView.repaint();
     }
 
     public void createCondScreen(String name, String pred, String trueScreen, String falseScreen)
@@ -61,6 +63,8 @@ public class GameEditController extends JPanel
         game.addScreen(cond);
         gameView.add(new ScreenPreview(cond));
 
+        gameView.repaint();
+
     }
     public void createPlayableScreen(String name)
     {
@@ -68,5 +72,7 @@ public class GameEditController extends JPanel
 
         game.addScreen(screen);
         gameView.add(new ScreenPreview(screen));
+
+        gameView.repaint();
     }
 }
