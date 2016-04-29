@@ -20,6 +20,12 @@ public class Out extends FileIO
 
     //constructors
 
+    public Out(File file, Object object)
+    {
+        this.file = file;
+        path = file.getAbsolutePath();
+        this.object = object;
+    }
 
     /**
      * Takes the save path and the object as parameters

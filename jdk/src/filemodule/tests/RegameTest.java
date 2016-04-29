@@ -1,22 +1,25 @@
 package filemodule.tests;
 
-import filemodule.*;
+import filemodule.In;
 import gamemodel.Game;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-// tester for Game class serialization
-// written by Mehmet Can Altuntaş
-
-public class GameDeserializerTest
+/**
+ * Created by Mehmet on 29/04/16.
+ */
+public class RegameTest
 {
     public static void main(String[] args)
     {
-        In in = new In("C:\\Users\\user\\Desktop\\serialize");
+        In in = new In("save.dadamsave");
+
+        Object obj = null;
 
         try
         {
-            Game game = (Game) in.deserializeFile();
+            obj = (Game) in.deserializeFile();
         }
         catch (IOException e)
         {
@@ -26,5 +29,7 @@ public class GameDeserializerTest
         {
             e.printStackTrace();
         }
+
+        System.out.println(obj);
     }
 }
