@@ -20,20 +20,22 @@ public class Game extends Observable implements Serializable, VariableSet
     // initialize empty collections, null startScreen
     public Game()
     {
-        screens = new ArrayList<Screen>();
-        variables = new ArrayList<Binding>();
+        screens = new ArrayList<>();
+        variables = new ArrayList<>();
     }
 
     // used for GUI elements
 
+    // TODO add special screen named "End" to signify end of screen
+
     public ArrayList<Binding> getVariables()
     {
-        return new ArrayList<Binding>(variables);
+        return new ArrayList<>(variables);
     }
 
     public ArrayList<Screen> getScreens()
     {
-        return new ArrayList<Screen>(screens);
+        return new ArrayList<>(screens);
     }
 
     public int getHeight()
