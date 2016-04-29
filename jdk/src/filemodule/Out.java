@@ -20,11 +20,22 @@ public class Out extends FileIO
 
     //constructors
 
+    /**
+     * Takes a file and and an object to serialize
+     * @param file given file
+     * @param object object to be saved
+     */
+    public Out(File file, Object object)
+    {
+        this.file = file;
+        path = file.getAbsolutePath();
+        this.object = object;
+    }
 
     /**
      * Takes the save path and the object as parameters
      * @param path save path
-     * @param object class to be saved
+     * @param object object to be saved
      */
     public Out(String path, Object object)
     {

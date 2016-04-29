@@ -10,6 +10,20 @@ import java.awt.event.*;
  */
 public class GameProgram extends JFrame
 {
+
+    // Swing Properties
+    JMenuBar bar; // main menubar
+    JMenu file; // file menu
+    JMenu openGame // contains options about opening the saved games, part of file menu
+    JMenuItem openEditable; // opens an editable saved game, part of openGame menu
+    JMenuItem openPlayable; // opens a playable saved game, part of openGame menu
+    JMenu saveGame; // contains save options, part of file menu
+    JMenuItem saveEditable; // saves editable games, part of saveGame menu
+    JMenuItem savePlayable; // saves playable games, part of saveGame menu
+    JMenuItem playGame; // lets user to play the game, part of file menu
+
+    JFileChooser chooser;
+
     public GameProgram()
     {
         super("Game");
@@ -22,33 +36,33 @@ public class GameProgram extends JFrame
 
     private void createMenu()
     {
-        JMenuBar bar = new JMenuBar();
+        bar = new JMenuBar();
 
         // file menu
-        JMenu file = new JMenu("File");
+        file = new JMenu("File");
 
         // create new game
         JMenuItem createNew = new JMenuItem("New");
         file.add(createNew);
 
         // open a game
-        JMenu openGame = new JMenu("Open");
-        JMenuItem openEditable = new JMenuItem("Open Editable Game");
-        JMenuItem openPlayable = new JMenuItem("Open Playable Game");
+        openGame = new JMenu("Open");
+        openEditable = new JMenuItem("Open Editable Game");
+        openPlayable = new JMenuItem("Open Playable Game");
         openGame.add(openEditable);
         openGame.add(openPlayable);
         file.add(openGame);
 
         // save menu item
-        JMenu saveGame = new JMenu("Save");
-        JMenuItem saveEditable = new JMenuItem("Create Editable Game");
-        JMenuItem savePlayable = new JMenuItem("Create Playable Game");
+        saveGame = new JMenu("Save");
+        saveEditable = new JMenuItem("Create Editable Game");
+        savePlayable = new JMenuItem("Create Playable Game");
         saveGame.add(saveEditable);
         saveGame.add(savePlayable);
         file.add(saveGame);
 
         // play game
-        JMenuItem playGame = new JMenuItem("Play");
+        playGame = new JMenuItem("Play");
         file.add(playGame);
 
         bar.add(file);
@@ -60,14 +74,18 @@ public class GameProgram extends JFrame
     }
 
     // TODO
-    /*
+
     class MenuBarListener implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            if (e.getSource() == openGame)
+            {
+                
+            }
         }
     }
-    */
+
 
 }
