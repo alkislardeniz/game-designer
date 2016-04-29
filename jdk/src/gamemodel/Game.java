@@ -26,8 +26,6 @@ public class Game extends Observable implements Serializable, VariableSet
 
     // used for GUI elements
 
-    // TODO add special screen named "End" to signify end of screen
-
     public ArrayList<Binding> getVariables()
     {
         return new ArrayList<>(variables);
@@ -36,6 +34,28 @@ public class Game extends Observable implements Serializable, VariableSet
     public ArrayList<Screen> getScreens()
     {
         return new ArrayList<>(screens);
+    }
+
+    // returns list of names of screens along with special name for end screen, which is null
+    public ArrayList<String> getScreenNames()
+    {
+        ArrayList<String> res = new ArrayList<>();
+
+        for (Screen screen : screens)
+            res.add(screen.getName());
+
+        res.add("End");
+
+        return res;
+    }
+
+    // return name of screen, null or not
+    public String getScreenName(Screen screen)
+    {
+        if (screen == null)
+            return "End";
+
+        return screen.getName();
     }
 
     public int getHeight()
@@ -64,6 +84,9 @@ public class Game extends Observable implements Serializable, VariableSet
 
     public Screen getScreen(String name)
     {
+        if (name.equals("end"))
+            return null;
+
         for (Screen screen : screens)
             if (screen.name.equals(name))
                 return screen;
@@ -90,9 +113,6 @@ public class Game extends Observable implements Serializable, VariableSet
 
 
 
-    // for lists, get() and remove() methods call objects by their names
-    // return null if no objects of that name
-    // change these to include initial values for variables, changing the type of the variable if necessary
     public boolean hasVariable(Var var)
     {
         return variables.contains(new Binding(var));
@@ -124,8 +144,8 @@ public class Game extends Observable implements Serializable, VariableSet
     public boolean setVariable(String varName, String initValue)
     {
         Expr expr = Expr.parse(initValue);
-        ExprValue val;
         Binding bind = getBinding(varName);
+        ExprValue val;
 
         if (bind == null || expr == null || !expr.valid(this))
             return false;

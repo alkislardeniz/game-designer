@@ -1,8 +1,7 @@
 package gui;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * Program to be run, creates/opens/saves games and plays the open game.

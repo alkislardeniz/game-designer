@@ -5,6 +5,7 @@ import expr.Binding;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 /**
  * Contains buttons to add screens to game.
@@ -70,8 +71,8 @@ public class ScreenAddPanel extends JPanel
 
             name = new JTextField();
             newValue = new JTextField();
-            variable = new JComboBox<>(controller.game.getVariables().toArray(new Binding[0]));
-            next = new JComboBox<>(controller.game.getScreens().toArray(new Screen[0]));
+            variable = new JComboBox<>(new Vector<>(controller.game.getVariables()));
+            next = new JComboBox<>(new Vector<>(controller.game.getScreenNames()));
 
             panel.setLayout(new GridLayout(4, 2));
 
@@ -106,8 +107,8 @@ public class ScreenAddPanel extends JPanel
             name = new JTextField();
             pred = new JTextField();
 
-            trueScreen  = new JComboBox<>(controller.game.getScreens().toArray(new Screen[0]));
-            falseScreen = new JComboBox<>(controller.game.getScreens().toArray(new Screen[0]));
+            trueScreen  = new JComboBox<>(new Vector<>(controller.game.getScreenNames()));
+            falseScreen = new JComboBox<>(new Vector<>(controller.game.getScreenNames()));
 
             panel.setLayout(new GridLayout(4, 2));
 

@@ -21,7 +21,7 @@ public class ScreenTextBox extends ScreenComponent
         variable = null;
         text = null;
 
-        width = 10;
+        width = 3;
     }
 
     public ScreenTextBox(ScreenTextBox other)
@@ -29,7 +29,7 @@ public class ScreenTextBox extends ScreenComponent
         super(other);
         variable = other.variable;
         text = other.text;
-        width = 10;
+        width = 3;
     }
 
     // getters, setters go here
@@ -71,7 +71,7 @@ public class ScreenTextBox extends ScreenComponent
     @Override
     public void leavingScreen(GamePlayer player)
     {
-        if (valid() && text.valid(parent.parent) && text.getType(parent.parent) == variable.getType())
+        if (valid() && text != null && text.valid(parent.parent) && text.getType(parent.parent) == variable.getType())
             player.addVariable(variable, text);
     }
 

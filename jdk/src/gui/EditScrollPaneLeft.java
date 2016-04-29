@@ -7,6 +7,7 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created by Deniz Alkislar on 21.4.2016.
@@ -76,8 +77,6 @@ public class EditScrollPaneLeft extends JPanel
 
         add(new OptionsList(parent.screen.getOptions()));
 
-        // TODO button can't be deleted, textbox can't be added or deleted
-
     }
 
     public String getSelectedComponent()
@@ -128,6 +127,7 @@ public class EditScrollPaneLeft extends JPanel
                 == JOptionPane.OK_OPTION)
             {
                 ScreenButton button = new ScreenButton(parent.screen, textField.getText());
+                button.setVisible(visible.isSelected());
                 button.setOption(comboBox.getSelectedItem().toString());
                 parent.setSelectedComponent(button);
             }
@@ -148,7 +148,7 @@ public class EditScrollPaneLeft extends JPanel
 
             panel.add(new JLabel("Name: "));
             panel.add(textField);
-            panel.add(new JLabel("Variables: "));
+            panel.add(new JLabel("Variable: "));
             panel.add(comboBox);
 
             if (JOptionPane.showConfirmDialog(null, panel, "Create text box", JOptionPane.OK_CANCEL_OPTION)
@@ -193,7 +193,7 @@ public class EditScrollPaneLeft extends JPanel
         AbstractTableModel model;
         JTable table;
         JTextField nameField;
-        JComboBox<Screen> screenField;
+        JComboBox<String> screenField;
 
         public OptionsList(ArrayList<Option> options)
         {
@@ -217,7 +217,7 @@ public class EditScrollPaneLeft extends JPanel
 
             nameField = new JTextField();
             // System.out.println(parent.screen.getParent().getScreens());
-            screenField = new JComboBox<>(parent.screen.getParent().getScreens().toArray(new Screen[0]));
+            screenField = new JComboBox<>(new Vector<>(parent.screen.getParent().getScreenNames()));
 
             panel.add(new JLabel("Name: "));
             panel.add(nameField);
@@ -241,7 +241,7 @@ public class EditScrollPaneLeft extends JPanel
             public void actionPerformed(ActionEvent e)
             {
                 // add option to screen and update combo box
-                parent.screen.addOption(nameField.getText(), (Screen) screenField.getSelectedItem());
+                parent.screen.addOption(nameField.getText(), parent.screen.getParent().getScreen((String) screenField.getSelectedItem()));
 
                 model.fireTableStructureChanged();
             }
@@ -296,7 +296,7 @@ public class EditScrollPaneLeft extends JPanel
                     return option.getName();
 
                 if (columnIndex == 1)
-                    return option.getScreen();
+                    return parent.screen.getParent().getScreenName(option.getScreen());
 
                 return null;
             }

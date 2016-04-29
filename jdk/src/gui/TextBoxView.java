@@ -19,6 +19,8 @@ public class TextBoxView extends ComponentView
     {
         super(parent, textBox, editing);
 
+        this.textBox = textBox;
+
         // add text field
         textField = new JTextField();
         textField.addActionListener(new TextBoxListener());
@@ -29,6 +31,7 @@ public class TextBoxView extends ComponentView
                             textBox.getHeight() * parent.IMAGE_HEIGHT);
 
         textField.setEditable(true);
+        parent.add(textField);
     }
 
     // draw component on screen

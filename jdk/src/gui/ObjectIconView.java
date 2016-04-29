@@ -38,13 +38,13 @@ public enum ObjectIconView
     CAR     (ObjectIcon.CAR, "car.png"),
     FENCE   (ObjectIcon.FENCE, "fence.png"),
 
-    CHAIR     (ObjectIcon.CHAIR, "chair.png"),
-    SHELF     (ObjectIcon.SHELF, "shelf.png"),
-    SHELF2    (ObjectIcon.SHELF2, "shelf2.png"),
-    SOFA      (ObjectIcon.SOFA, "sofa.png"),
-    SOFA2     (ObjectIcon.SOFA2, "sofa2.png"),
-    TABLE     (ObjectIcon.TABLE, "table.png"),
-    TABLE2    (ObjectIcon.TABLE2, "table2.png");
+    CHAIR   (ObjectIcon.CHAIR, "chair.png"),
+    SHELF   (ObjectIcon.SHELF, "shelf.png"),
+    SHELF2  (ObjectIcon.SHELF2, "shelf2.png"),
+    SOFA    (ObjectIcon.SOFA, "sofa.png"),
+    SOFA2   (ObjectIcon.SOFA2, "sofa2.png"),
+    TABLE   (ObjectIcon.TABLE, "table.png"),
+    TABLE2  (ObjectIcon.TABLE2, "table2.png");
 
     // need to store icon and movability in ScreenObject
 

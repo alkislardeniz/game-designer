@@ -63,6 +63,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
         repaint();
     }
 
+    // TODO some objects cannot get deleted
     public boolean removeComponent(ScreenComponent comp)
     {
         screen.removeComponent(comp);
@@ -107,6 +108,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
                 g.drawLine (xP, yP, xP, yP + (IMAGE_WIDTH * 21));
                 xP += IMAGE_WIDTH;
             }
+
+            // TODO denote points movable can move to with 1 and 0
         }
 
         // then paint each component
@@ -148,10 +151,31 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
     public void visit(ScreenButton comp)
     {
-        comps.add(new ButtonView(this, comp, editing));
+        ButtonView view = new ButtonView(this, comp, editing);
+
+        comps.add(view);
 
         if (editing)
+        {
             screen.addComponent(comp);
+
+            // action listener to remove buttons by clicking
+            view.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    if (((ScreenEditController) parent).screenOptions.shouldDelete())
+                    {
+                        remove(view.jButton);
+                        comps.remove(view);
+                        screen.removeComponent(comp);
+
+                        validate();
+                        repaint();
+                    }
+                }
+            });
+        }
     }
 
     public void visit(ScreenLabel comp)
@@ -183,10 +207,30 @@ public class ScreenView extends JPanel implements ComponentVisitor
 
     public void visit(ScreenTextBox comp)
     {
-        comps.add(new TextBoxView(this, comp, editing));
+        TextBoxView view = new TextBoxView(this, comp, editing);
+        comps.add(view);
 
         if (editing)
+        {
             screen.addComponent(comp);
+
+            view.textField.addMouseListener(new MouseAdapter()
+            {
+                @Override
+                public void mouseClicked(MouseEvent e)
+                {
+                    if (((ScreenEditController) parent).screenOptions.shouldDelete())
+                    {
+                        remove(view.textField);
+                        comps.remove(view);
+                        screen.removeComponent(comp);
+
+                        validate();
+                        repaint();
+                    }
+                }
+            });
+        }
     }
 
     // inner classes

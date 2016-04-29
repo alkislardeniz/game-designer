@@ -40,6 +40,11 @@ public class ButtonView extends ComponentView
         return;
     }
 
+    public void addActionListener(ActionListener l)
+    {
+        jButton.addActionListener(l);
+    }
+
     private class ButtonListener implements ActionListener
     {
         GamePlayer player;

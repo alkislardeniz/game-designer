@@ -74,8 +74,6 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         add(textLabel);
     }
 
-    // TODO JLabel does not change
-
     class ScreenDialog implements ScreenVisitor
     {
         public void visit(PlayableScreen screen) {}
