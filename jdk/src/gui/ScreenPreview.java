@@ -37,6 +37,12 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         screen.accept(this);
     }
 
+    @Override
+    public void paintComponent(Graphics g)
+    {
+        g.drawRect(0, 0, WIDTH, HEIGHT);
+    }
+
     public void getDialog()
     {
         screen.accept(new ScreenDialog());

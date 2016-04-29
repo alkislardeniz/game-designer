@@ -11,6 +11,7 @@ public enum ObjectIconView
 {
     //Movable objects
     MEGAMAN (ObjectIcon.MEGAMAN, "manLeft.gif", "manRight.gif", "manLeftStand.gif", "manRightStand.gif"),
+    MARIO (ObjectIcon.MARIO, "marioLeft.gif", "marioRight.gif", "marioLeftStand.gif", "marioRightStand.gif"),
     COP     (ObjectIcon.COP, "copLeft.gif", "copRight.gif", "copLeftStand.gif", "copRightStand.gif"),
 
     //Non movable backgrounds
@@ -20,8 +21,27 @@ public enum ObjectIconView
     BG3     (ObjectIcon.BG3, "bg3.png"),
     BG4     (ObjectIcon.BG4, "bg4.png"),
     BG5     (ObjectIcon.BG5, "bg5.png"),
+    BG6     (ObjectIcon.BG6, "bg6.png"),
 
     //Non movable objects
+    ANTIQUE   (ObjectIcon.ANTIQUE, "antique.png"),
+    BED   (ObjectIcon.BED, "bed.png"),
+    BED2   (ObjectIcon.BED2, "bed2.png"),
+    BENCH   (ObjectIcon.BENCH, "bench.png"),
+    BENCH2   (ObjectIcon.BENCH2, "bench2.png"),
+    CASE  (ObjectIcon.CASE, "case.png"),
+    CHEST  (ObjectIcon.CHEST, "chest.png"),
+    DESK (ObjectIcon.DESK, "desk.png"),
+    LAMP   (ObjectIcon.LAMP, "lamp.png"),
+    LOCKER   (ObjectIcon.LOCKER, "locker.png"),
+    PHONE   (ObjectIcon.PHONE, "phone.png"),
+    POST   (ObjectIcon.POST, "post.png"),
+    SACK  (ObjectIcon.SACK, "sack.png"),
+    STATUE  (ObjectIcon.STATUE, "statue.png"),
+    SWORDS  (ObjectIcon.SWORDS, "swords.png"),
+    TABLETENNIS  (ObjectIcon.TABLETENNIS, "tabletennis.png"),
+    WC (ObjectIcon.WC, "wc.png"),
+
     BLOCK   (ObjectIcon.BLOCK, "block.png"),
     ROCK    (ObjectIcon.ROCK, "rock.png"),
     STONE   (ObjectIcon.STONE, "stone.png"),
@@ -35,6 +55,7 @@ public enum ObjectIconView
     HOUSE2  (ObjectIcon.HOUSE2, "house2.png"),
     HOUSE3  (ObjectIcon.HOUSE3, "house3.png"),
     HOUSE4  (ObjectIcon.HOUSE4, "house4.png"),
+    HOUSE5  (ObjectIcon.HOUSE5, "house5.png"),
     CAR     (ObjectIcon.CAR, "car.png"),
     FENCE   (ObjectIcon.FENCE, "fence.png"),
 

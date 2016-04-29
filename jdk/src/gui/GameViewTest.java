@@ -39,7 +39,6 @@ public class GameViewTest
         // f.add(new ScreenEditController(screen));
 
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setSize(520, 620);
         f.pack();
         f.setVisible(true);
 
