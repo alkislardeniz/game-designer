@@ -14,7 +14,7 @@ public class GameProgram extends JFrame
     // Swing Properties
     JMenuBar bar; // main menubar
     JMenu file; // file menu
-    JMenu openGame // contains options about opening the saved games, part of file menu
+    JMenu openGame; // contains options about opening the saved games, part of file menu
     JMenuItem openEditable; // opens an editable saved game, part of openGame menu
     JMenuItem openPlayable; // opens a playable saved game, part of openGame menu
     JMenu saveGame; // contains save options, part of file menu

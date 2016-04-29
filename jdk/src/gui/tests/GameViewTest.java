@@ -1,8 +1,10 @@
-package gui;
+package gui.tests;
 import gamemodel.*;
 import gamemodel.Game;
 import gamemodel.GamePlayer;
 import gamemodel.PlayableScreen;
+import gui.GameEditController;
+import gui.GameView;
 
 import javax.swing.*;
 import java.awt.*;

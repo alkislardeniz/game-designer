@@ -40,7 +40,6 @@ public class ScreenAddPanel extends JPanel
         button.addActionListener(new CondListener());
         add(button);
 
-        // TODO also add radio button to delete screen double clicked
         JRadioButton radio = new JRadioButton("Delete screen");
         radio.addActionListener(new ActionListener() {
             @Override

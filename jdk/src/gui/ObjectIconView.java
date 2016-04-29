@@ -11,7 +11,7 @@ public enum ObjectIconView
 {
     //Movable objects
     MEGAMAN (ObjectIcon.MEGAMAN, "manLeft.gif", "manRight.gif", "manLeftStand.gif", "manRightStand.gif"),
-    MARIO (ObjectIcon.MARIO, "marioLeft.gif", "marioRight.gif", "marioLeftStand.gif", "marioRightStand.gif"),
+    MARIO   (ObjectIcon.MARIO, "marioLeft.gif", "marioRight.gif", "marioLeftStand.gif", "marioRightStand.gif"),
     COP     (ObjectIcon.COP, "copLeft.gif", "copRight.gif", "copLeftStand.gif", "copRightStand.gif"),
 
     //Non movable backgrounds
@@ -24,23 +24,23 @@ public enum ObjectIconView
     BG6     (ObjectIcon.BG6, "bg6.png"),
 
     //Non movable objects
-    ANTIQUE   (ObjectIcon.ANTIQUE, "antique.png"),
-    BED   (ObjectIcon.BED, "bed.png"),
-    BED2   (ObjectIcon.BED2, "bed2.png"),
+    ANTIQUE (ObjectIcon.ANTIQUE, "antique.png"),
+    BED     (ObjectIcon.BED, "bed.png"),
+    BED2    (ObjectIcon.BED2, "bed2.png"),
     BENCH   (ObjectIcon.BENCH, "bench.png"),
-    BENCH2   (ObjectIcon.BENCH2, "bench2.png"),
-    CASE  (ObjectIcon.CASE, "case.png"),
-    CHEST  (ObjectIcon.CHEST, "chest.png"),
-    DESK (ObjectIcon.DESK, "desk.png"),
-    LAMP   (ObjectIcon.LAMP, "lamp.png"),
-    LOCKER   (ObjectIcon.LOCKER, "locker.png"),
+    BENCH2  (ObjectIcon.BENCH2, "bench2.png"),
+    CASE    (ObjectIcon.CASE, "case.png"),
+    CHEST   (ObjectIcon.CHEST, "chest.png"),
+    DESK    (ObjectIcon.DESK, "desk.png"),
+    LAMP    (ObjectIcon.LAMP, "lamp.png"),
+    LOCKER  (ObjectIcon.LOCKER, "locker.png"),
     PHONE   (ObjectIcon.PHONE, "phone.png"),
-    POST   (ObjectIcon.POST, "post.png"),
-    SACK  (ObjectIcon.SACK, "sack.png"),
+    POST    (ObjectIcon.POST, "post.png"),
+    SACK    (ObjectIcon.SACK, "sack.png"),
     STATUE  (ObjectIcon.STATUE, "statue.png"),
     SWORDS  (ObjectIcon.SWORDS, "swords.png"),
     TABLETENNIS  (ObjectIcon.TABLETENNIS, "tabletennis.png"),
-    WC (ObjectIcon.WC, "wc.png"),
+    WC      (ObjectIcon.WC, "wc.png"),
 
     BLOCK   (ObjectIcon.BLOCK, "block.png"),
     ROCK    (ObjectIcon.ROCK, "rock.png"),

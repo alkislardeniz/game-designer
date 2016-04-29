@@ -81,7 +81,7 @@ public class GameView extends JPanel
             // TODO check for double clicks
 
             // open new screen edit controller
-            if (view.screen.getPlayable() && e.getClickCount() == 2)
+            if (view.screen.getPlayable() && e.getClickCount() == 1)
             {
                 controller.pane.addScreen((PlayableScreen) view.screen);
                 validate();

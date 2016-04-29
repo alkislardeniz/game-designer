@@ -55,8 +55,6 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
         if (!screen.getPlayable())
             textLabel.setText(((NonPlayableScreen) screen).getText());
 
-        System.out.println(getOptionList());
-
         repaint();
     }
 

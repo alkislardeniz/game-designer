@@ -31,7 +31,7 @@ public class GameEditController extends JPanel
         JPanel leftPanel = new JPanel();
 
         leftPanel.setLayout(new BorderLayout());
-        leftPanel.add(new ScreenAddPanel(this), BorderLayout.NORTH);
+        leftPanel.add(new ScreenAddPanel(this), BorderLayout.NORTH); // TODO perhaps add ScreenAddPanel to GameView instead
         leftPanel.add(vars, BorderLayout.SOUTH);
         add(leftPanel, BorderLayout.WEST);
     }

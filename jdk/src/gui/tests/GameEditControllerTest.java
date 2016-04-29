@@ -1,6 +1,7 @@
-package gui;
+package gui.tests;
 
 import gamemodel.*;
+import gui.GameEditController;
 
 import javax.swing.*;
 import java.awt.*;
