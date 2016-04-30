@@ -19,7 +19,6 @@ public class ScreenEditController extends JPanel implements ScreenController
     EditScreenOptions screenOptions;
     ComponentListener listener;
     ScreenComponent comp;
-    ScreenObject movable;
 
     public ScreenEditController(PlayableScreen screen)
     {
