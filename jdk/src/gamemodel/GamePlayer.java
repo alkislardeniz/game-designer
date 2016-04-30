@@ -7,7 +7,11 @@ import java.io.Serializable;
 import expr.*;
 
 /**
- * Created by admin on 4/3/16.
+ * GamePlayer
+ * A particular instance of playing through a game.
+ * @author Ata Deniz Aydin
+ * @author Demir Topaktas
+ * @version
  */
 // class executing a game
 public class GamePlayer extends Observable implements Serializable, VariableEnv

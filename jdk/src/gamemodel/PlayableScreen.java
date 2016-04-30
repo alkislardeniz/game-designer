@@ -28,6 +28,7 @@ public class PlayableScreen extends Screen
         components.add(background);
     }
 
+    @Override
     public Screen copy(Game parent)
     {
         PlayableScreen screen = new PlayableScreen(parent, name);
@@ -53,21 +54,24 @@ public class PlayableScreen extends Screen
         background = bg;
     }
 
+
+
+    public int getWidth() { return parent.width; }
+
+    public int getHeight() { return parent.height; }
+
+
+    public List<ScreenComponent> getComponents()
+    {
+        return new ArrayList<>(components);
+    }
+
     public ScreenComponent getComponent(String name)
     {
         for (ScreenComponent comp : components)
             if (comp.name.equals(name))
                 return comp;
         return null;
-    }
-
-    public int getWidth() { return parent.width; }
-
-    public int getHeight() { return parent.height; }
-
-    public List<ScreenComponent> getComponents()
-    {
-        return new ArrayList<>(components);
     }
 
     public boolean addComponent(ScreenComponent comp)
@@ -114,6 +118,8 @@ public class PlayableScreen extends Screen
         return components.contains(comp);
     }
 
+
+
     // try to place comp on (x,y) on the screen
     public boolean placeComponent(ScreenComponent newComp, int x, int y)
     {
@@ -136,7 +142,7 @@ public class PlayableScreen extends Screen
     public boolean canPlaceComponent(ScreenComponent newComp, int x, int y)
     {
         // check for boundaries
-        if (x < 0 || y < 0 || x + newComp.width > parent.width || y + newComp.height > parent.height)
+        if (!contains(newComp, x, y))
             return false;
 
         // check for compatibility
@@ -147,6 +153,7 @@ public class PlayableScreen extends Screen
         return true;
     }
 
+    // return all components that contain (x,y)
     public ArrayList<ScreenComponent> findComponentsAt(int x, int y)
     {
         ArrayList<ScreenComponent> res = new ArrayList<>();
@@ -157,6 +164,7 @@ public class PlayableScreen extends Screen
         return res;
     }
 
+    // return topmost component that contains (x,y)
     public ScreenComponent findFirstComponentAt(int x, int y)
     {
         ArrayList<ScreenComponent> res = findComponentsAt(x, y);
@@ -167,17 +175,20 @@ public class PlayableScreen extends Screen
         return res.get(res.size() - 1);
     }
 
+    // return whether screen will contain comp placed at (x,y)
     public boolean contains(ScreenComponent comp, int x, int y)
     {
         return x >= 0 && y >= 0
-            && x + comp.getWidth() <= getWidth() && y + comp.getWidth() <= getHeight();
+            && x + comp.getWidth() <= getWidth() + 1 && y + comp.getWidth() <= getHeight() + 1;
     }
 
+    // return movable object
     public ScreenObject getMovable()
     {
         return movable;
     }
 
+    // change movable object
     public void setMovable(ScreenObject movable)
     {
         if (movable == null || movable.isMovable())
@@ -193,6 +204,7 @@ public class PlayableScreen extends Screen
         super.toPlayer(player, option);
     }
 
+    // return whether screen is set up correctly
     public boolean valid()
     {
         for (ScreenComponent comp : components)

@@ -124,7 +124,10 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
             if (JOptionPane.showConfirmDialog(null, panel, "Modify assignment screen " + screen.getName(), JOptionPane.OK_CANCEL_OPTION)
                 == JOptionPane.OK_OPTION)
             {
-                // TODO check for null
+                if (variable.getSelectedItem() == null || newValue.getText() == null
+                     || next.getSelectedItem() == null || newValue.getText().isEmpty())
+                    return;
+
                 screen.setVariable(variable.getSelectedItem().toString());
                 screen.setNewValue(newValue.getText());
                 screen.setOption("default", (Screen) next.getSelectedItem());

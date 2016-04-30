@@ -67,6 +67,8 @@ public abstract class ScreenComponent implements Serializable
         this.position = position;
     }
 
+
+
     public PlayableScreen getParent() { return parent; }
 
     // returns whether other's position is compatible with this
@@ -78,6 +80,7 @@ public abstract class ScreenComponent implements Serializable
         return !contains(x, y);
     }
 
+    // return whether component contains (x,y)
     public boolean contains(int x, int y)
     {
         return x >= position.getX()
@@ -96,5 +99,6 @@ public abstract class ScreenComponent implements Serializable
 
     public abstract void accept(ComponentVisitor visitor);
 
+    // return whether component is set up correctly
     public abstract boolean valid();
 }

@@ -27,12 +27,11 @@ public class ScreenView extends JPanel implements ComponentVisitor
         final int WIDTH = screen.getWidth() * IMAGE_WIDTH;
         final int HEIGHT = screen.getHeight() * IMAGE_HEIGHT;
 
-        showGrid = true;
-
         // initialize fields
         this.parent = parent;
         this.screen = screen;
         editing = parent.getPlayer() == null;
+        showGrid = editing;
         comps = new ArrayList<>();
 
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -55,6 +54,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
         removeAll();
 
         comps = new ArrayList<>();
+        bg = null;
+        movable = null;
 
         for (ScreenComponent comp : screen.getComponents())
             comp.accept(this);

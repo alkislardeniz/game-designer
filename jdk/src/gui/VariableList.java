@@ -95,7 +95,6 @@ public class VariableList extends JPanel
             if (table.getSelectedRow() >= 0)
             {
                 game.removeVariable(model.getValueAt(table.getSelectedRow(), 0).toString());
-
                 model.fireTableStructureChanged();
             }
         }
