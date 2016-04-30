@@ -1,11 +1,13 @@
 package gui;
 
 import gamemodel.*;
+import java.util.Timer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.TimerTask;
 
 /**
  * Represents each screen of the game in a graph.
@@ -69,10 +71,12 @@ public class GameView extends JPanel
     public class PreviewListener extends MouseAdapter
     {
         ScreenPreview view;
+        private boolean alreadyClicked;
 
         public PreviewListener(ScreenPreview view)
         {
             this.view = view;
+            alreadyClicked = false;
         }
 
         @Override
@@ -81,19 +85,34 @@ public class GameView extends JPanel
             // TODO check for double clicks
 
             // open new screen edit controller
-            if (view.screen.getPlayable() && e.getClickCount() == 1)
+            if (view.screen.getPlayable() && alreadyClicked)
             {
                 controller.pane.addScreen((PlayableScreen) view.screen);
                 validate();
-            }
-            else if (controller.deleting)
-            {
-                removePreview(view);
-                validate();
+
+                alreadyClicked = false;
             }
             else
             {
-                view.getDialog();
+                if (controller.deleting)
+                {
+                    removePreview(view);
+                    validate();
+                }
+                else
+                {
+                    view.getDialog();
+                }
+
+                alreadyClicked = true;
+                new Timer("doubleClickTimer", false).schedule(new TimerTask()
+                {
+                    @Override
+                    public void run()
+                    {
+                        alreadyClicked = false;
+                    }
+                }, 500);
             }
 
             for (ScreenPreview view : screens)
