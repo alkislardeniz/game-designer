@@ -62,7 +62,6 @@ public enum ObjectIconView
     STAIRSTOP (ObjectIcon.STAIRSTOP, "stairstop.png"),
     TAP (ObjectIcon.TAP, "tap.png"),
     TABLE   (ObjectIcon.TABLE, "table.png"),
-    TABLE2  (ObjectIcon.TABLE2, "table2.png"),
     VASE    (ObjectIcon.VASE, "vase.png"),
     WC      (ObjectIcon.WC, "wc.png"),
 
