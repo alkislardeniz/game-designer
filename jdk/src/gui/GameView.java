@@ -1,13 +1,10 @@
 package gui;
 
 import gamemodel.*;
-import java.util.Timer;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 /**
  * Represents each screen of the game in a graph.
@@ -68,57 +65,57 @@ public class GameView extends JPanel
     }
 
 
-    public class PreviewListener extends MouseAdapter
+    public class PreviewListener extends MouseAdapter implements ActionListener
     {
         ScreenPreview view;
-        private boolean alreadyClicked;
+        MouseEvent lastEvent;
+        Timer t;
 
         public PreviewListener(ScreenPreview view)
         {
             this.view = view;
-            alreadyClicked = false;
+
+            t = new Timer(500, this);
         }
 
         @Override
         public void mouseClicked(MouseEvent e)
         {
-            // TODO check for double clicks
+            if (e.getClickCount() > 2)
+                return;
 
-            // open new screen edit controller
-            if (view.screen.getPlayable() && alreadyClicked)
+            lastEvent = e;
+
+            if (view.screen.getPlayable() && t.isRunning())
             {
+                t.stop();
+
                 controller.pane.addScreen((PlayableScreen) view.screen);
                 validate();
-
-                alreadyClicked = false;
             }
             else
             {
-                if (controller.deleting)
-                {
-                    removePreview(view);
-                    validate();
-                }
-                else
-                {
-                    view.getDialog();
-                }
-
-                alreadyClicked = true;
-                new Timer("doubleClickTimer", false).schedule(new TimerTask()
-                {
-                    @Override
-                    public void run()
-                    {
-                        alreadyClicked = false;
-                    }
-                }, 500);
+                t.restart();
             }
 
             for (ScreenPreview view : screens)
                 view.update();
 
             repaint();
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+            t.stop();
+            if (controller.deleting)
+            {
+                removePreview(view);
+                validate();
+            }
+            else
+            {
+                view.getDialog();
+            }
         }
     }
 }
