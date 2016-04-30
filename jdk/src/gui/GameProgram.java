@@ -3,6 +3,7 @@ package gui;
 import filemodule.*;
 import gamemodel.*;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -44,7 +45,6 @@ public class GameProgram extends JFrame
         JMenuItem saveEditable; // saves editable games, part of saveGame menu
         JMenuItem savePlayable; // saves playable games, part of saveGame menu
         JMenuItem playGame; // lets user to play the game, part of file menu
-        JFileChooser chooser;
 
         bar = new JMenuBar();
 
@@ -105,7 +105,16 @@ public class GameProgram extends JFrame
             {
                 String fileName = "";
 
-                // TODO get file name
+                JFileChooser chooser = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                chooser.setFileFilter(filter);
+                int tmp = chooser.showOpenDialog(GameProgram.this);
+
+                if (tmp == JFileChooser.APPROVE_OPTION)
+                {
+                    fileName = chooser.getSelectedFile().getAbsolutePath();
+                    System.out.println(fileName);
+                }
 
                 try
                 {
@@ -124,6 +133,7 @@ public class GameProgram extends JFrame
                 catch (Exception ex)
                 {
                     // report error
+                    JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -135,7 +145,16 @@ public class GameProgram extends JFrame
             {
                 String fileName = "";
 
-                // TODO get file name
+                JFileChooser chooser = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                chooser.setFileFilter(filter);
+                int tmp = chooser.showOpenDialog(GameProgram.this);
+
+                if (tmp == JFileChooser.APPROVE_OPTION)
+                {
+                    fileName = chooser.getSelectedFile().getAbsolutePath();
+                    System.out.println(fileName);
+                }
 
                 try
                 {
@@ -154,7 +173,7 @@ public class GameProgram extends JFrame
                 }
                 catch (Exception ex)
                 {
-                    // report error
+                    JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -165,7 +184,16 @@ public class GameProgram extends JFrame
             {
                 String fileName = "";
 
-                // TODO get file name
+                JFileChooser chooser = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                chooser.setFileFilter(filter);
+                int tmp = chooser.showSaveDialog(GameProgram.this);
+
+                if (tmp == JFileChooser.APPROVE_OPTION)
+                {
+                    fileName = chooser.getSelectedFile().getAbsolutePath();
+                    System.out.println(fileName);
+                }
 
                 try
                 {
@@ -174,7 +202,8 @@ public class GameProgram extends JFrame
                 }
                 catch (Exception ex)
                 {
-                    // TODO check file save exception
+                    JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
+
                 }
             }
         });
@@ -185,7 +214,16 @@ public class GameProgram extends JFrame
             {
                 String fileName = "";
 
-                // TODO get file name
+                JFileChooser chooser = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                chooser.setFileFilter(filter);
+                int tmp = chooser.showSaveDialog(GameProgram.this);
+
+                if (tmp == JFileChooser.APPROVE_OPTION)
+                {
+                    fileName = chooser.getSelectedFile().getAbsolutePath();
+                    System.out.println(fileName);
+                }
 
                 try
                 {
@@ -194,7 +232,8 @@ public class GameProgram extends JFrame
                 }
                 catch (Exception ex)
                 {
-                    // TODO check file save exception
+                    JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
+
                 }
             }
         });
