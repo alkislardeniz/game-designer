@@ -90,12 +90,12 @@ public class ScreenEditController extends JPanel implements ScreenController
 
             if (screenOptions.shouldDelete())
             {
-                for (ScreenComponent temp : screen.findComponentsAt(rX, rY))
-                    if (temp != null)
-                        screenView.removeComponent(temp);
+                ScreenComponent temp = screen.findFirstComponentAt(rX, rY);
+                if (temp != null)
+                    screenView.removeComponent(temp);
 
             }
-            else if (comp != null && screen.canPlaceComponent(comp, rX, rY))
+            else if (comp != null) // && screen.canPlaceComponent(comp, rX, rY))
             {
                 comp = comp.copy();
                 comp.setPosition(new Point(rX, rY));

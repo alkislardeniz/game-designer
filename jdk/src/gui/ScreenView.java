@@ -63,7 +63,6 @@ public class ScreenView extends JPanel implements ComponentVisitor
         repaint();
     }
 
-    // TODO some objects cannot get deleted
     public boolean removeComponent(ScreenComponent comp)
     {
         screen.removeComponent(comp);
@@ -75,7 +74,7 @@ public class ScreenView extends JPanel implements ComponentVisitor
         }
 
         for (ComponentView view : new ArrayList<>(comps))
-            if (view.comp == comp)
+            if (view.comp.equals(comp))
                 return comps.remove(view);
 
         return false;

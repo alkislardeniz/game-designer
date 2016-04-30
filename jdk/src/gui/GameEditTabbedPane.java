@@ -21,7 +21,7 @@ public class GameEditTabbedPane extends JPanel
         game = controller.game;
         pane = new JTabbedPane();
 
-        setPreferredSize(new Dimension(825, 550));
+        setPreferredSize(new Dimension(825, 580));
 
         // add game view to pane
         pane.addTab("Game", controller.gameView);

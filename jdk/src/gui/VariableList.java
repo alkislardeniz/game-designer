@@ -39,7 +39,7 @@ public class VariableList extends JPanel
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(150, 350));
+        scrollPane.setPreferredSize(new Dimension(150, 450));
 
         add(scrollPane);
 

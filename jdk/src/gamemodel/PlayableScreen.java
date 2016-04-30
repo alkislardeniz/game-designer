@@ -74,7 +74,7 @@ public class PlayableScreen extends Screen
             }
         }
 
-        return !hasComponent(comp) && components.add(comp);
+        return components.add(comp);
     }
 
     public ScreenComponent removeComponent(String name)
@@ -139,6 +139,16 @@ public class PlayableScreen extends Screen
             if (comp.contains(x, y))
                 res.add(comp);
         return res;
+    }
+
+    public ScreenComponent findFirstComponentAt(int x, int y)
+    {
+        ArrayList<ScreenComponent> res = findComponentsAt(x, y);
+
+        if (res.isEmpty())
+            return null;
+
+        return res.get(res.size() - 1);
     }
 
     public ScreenObject getMovable()
