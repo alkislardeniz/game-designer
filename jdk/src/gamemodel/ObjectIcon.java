@@ -60,7 +60,6 @@ public enum ObjectIcon
     STAIRSTOP (2, 2, false),
     TAP (1, 2, false),
     TABLE   (1, 1, false),
-    TABLE2  (1, 1, false),
     VASE    (1, 1, false),
     WC      (1, 2, false),
 
