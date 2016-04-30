@@ -13,7 +13,7 @@ public class GraphView<E>
     public GraphView(Graph<E> graph)
     {
         this.graph = graph;
-
+        grid = new Grid(graph);
     }
 
     // TODO add and remove E, draw each GraphEdge<E> between two Es based on first available slot in queue
