@@ -11,7 +11,7 @@ import expr.*;
  * A particular instance of playing through a game.
  * @author Ata Deniz Aydin
  * @author Demir Topaktas
- * @version
+ * @version 17/04/16
  */
 // class executing a game
 public class GamePlayer extends Observable implements Serializable, VariableEnv
