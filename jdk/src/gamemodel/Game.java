@@ -22,6 +22,9 @@ public class Game extends Observable implements Serializable, VariableSet
     {
         screens = new ArrayList<>();
         variables = new ArrayList<>();
+
+        startScreen = new PlayableScreen(this, "start");
+        screens.add(startScreen);
     }
 
     // used for GUI elements

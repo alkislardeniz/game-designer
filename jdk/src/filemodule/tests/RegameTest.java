@@ -15,7 +15,7 @@ public class RegameTest
     {
         In in = new In("save.dadamsave");
 
-        Object obj = null;
+        Game obj = null;
 
         try
         {

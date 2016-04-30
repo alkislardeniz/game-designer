@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Created by admin on 4/26/16.
  */
-public class GameEditController extends JPanel
+public class GameEditController extends JPanel implements GameController
 {
     Game game;
     GameView gameView;

@@ -57,11 +57,14 @@ public class GameView extends JPanel
         repaint();
     }
 
+    // TODO also remove tab from GameEditTabbedPane
     public void removePreview(ScreenPreview view)
     {
         screens.remove(view);
         panel.remove(view);
         game.removeScreen(view.screen.getName());
+
+        repaint();
     }
 
 

@@ -10,7 +10,7 @@ import java.util.Observer;
  * Changes ScreenPlayController based on current screen of game
  * Created by admin on 4/15/16.
  */
-public class GamePlayController extends JPanel implements Observer
+public class GamePlayController extends JPanel implements Observer, GameController
 {
     PlayerWindow parent;
     GamePlayer player;
@@ -41,7 +41,7 @@ public class GamePlayController extends JPanel implements Observer
     @Override
     public void update(Observable o, Object arg)
     {
-        // controller.setFocusable(false);
+        // panel.setFocusable(false);
         currentScreen = (PlayableScreen) player.getCurrentScreen(); // currentScreen is playable every time notifyObservers() is called
 
         if (currentScreen != null)
