@@ -1,8 +1,13 @@
+package gui.tests;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+/**
+ * Mehmet was here
+ */
 public class ClickListener extends MouseAdapter implements ActionListener
 {
     private final static int clickInterval = (Integer)Toolkit.getDefaultToolkit().

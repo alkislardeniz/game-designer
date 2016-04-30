@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by user on 28.04.2016.
+ * Mehmet was here
  */
 public class GameViewTest
 {

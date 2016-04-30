@@ -11,6 +11,7 @@ import java.io.File;
 /**
  * Program to be run, creates/opens/saves games and plays the open game.
  * @author Mehmet Can Altuntaş
+ * @author Ata Deniz Aydın
  * Created by admin on 4/28/16.
  */
 public class GameProgram extends JFrame

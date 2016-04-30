@@ -1,7 +1,7 @@
 package gui.tests;
 
 /**
- * Created by user on 28.04.2016.
+ * Mehmet was here
  */
 public class ScreenPreviewTest
 {
