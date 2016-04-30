@@ -60,6 +60,9 @@ public class GameView extends JPanel
     // TODO also remove tab from GameEditTabbedPane
     public void removePreview(ScreenPreview view)
     {
+        if (view.screen.equals(game.getStartScreen()))
+            return;
+
         screens.remove(view);
         panel.remove(view);
         game.removeScreen(view.screen.getName());
@@ -68,48 +71,19 @@ public class GameView extends JPanel
     }
 
 
-    public class PreviewListener extends MouseAdapter implements ActionListener
+    public class PreviewListener extends MouseAdapter
     {
         ScreenPreview view;
         MouseEvent lastEvent;
-        Timer t;
 
         public PreviewListener(ScreenPreview view)
         {
             this.view = view;
-
-            t = new Timer(500, this);
         }
 
         @Override
         public void mouseClicked(MouseEvent e)
         {
-            if (e.getClickCount() > 2)
-                return;
-
-            lastEvent = e;
-
-            if (view.screen.getPlayable() && t.isRunning())
-            {
-                t.stop();
-
-                controller.pane.addScreen((PlayableScreen) view.screen);
-                validate();
-            }
-            else
-            {
-                t.restart();
-            }
-
-            for (ScreenPreview view : screens)
-                view.update();
-
-            repaint();
-        }
-
-        public void actionPerformed(ActionEvent e)
-        {
-            t.stop();
             if (controller.deleting)
             {
                 removePreview(view);
@@ -118,8 +92,21 @@ public class GameView extends JPanel
             }
             else
             {
-                view.getDialog();
+                if (view.screen.getPlayable())
+                {
+                    controller.pane.addScreen((PlayableScreen) view.screen);
+                    validate();
+                }
+                else
+                {
+                    view.getDialog();
+                }
             }
+
+            for (ScreenPreview view : screens)
+                view.update();
+
+            repaint();
         }
     }
 }

@@ -27,6 +27,20 @@ public class Game extends Observable implements Serializable, VariableSet
         screens.add(startScreen);
     }
 
+    public Game(Game other)
+    {
+        screens = new ArrayList<>();
+        variables = new ArrayList<>();
+
+        for (Screen screen : other.screens)
+            screens.add(screen.copy(this));
+
+        for (Binding variable : other.variables)
+            variables.add(new Binding(variable));
+
+        startScreen = (PlayableScreen) other.startScreen.copy(this);
+    }
+
     // used for GUI elements
 
     public ArrayList<Binding> getVariables()
@@ -87,7 +101,7 @@ public class Game extends Observable implements Serializable, VariableSet
 
     public Screen getScreen(String name)
     {
-        if (name.equals("End"))
+        if (name == null || name.equals("End"))
             return null;
 
         for (Screen screen : screens)
@@ -113,7 +127,13 @@ public class Game extends Observable implements Serializable, VariableSet
                 for (Screen other : screens)
                     for (Option op : new ArrayList<>(other.getOptions()))
                         if (op.getScreen().equals(screen))
+                        {
                             other.removeOption(op.getName());
+                            if (other.getPlayable())
+                                for (ScreenComponent comp : new ArrayList<>(((PlayableScreen) other).components))
+                                    if (comp instanceof ScreenButton && ((ScreenButton) comp).getOption().equals(op.getName()))
+                                        ((PlayableScreen) other).removeComponent(comp);
+                        }
 
                 return screen;
             }
@@ -170,6 +190,7 @@ public class Game extends Observable implements Serializable, VariableSet
         return true;
     }
 
+    // TODO remove references to it in components
     public boolean removeVariable(String varName)
     {
         return variables.remove(getBinding(varName));

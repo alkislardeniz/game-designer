@@ -13,12 +13,14 @@ public class ObjectView extends ComponentView
 {
     ScreenObject obj;
     ObjectIconView icon;
+    int movingIndex;
+    int directionIndex;
 
     public ObjectView(ScreenView parent, ScreenObject obj, boolean editing)
     {
         super(parent, obj, editing);
         icon = ObjectIconView.getIcon(obj.getIcon());
-        icon.setMoving(false);
+        icon.setMoving(this, false);
 
         // copy obj for playing
         if (!editing)
@@ -57,8 +59,8 @@ public class ObjectView extends ComponentView
         {
             // if can move, change coordinates and change currentIcon to direction
 
-            icon.setMoving(true);
-            icon.setImage(dx, dy);
+            icon.setMoving(this, true);
+            icon.setImage(this, dx, dy);
 
             setX(x);
             setY(y);
@@ -76,7 +78,7 @@ public class ObjectView extends ComponentView
         else
         {
             // otherwise do not move and do not update icon
-            icon.setMoving(false);
+            icon.setMoving(this, false);
 
             return false;
         }
@@ -85,18 +87,18 @@ public class ObjectView extends ComponentView
     public void setIcon(ObjectIconView icon)
     {
         this.icon = icon;
-        icon.setMoving(false);
+        icon.setMoving(this, false);
     }
 
     public void stopMoving()
     {
-        icon.setMoving(false);
+        icon.setMoving(this, false);
     }
 
     public ImageIcon getImage()
     {
         // depends on whether the object is moving or not
-        return icon.getImage();
+        return icon.getImage(this);
     }
 
     // change coordinates for movable objects

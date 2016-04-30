@@ -25,6 +25,15 @@ public class AssignScreen extends NonPlayableScreen
     // getters, setters
     // parse newValue automatically within the setter, which takes a String
 
+    public Screen copy(Game game)
+    {
+        AssignScreen screen = new AssignScreen(game, name);
+        screen.variable = variable;
+        screen.newValue = newValue;
+
+        return screen;
+    }
+
     public Var getVariable() { return variable; }
 
     public Expr getNewValue() { return newValue; }

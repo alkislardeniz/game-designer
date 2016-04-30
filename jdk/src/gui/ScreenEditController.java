@@ -95,7 +95,7 @@ public class ScreenEditController extends JPanel implements ScreenController
                     screenView.removeComponent(temp);
 
             }
-            else if (comp != null) // && screen.canPlaceComponent(comp, rX, rY))
+            else if (comp != null && screen.contains(comp, rX, rY)) // add component to screen // && screen.canPlaceComponent(comp, rX, rY))
             {
                 comp = comp.copy();
                 comp.setPosition(new Point(rX, rY));

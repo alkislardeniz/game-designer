@@ -115,6 +115,10 @@ public class ScreenView extends JPanel implements ComponentVisitor
         {
             comp.paintComponentOn(g);
         }
+
+        // then paint movable
+        if (movable != null)
+            movable.paintComponentOn(g);
     }
 
     public void setMovable(ObjectIcon icon)
@@ -190,11 +194,12 @@ public class ScreenView extends JPanel implements ComponentVisitor
         {
             bg = view;
         }
+        else if (comp.equals(screen.getMovable()))
+        {
+            movable = view;
+        }
         else
         {
-            if (comp.equals(screen.getMovable()))
-                movable = view;
-
             comps.add(view);
         }
 

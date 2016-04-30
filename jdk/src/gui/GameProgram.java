@@ -71,12 +71,15 @@ public class GameProgram extends JFrame
         saveGame = new JMenu("Save");
         saveEditable = new JMenuItem("Create Editable Game");
         savePlayable = new JMenuItem("Create Playable Game");
+        saveEditable.setEnabled(false);
+        savePlayable.setEnabled(false);
         saveGame.add(saveEditable);
         saveGame.add(savePlayable);
         file.add(saveGame);
 
         // play game
         playGame = new JMenuItem("Play");
+        playGame.setEnabled(false);
         file.add(playGame);
 
         bar.add(file);
@@ -98,6 +101,7 @@ public class GameProgram extends JFrame
 
                 saveEditable.setEnabled(true);
                 savePlayable.setEnabled(true);
+                playGame.setEnabled(true);
             }
         });
 
@@ -230,6 +234,7 @@ public class GameProgram extends JFrame
 
                 try
                 {
+                    // TODO also save playable games from GameEditController
                     assert controller != null && controller instanceof GamePlayController;
                     new Out(new File(fileName), ((GamePlayController) controller).player).serializeFile();
                 }
@@ -247,6 +252,12 @@ public class GameProgram extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 assert controller != null;
+
+                if (controller instanceof GameEditController && !((GameEditController) controller).game.valid())
+                {
+                    // TODO print error message
+                    return;
+                }
 
                 JFrame frame = new JFrame("Game");
 

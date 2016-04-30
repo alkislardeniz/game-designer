@@ -25,6 +25,12 @@ public class Binding implements Serializable
         this.val = val;
     }
 
+    public Binding(Binding other)
+    {
+        var = other.var;
+        val = other.val;
+    }
+
     public String toString()
     {
         return var.toString();

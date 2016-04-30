@@ -42,6 +42,9 @@ public class GameEditController extends JPanel implements GameController
     // create new assignment screen
     public void createAssignScreen(String name, String varName, String newValue, String newScreen)
     {
+        if (name == null || varName == null || newValue == null || newScreen == null)
+            return;
+
         AssignScreen assign = new AssignScreen(game, name);
 
         assign.setVariable(varName);
@@ -56,6 +59,9 @@ public class GameEditController extends JPanel implements GameController
 
     public void createCondScreen(String name, String pred, String trueScreen, String falseScreen)
     {
+        if (name == null || pred == null || trueScreen == null || falseScreen == null)
+            return;
+
         CondScreen cond = new CondScreen(game, name);
 
         cond.setPred(pred);
@@ -70,6 +76,9 @@ public class GameEditController extends JPanel implements GameController
     }
     public void createPlayableScreen(String name)
     {
+        if (name == null)
+            return;
+
         PlayableScreen screen = new PlayableScreen(game, name);
 
         game.addScreen(screen);

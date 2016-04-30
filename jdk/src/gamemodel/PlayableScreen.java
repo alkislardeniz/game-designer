@@ -25,6 +25,22 @@ public class PlayableScreen extends Screen
         playable = true;
         components = new ArrayList<>();
         background = new ScreenObject(this, "BG0", ObjectIcon.BG0);
+        components.add(background);
+    }
+
+    public Screen copy(Game parent)
+    {
+        PlayableScreen screen = new PlayableScreen(parent, name);
+        screen.playable = playable;
+        screen.components = new ArrayList<>();
+
+        for (ScreenComponent comp : components)
+            screen.components.add(comp.copy(screen));
+
+        screen.movable = (ScreenObject) movable.copy(screen);
+        screen.background = (ScreenObject) background.copy(screen);
+
+        return screen;
     }
 
     public ScreenObject getBackground()
@@ -149,6 +165,12 @@ public class PlayableScreen extends Screen
             return null;
 
         return res.get(res.size() - 1);
+    }
+
+    public boolean contains(ScreenComponent comp, int x, int y)
+    {
+        return x >= 0 && y >= 0
+            && x + comp.getWidth() <= getWidth() && y + comp.getWidth() <= getHeight();
     }
 
     public ScreenObject getMovable()

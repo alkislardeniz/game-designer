@@ -23,6 +23,14 @@ public class CondScreen extends NonPlayableScreen
         pred = null; // should disallow user from running game before defining a predicate
     }
 
+    public Screen copy(Game parent)
+    {
+        CondScreen screen = new CondScreen(parent, name);
+        screen.pred = pred;
+
+        return screen;
+    }
+
     public ExprError setPred(String newText)
     {
         Expr temp = Expr.parse(newText);

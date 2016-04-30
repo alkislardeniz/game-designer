@@ -34,8 +34,8 @@ public class EditScrollPaneRight extends JPanel
         {
             if (!icon.movable)
             {
-                if (icon.getImage().getIconHeight() <= 50 && icon.getImage().getIconWidth() <= 50)
-                    iconButton = new JRadioButton(icon.toString(), icon.getImage());
+                if (icon.defaultImage.getIconHeight() <= 50 && icon.defaultImage.getIconWidth() <= 50)
+                    iconButton = new JRadioButton(icon.toString(), icon.defaultImage);
                 else
                     iconButton = new JRadioButton(icon.toString());
 

@@ -1,15 +1,22 @@
 package gamemodel;
 
+import java.io.Serializable;
+
 /**
  * Option
  * Stores information about an option of the screen.
  * @author  Ata Deniz Aydin
  * @version 08/04/16
  */
-public class Option
+public class Option implements Serializable
 {
     String name;
     Screen screen;
+
+    public Option()
+    {
+
+    }
 
     public Option(String name, Screen screen)
     {

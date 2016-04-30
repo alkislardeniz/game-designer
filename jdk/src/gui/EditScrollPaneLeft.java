@@ -43,7 +43,7 @@ public class EditScrollPaneLeft extends JPanel
         {
             if (icon.movable)
             {
-                iconButton = new JRadioButton(icon.toString(), icon.getImage());
+                iconButton = new JRadioButton(icon.toString(), icon.defaultImage);
                 iconButton.setName(icon.toString());
                 iconButton.addActionListener(new IconListener(icon.icon));
                 group.add(iconButton);

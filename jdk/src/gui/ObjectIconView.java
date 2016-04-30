@@ -83,8 +83,7 @@ public enum ObjectIconView
     ObjectIcon icon;
     ImageIcon[][] images; // contains icons to show
     boolean movable;
-    int movingIndex;
-    int directionIndex;
+    ImageIcon defaultImage;
 
     private ObjectIconView(ObjectIcon icon, String image)
     {
@@ -93,8 +92,7 @@ public enum ObjectIconView
         images = new ImageIcon[2][2];
         images[1][0] = new ImageIcon("pics/" + image);
 
-        directionIndex = 1;
-        movingIndex = 0;
+        defaultImage = images[1][0];
         movable = false;
     }
 
@@ -110,44 +108,45 @@ public enum ObjectIconView
         images[1][1] = new ImageIcon("pics/" + right);
 
         // perhaps store icons in an array or hash table
-        directionIndex = 1;
-        movingIndex = 0;
+        defaultImage = images[1][0];
         movable = true;
     }
 
-    public ImageIcon getImage()
+    public ImageIcon getImage(ObjectView view)
     {
-        return images[directionIndex][movingIndex];
+        if (!movable)
+            return defaultImage;
+        return images[view.directionIndex][view.movingIndex];
     }
 
-    public void setImage(int dx, int dy)
+    public void setImage(ObjectView view, int dx, int dy)
     {
         // turn left if dx < 0, right otherwise
-        setDirectionIndex(dx);
+        setDirectionIndex(view, dx);
     }
 
-    public boolean getMoving() { return movingIndex != 0; }
+    public boolean getMoving(ObjectView view) { return view.movingIndex != 0; }
 
-    public void setMoving(boolean moving)
+    public void setMoving(ObjectView view, boolean moving)
     {
         if (moving)
-            movingIndex = 1;
+            view.movingIndex = 1;
         else
-            movingIndex = 0;
+            view.movingIndex = 0;
     }
 
     // return 0 if standing, 1 if moving
-    private int getMovingIndex()
+    private int getMovingIndex(ObjectView view)
     {
-        return movingIndex;
+        return view.movingIndex;
     }
 
     // return 0 if left, 1 if right
-    private void setDirectionIndex(int dx)
+    private void setDirectionIndex(ObjectView view, int dx)
     {
         if (dx < 0)
-            directionIndex = 0;
+            view.directionIndex = 0;
         else
-            directionIndex = 1;
+            view.directionIndex = 1;
     }
 }

@@ -74,6 +74,10 @@ public class VariableList extends JPanel
             // add option to screen and update combo box
             String varName = nameField.getText();
 
+            if (varName == null   || valueField.getText() == null
+             || varName.isEmpty() || valueField.getText().isEmpty())
+                return;
+
             if (!game.hasBinding(varName))
                 game.addVariable(varName);
 

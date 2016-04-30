@@ -39,6 +39,13 @@ public abstract class ScreenComponent implements Serializable
 
     public abstract ScreenComponent copy();
 
+    public ScreenComponent copy(PlayableScreen parent)
+    {
+        ScreenComponent comp = copy();
+        comp.parent = parent;
+        return comp;
+    }
+
     public boolean equals(Object other)
     {
         return other != null

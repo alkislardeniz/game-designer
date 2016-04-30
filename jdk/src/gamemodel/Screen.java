@@ -33,6 +33,8 @@ public abstract class Screen implements Serializable
         options = new ArrayList<>();
     }
 
+    public abstract Screen copy(Game game);
+
     public String toString() { return name; }
 
     public String getName() { return name; }
