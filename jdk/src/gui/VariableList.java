@@ -77,9 +77,8 @@ public class VariableList extends JPanel
             if (!game.hasBinding(varName))
                 game.addVariable(varName);
 
-            game.setVariable(varName, valueField.getText());
-
-            model.fireTableStructureChanged();
+            if (game.setVariable(varName, valueField.getText()))
+                model.fireTableStructureChanged();
         }
     }
 
@@ -89,9 +88,12 @@ public class VariableList extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            game.removeVariable(model.getValueAt(table.getSelectedRow(), 0).toString());
+            if (table.getSelectedRow() >= 0)
+            {
+                game.removeVariable(model.getValueAt(table.getSelectedRow(), 0).toString());
 
-            model.fireTableStructureChanged();
+                model.fireTableStructureChanged();
+            }
         }
     }
 

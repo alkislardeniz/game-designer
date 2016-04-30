@@ -51,7 +51,7 @@ public class GameEditController extends JPanel implements GameController
         game.addScreen(assign);
         gameView.addScreen(assign);
 
-        gameView.repaint();
+        repaint();
     }
 
     public void createCondScreen(String name, String pred, String trueScreen, String falseScreen)
@@ -65,7 +65,7 @@ public class GameEditController extends JPanel implements GameController
         game.addScreen(cond);
         gameView.addScreen(cond);
 
-        gameView.repaint();
+        repaint();
 
     }
     public void createPlayableScreen(String name)
@@ -75,6 +75,6 @@ public class GameEditController extends JPanel implements GameController
         game.addScreen(screen);
         gameView.addScreen(screen);
 
-        gameView.repaint();
+        repaint();
     }
 }

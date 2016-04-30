@@ -217,7 +217,7 @@ public class EditScrollPaneLeft extends JPanel
 
             nameField = new JTextField();
             // System.out.println(parent.screen.getParent().getScreens());
-            screenField = new JComboBox<>(new Vector<>(parent.screen.getParent().getScreenNames()));
+            screenField = new JComboBox<>(new MyComboBoxModel());
 
             panel.add(new JLabel("Name: "));
             panel.add(nameField);
@@ -241,9 +241,9 @@ public class EditScrollPaneLeft extends JPanel
             public void actionPerformed(ActionEvent e)
             {
                 // add option to screen and update combo box
-                parent.screen.addOption(nameField.getText(), parent.screen.getParent().getScreen((String) screenField.getSelectedItem()));
-
-                model.fireTableStructureChanged();
+                if (parent.screen.addOption(nameField.getText(),
+                                            parent.screen.getParent().getScreen((String) screenField.getSelectedItem())))
+                    model.fireTableStructureChanged();
             }
         }
 
@@ -253,9 +253,12 @@ public class EditScrollPaneLeft extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                parent.screen.removeOption((String) model.getValueAt(table.getSelectedRow(), 0));
+                if (table.getSelectedRow() >= 0)
+                {
+                    parent.screen.removeOption((String) model.getValueAt(table.getSelectedRow(), 0));
 
-                model.fireTableStructureChanged();
+                    model.fireTableStructureChanged();
+                }
             }
         }
 
@@ -299,6 +302,31 @@ public class EditScrollPaneLeft extends JPanel
                     return parent.screen.getParent().getScreenName(option.getScreen());
 
                 return null;
+            }
+        }
+
+        class MyComboBoxModel extends DefaultComboBoxModel<String>
+        {
+            public String getElementAt(int index)
+            {
+                try
+                {
+                    return parent.screen.getParent().getScreenNames().get(index);
+                }
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    return null;
+                }
+            }
+
+            public int getSize()
+            {
+                return parent.screen.getParent().getScreenNames().size();
+            }
+
+            public int getIndexOf(Object anObject)
+            {
+                return parent.screen.getParent().getScreenNames().indexOf(anObject);
             }
         }
     }
