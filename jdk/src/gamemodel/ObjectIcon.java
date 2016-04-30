@@ -12,7 +12,6 @@ public enum ObjectIcon
     MEGAMAN (1, 1, true),
     MARIO   (1, 1, true),
     COP     (1, 1, true),
-
     //Non movable backgrounds
     BG0     (),
     BG      (),
