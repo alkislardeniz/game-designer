@@ -30,9 +30,17 @@ public class ScreenObject extends ScreenComponent
     // getters, setters
 
     @Override
-    public boolean contains(int x, int y)
+    public boolean isCompatible(ScreenComponent other, int x, int y)
     {
-        return !collidable && super.contains(x, y);
+        if (other instanceof ScreenObject)
+        {
+            if (((ScreenObject) other).isMovable())
+                return collidable;
+            if (((ScreenObject) other).collidable)
+                return isMovable();
+        }
+
+        return super.isCompatible(other, x, y);
     }
 
     public ScreenComponent copy()

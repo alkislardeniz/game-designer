@@ -95,7 +95,7 @@ public class ButtonTabComponent extends JPanel {
             //Close the proper tab by clicking the button
             addActionListener(this);
         }
-        EditTab editTab = new EditTab("test");
+
         public void actionPerformed(ActionEvent e) {
             int i = pane.indexOfTabComponent(ButtonTabComponent.this);
             if (i != -1) {

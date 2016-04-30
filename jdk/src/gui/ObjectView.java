@@ -25,6 +25,7 @@ public class ObjectView extends ComponentView
         // copy obj for playing
         if (!editing)
             obj = new ScreenObject(obj); // parent.parent.getPlayer().getSharedObject(obj);
+
         this.obj = obj;
     }
 
