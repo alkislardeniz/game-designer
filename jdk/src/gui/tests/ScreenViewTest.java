@@ -29,20 +29,17 @@ public class ScreenViewTest
         ScreenLabel label = new ScreenLabel(screen, "label", "$x + 5 = $(x + 5)");
         ScreenButton button = new ScreenButton(screen, "hello");
         ScreenObject object = new ScreenObject(screen, "megaman", ObjectIcon.MEGAMAN);
-        ScreenObject tree = new ScreenObject(screen, "tree", ObjectIcon.SOFA);
         ScreenObject bg = new ScreenObject(screen, "bg", ObjectIcon.BG);
 
 
         button.setPosition(new Point(1, 1));
         object.setPosition(new Point(0, 0));
         label.setPosition(new Point(7, 7));
-        tree.setPosition(new Point(3, 4));
 
         screen.addComponent(bg);
         screen.addComponent(button);
         screen.addComponent(object);
         screen.addComponent(label);
-        screen.addComponent(tree);
 
         screen.setMovable(object);
 
