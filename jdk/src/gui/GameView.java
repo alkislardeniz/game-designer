@@ -70,6 +70,10 @@ public class GameView extends JPanel
         repaint();
     }
 
+    // TODO
+    // - Link each ScreenPreview to its predecessors and successors
+    // - Draw each newly completed line while adding previews, updating if necessary
+    // - Take x offset of the line from a queue,
 
     public class PreviewListener extends MouseAdapter
     {
