@@ -200,7 +200,7 @@ public class GameProgram extends JFrame
 
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
-                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".dadamsave";
+                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".playable";
                     System.out.println(fileName);
                 }
 
@@ -230,7 +230,7 @@ public class GameProgram extends JFrame
 
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
-                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".dadamsave";
+                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".playable";
                     System.out.println(fileName);
                 }
 
