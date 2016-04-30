@@ -11,6 +11,7 @@ import java.io.File;
 /**
  * Program to be run, creates/opens/saves games and plays the open game.
  * @author Mehmet Can Altuntaş
+ * @author Ata Deniz Aydın
  * Created by admin on 4/28/16.
  */
 public class GameProgram extends JFrame
@@ -47,6 +48,7 @@ public class GameProgram extends JFrame
         JMenuItem playGame; // lets user to play the game, part of file menu
 
         JMenu about;
+        JMenuItem aboutUs;
 
 
         bar = new JMenuBar();
@@ -292,6 +294,22 @@ public class GameProgram extends JFrame
         });
 
         // file menu ends
+
+        // about menu
+        about = new JMenu("About");
+        aboutUs = new JMenuItem("About");
+        aboutUs.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String aboutStr = "Dadam - Deniz Ata Demir Akant Mehmet \n Lets you to design j-rpg games" +
+                 "\n The only thing that restricts you is your imagination " +
+                        "Part of Bilkent's CS 102 course";
+                JOptionPane.showMessageDialog(GameProgram.this, aboutStr, "About Us", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        about.add(aboutUs);
+        bar.add(about);
 
         setJMenuBar(bar);
 

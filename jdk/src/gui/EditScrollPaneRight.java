@@ -26,7 +26,7 @@ public class EditScrollPaneRight extends JPanel
 
         group = new ButtonGroup();
         scrollPanel = new JPanel();
-        scrollPanel.setLayout(new GridLayout(ObjectIconView.values().length, 1));
+        scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
 
         //Add buttons to group and panel
 
