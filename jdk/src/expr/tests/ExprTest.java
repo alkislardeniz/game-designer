@@ -1,5 +1,7 @@
-package expr;
+package expr.tests;
 
+import expr.Expr;
+import expr.Var;
 import gamemodel.*;
 
 import java.util.Observable;
