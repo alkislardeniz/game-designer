@@ -29,7 +29,6 @@ public class EditScrollPaneRight extends JPanel
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
 
         //Add buttons to group and panel
-
         for (ObjectIconView icon : ObjectIconView.values())
         {
             if (!icon.movable)
