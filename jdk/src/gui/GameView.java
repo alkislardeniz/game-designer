@@ -114,6 +114,7 @@ public class GameView extends JPanel
             {
                 removePreview(view);
                 validate();
+                controller.repaint();
             }
             else
             {
