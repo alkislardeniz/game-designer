@@ -138,8 +138,7 @@ public class GameProgram extends JFrame
                     saveEditable.setEnabled(true);
                     savePlayable.setEnabled(true);
                     playGame.setEnabled(true);
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     // report error
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
@@ -187,7 +186,8 @@ public class GameProgram extends JFrame
             }
         });
 
-        saveEditable.addActionListener(new ActionListener() {
+        saveEditable.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -208,8 +208,7 @@ public class GameProgram extends JFrame
                 {
                     assert controller != null && controller instanceof GameEditController;
                     new Out(new File(fileName), ((GameEditController) controller).game).serializeFile();
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
 
@@ -217,7 +216,8 @@ public class GameProgram extends JFrame
             }
         });
 
-        savePlayable.addActionListener(new ActionListener() {
+        savePlayable.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -236,11 +236,8 @@ public class GameProgram extends JFrame
 
                 try
                 {
-                    // TODO also save playable games from GameEditController
-                    assert controller != null && controller instanceof GamePlayController;
-                    new Out(new File(fileName), ((GamePlayController) controller).player).serializeFile();
-                }
-                catch (Exception ex)
+                    new Out(new File(fileName), getPlayer()).serializeFile();
+                } catch (Exception ex)
                 {
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
 
@@ -255,7 +252,9 @@ public class GameProgram extends JFrame
             {
                 assert controller != null;
 
-                if (controller instanceof GameEditController && !((GameEditController) controller).game.valid())
+                GamePlayer player = getPlayer();
+
+                if (player == null)
                 {
                     // TODO print error message
                     return;
@@ -267,13 +266,7 @@ public class GameProgram extends JFrame
                     @Override
                     public GamePlayer getPlayer()
                     {
-                        if (controller == null)
-                            return null;
-
-                        if (controller instanceof GamePlayController)
-                            return ((GamePlayController) controller).player;
-
-                        return new GamePlayer(((GameEditController) controller).game);
+                        return player;
                     }
 
                     // close controller if game over
@@ -313,6 +306,31 @@ public class GameProgram extends JFrame
 
         setJMenuBar(bar);
 
+    }
+
+    public GamePlayer getPlayer()
+    {
+        GamePlayer player;
+
+        if (controller instanceof GameEditController)
+        {
+            if (((GameEditController) controller).game.valid())
+            {
+                player = new GamePlayer((((GameEditController) controller).game));
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else
+        {
+            assert controller instanceof GamePlayController;
+
+            player = ((GamePlayController) controller).player;
+        }
+
+        return player;
     }
 
     public static void main(String[] args)
