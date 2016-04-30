@@ -115,7 +115,7 @@ public class GameProgram extends JFrame
                 String fileName = "";
 
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam Editable File", "editable");
                 chooser.setFileFilter(filter);
                 int tmp = chooser.showOpenDialog(GameProgram.this);
 
@@ -154,7 +154,7 @@ public class GameProgram extends JFrame
                 String fileName = "";
 
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam Playable File", "playable");
                 chooser.setFileFilter(filter);
                 int tmp = chooser.showOpenDialog(GameProgram.this);
 
@@ -194,7 +194,7 @@ public class GameProgram extends JFrame
                 String fileName = "";
 
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam Editable File", "editable");
                 chooser.setFileFilter(filter);
                 int tmp = chooser.showSaveDialog(GameProgram.this);
 
@@ -224,7 +224,7 @@ public class GameProgram extends JFrame
                 String fileName = "";
 
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadamsave File", "dadamsave");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam Playable Game", "playable");
                 chooser.setFileFilter(filter);
                 int tmp = chooser.showSaveDialog(GameProgram.this);
 
@@ -296,7 +296,8 @@ public class GameProgram extends JFrame
             public void actionPerformed(ActionEvent e) {
                 String aboutStr = "Dadam - Deniz Ata Demir Akant Mehmet \n Lets you to design j-rpg games" +
                  "\n The only thing that restricts you is your imagination " +
-                        "Part of Bilkent's CS 102 course";
+                        "\n \n Part of Bilkent's CS 102 course";
+
                 JOptionPane.showMessageDialog(GameProgram.this, aboutStr, "About Us", JOptionPane.INFORMATION_MESSAGE);
             }
         });
