@@ -6,7 +6,11 @@ import java.io.Serializable;
 import expr.*;
 
 /**
- * Created by admin on 4/3/16.
+ * Game
+ * Object for a game.
+ * @author Ata Deniz Aydin
+ * @author Demir Topaktas
+ * @version 30/04/16
  */
 public class Game extends Observable implements Serializable, VariableSet
 {
@@ -190,10 +194,19 @@ public class Game extends Observable implements Serializable, VariableSet
         return true;
     }
 
-    // TODO remove references to it in components
     public boolean removeVariable(String varName)
     {
-        return variables.remove(getBinding(varName));
+        if (!variables.remove(getBinding(varName)))
+            return false;
+
+        // remove references to it in components
+        for (Screen screen : screens)
+            if (screen.getPlayable())
+                for (ScreenComponent comp : new ArrayList<>(((PlayableScreen) screen).components))
+                    if (comp instanceof ScreenTextBox && ((ScreenTextBox) comp).variable.getName().equals(varName))
+                        ((PlayableScreen) screen).removeComponent(comp);
+
+        return true;
     }
 
     public boolean hasBinding(String varName)

@@ -57,7 +57,6 @@ public class GameView extends JPanel
         repaint();
     }
 
-    // TODO also remove tab from GameEditTabbedPane
     public void removePreview(ScreenPreview view)
     {
         if (view.screen.equals(game.getStartScreen()))
@@ -66,6 +65,7 @@ public class GameView extends JPanel
         screens.remove(view);
         panel.remove(view);
         game.removeScreen(view.screen.getName());
+        controller.pane.pane.removeTabAt(controller.pane.pane.indexOfTab(view.screen.getName()));
 
         repaint();
     }
