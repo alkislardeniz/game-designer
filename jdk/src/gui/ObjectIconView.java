@@ -28,6 +28,8 @@ public enum ObjectIconView
     TILE    (ObjectIcon.TILE, "tile.png"),
     TILE2    (ObjectIcon.TILE2, "tile2.png"),
     TILE3    (ObjectIcon.TILE3, "tile3.png"),
+    TILE4    (ObjectIcon.TILE4, "tile4.png"),
+    TILE5    (ObjectIcon.TILE6, "tile4.png"),
     BLOCK   (ObjectIcon.BLOCK, "block.png"),
     WALL    (ObjectIcon.WALL, "wall.png"),
     WALL2   (ObjectIcon.WALL2, "wall2.png"),

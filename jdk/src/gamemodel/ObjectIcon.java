@@ -26,6 +26,8 @@ public enum ObjectIcon
     TILE    (1, 1, false, true),
     TILE2    (1, 1, false, true),
     TILE3    (1, 1, false, true),
+    TILE4    (1, 1, false, true),
+    TILE5    (1, 1, false, true),
     BLOCK   (1, 1, false),
     WALL    (1, 1, false),
     WALL2   (1, 1, false),
