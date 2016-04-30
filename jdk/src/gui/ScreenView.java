@@ -54,6 +54,8 @@ public class ScreenView extends JPanel implements ComponentVisitor
         removeAll();
 
         comps = new ArrayList<>();
+        bg = null;
+        movable = null;
 
         for (ScreenComponent comp : screen.getComponents())
             comp.accept(this);
