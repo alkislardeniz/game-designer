@@ -21,4 +21,7 @@ public class GraphView<E>
     // TODO add and remove E, draw each GraphEdge<E> between two Es based on first available slot in queue
     // Perhaps also relegate elements to the sides based on position of predecessor
     // Infer position of successor based on positions of other elements
+
+    // Better yet, use neighborhoods that fill topmost available space, going left if right is full,
+    // right if left is full, and also count lines as filling a neighborhood
 }
