@@ -46,6 +46,9 @@ public class GameProgram extends JFrame
         JMenuItem savePlayable; // saves playable games, part of saveGame menu
         JMenuItem playGame; // lets user to play the game, part of file menu
 
+        JMenu about;
+
+
         bar = new JMenuBar();
 
         // file menu
@@ -191,7 +194,7 @@ public class GameProgram extends JFrame
 
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
-                    fileName = chooser.getSelectedFile().getAbsolutePath();
+                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".dadamsave";
                     System.out.println(fileName);
                 }
 
@@ -221,7 +224,7 @@ public class GameProgram extends JFrame
 
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
-                    fileName = chooser.getSelectedFile().getAbsolutePath();
+                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".dadamsave";
                     System.out.println(fileName);
                 }
 
