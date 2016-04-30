@@ -42,7 +42,15 @@ public class ScreenButton extends ScreenComponent
     public void setText(String text) { this.text = text; }
 
     public boolean getVisible() { return visible; }
-    public void setVisible(boolean visible) { this.visible = visible; }
+    public void setVisible(boolean visible)
+    {
+        this.visible = visible;
+
+        if (visible)
+            width = 3;
+        else
+            width = 1;
+    }
 
     // call parent screen if clicked
     // called by game's action listeners

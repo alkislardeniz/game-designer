@@ -41,6 +41,7 @@ public class EditScrollPaneRight extends JPanel
                 iconButton.setName(icon.toString());
                 iconButton.addActionListener(new ButtonListener(icon.icon));
 
+                iconButton.setMinimumSize(new Dimension(50, 50));
                 group.add(iconButton);
                 scrollPanel.add(iconButton);
             }
