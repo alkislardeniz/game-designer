@@ -18,7 +18,7 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
 {
     Game game;
     Screen currentScreen;
-    List<Binding> varBinds;
+    List<Binding> binds;
 
     // for serialization, instantiate everything as null
     public GamePlayer()
@@ -31,7 +31,7 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
     {
         this.game = game;
         currentScreen = game.startScreen;
-        varBinds = new ArrayList<Binding>(game.variables);
+        binds = new ArrayList<Binding>(game.variables);
 
         // call();
     }
@@ -85,7 +85,7 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
 
     public Binding getBinding(Var var)
     {
-        for (Binding bind : varBinds)
+        for (Binding bind : binds)
             if (bind.getVar().equals(var))
                 return bind;
 

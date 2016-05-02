@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
  */
 class BinaryOpExpr extends Expr
 {
-    // WIP
     public static Expr parse(String parseString)
     {
         Expr temp;
