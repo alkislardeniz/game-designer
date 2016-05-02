@@ -24,8 +24,17 @@ public class ScreenPlayController extends JPanel implements ScreenController
         view = new ScreenView(this, screen);
         add(view);
 
-        setPreferredSize(new Dimension(504, 504));
-        // setFocusable(true);
+        // setPreferredSize(new Dimension(504, 504));
+        // view.setFocusable(true);
+        addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                view.setFocusable(true);
+                view.requestFocusInWindow();
+            }
+        });
     }
 
     public GamePlayer getPlayer()

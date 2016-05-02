@@ -153,6 +153,7 @@ public class GameProgram extends JFrame
                 } catch (Exception ex)
                 {
                     // report error
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -184,6 +185,7 @@ public class GameProgram extends JFrame
                 }
                 catch (Exception ex)
                 {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -214,6 +216,7 @@ public class GameProgram extends JFrame
                     new Out(new File(fileName), controller.game).serializeFile();
                 } catch (Exception ex)
                 {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
 
                 }
@@ -243,6 +246,7 @@ public class GameProgram extends JFrame
                     new Out(new File(fileName), getPlayer()).serializeFile();
                 } catch (Exception ex)
                 {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
 
                 }

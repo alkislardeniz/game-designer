@@ -34,15 +34,12 @@ public class ScreenObject extends ScreenComponent
     @Override
     public boolean isCompatible(ScreenComponent other, int x, int y)
     {
+        boolean override = collidable;
+        
         if (other instanceof ScreenObject)
-        {
-            if (((ScreenObject) other).isMovable())
-                return collidable;
-            if (((ScreenObject) other).collidable)
-                return isMovable();
-        }
+            override = override || ((ScreenObject) other).collidable;
 
-        return super.isCompatible(other, x, y);
+        return override || super.isCompatible(other, x, y);
     }
 
     public ScreenComponent copy()
