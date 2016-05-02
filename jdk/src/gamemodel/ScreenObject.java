@@ -35,7 +35,7 @@ public class ScreenObject extends ScreenComponent
     public boolean isCompatible(ScreenComponent other, int x, int y)
     {
         boolean override = collidable;
-        
+
         if (other instanceof ScreenObject)
             override = override || ((ScreenObject) other).collidable;
 

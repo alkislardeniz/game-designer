@@ -152,10 +152,7 @@ public class PlayableScreen extends Screen
         // check for compatibility
         for (ScreenComponent comp : components)
             if (comp != newComp && !comp.isCompatible(newComp, x, y))
-            {
-                System.out.println(comp.position.getX() + "," + comp.position.getY() + " vs. " + x + "," + y);
                 return false;
-            }
 
         return true;
     }
