@@ -85,8 +85,8 @@ public abstract class ScreenComponent implements Serializable
     {
         return x >= position.getX()
             && x < position.getX() + width
-            && y <= position.getY()
-            && y > position.getY() - height;
+            && y >= position.getY()
+            && y < position.getY() + height;
     }
 
     // what to do in leaving a screen, nothing by default
