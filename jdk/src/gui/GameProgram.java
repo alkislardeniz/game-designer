@@ -25,7 +25,7 @@ public class GameProgram extends JFrame
 
     public GameProgram()
     {
-        super("Game");
+        super("Dadam Game Designer");
 
         JLabel label;
 
@@ -127,7 +127,7 @@ public class GameProgram extends JFrame
                 String fileName = "";
 
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam Editable File", "editable");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam editable file", "editable");
                 chooser.setFileFilter(filter);
                 int tmp = chooser.showOpenDialog(GameProgram.this);
 
@@ -166,7 +166,7 @@ public class GameProgram extends JFrame
                 String fileName = "";
 
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam Playable File", "playable");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("dadam playable file", "playable");
                 chooser.setFileFilter(filter);
                 int tmp = chooser.showOpenDialog(GameProgram.this);
 

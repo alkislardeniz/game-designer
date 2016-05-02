@@ -132,8 +132,10 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
                         g.drawLine(x + offset, y, x + offset, nextY);
                         g.drawLine(x + offset, nextY, x, nextY);
 
+                        int width = g.getFontMetrics().stringWidth(op.getName());
+
                         // draw name
-                        g.drawString(op.getName(), x + 50 * (int) Math.signum(offset), y - 10);
+                        g.drawString(op.getName(), x + offset - width * (int) (Math.signum(offset) + 1) / 2, y - 5);
 
                         // update offset
                         offset = -(offset + 25);
