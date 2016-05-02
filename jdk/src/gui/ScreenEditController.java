@@ -20,15 +20,12 @@ public class ScreenEditController extends JPanel implements ScreenController
     EditScrollPaneRight scrollPaneRight;
     EditScrollPaneLeft scrollPaneLeft;
     EditScreenOptions screenOptions;
-    ComponentListener listener;
     ScreenComponent comp;
 
     public ScreenEditController(PlayableScreen screen)
     {
         this.screen = screen;
         game = screen.getParent();
-
-        listener = new ComponentListener();
 
         screenView = new ScreenView(this, screen);
         add(screenView);
@@ -49,7 +46,7 @@ public class ScreenEditController extends JPanel implements ScreenController
         // have screenView at the center of the panel,
         // and a pane of components to add to the left
         screenView.addMouseListener(new ComponentListener());
-        screenView.setFocusable(true);
+        // screenView.setFocusable(true);
     }
 
     public GamePlayer getPlayer()

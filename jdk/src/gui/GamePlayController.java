@@ -26,6 +26,7 @@ public class GamePlayController extends JPanel implements Observer
         controller = new ScreenPlayController(player, currentScreen);
         player.addObserver(this);
         add(controller);
+        // setFocusable(true);
     }
 
     public GamePlayController(PlayerWindow parent)
@@ -37,6 +38,7 @@ public class GamePlayController extends JPanel implements Observer
         controller = new ScreenPlayController(player, currentScreen);
         player.addObserver(this);
         add(controller);
+        // setFocusable(true);
     }
 
     @Override
