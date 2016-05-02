@@ -31,7 +31,10 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
     {
         this.game = game;
         currentScreen = game.startScreen;
-        binds = new ArrayList<Binding>(game.variables);
+        binds = new ArrayList<>();
+
+        for (Binding bind : game.variables)
+            binds.add(new Binding(bind));
 
         // call();
     }
