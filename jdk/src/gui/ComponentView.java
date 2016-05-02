@@ -1,40 +1,49 @@
 package gui;
 
 import gamemodel.*;
-import javax.swing.*;
 import java.awt.*;
 
 /**
- * Represents screen component graphically
- * Created by admin on 4/12/16.
+ * Represents a screen component graphically.
+ * @author  Ata Deniz Aydin
+ * @version 12/04/16
  */
-public abstract class ComponentView // extends JComponent
+public abstract class ComponentView
 {
+    ScreenView parent;
     ScreenComponent comp;
+    boolean editing; // whether the component is editable or not
+    int x, y;
 
-    public ComponentView(ScreenComponent comp)
+    public ComponentView(ScreenView parent, ScreenComponent comp, boolean editing)
     {
+        this.parent = parent;
         this.comp = comp;
+        this.editing = editing;
 
-        // GUI operations about the representation of the component
-        // probably through subclasses for each type of component
-
-        // TODO find a way to move objects inside the screen without changing their starting position in the game
+        x = (int) comp.getPosition().getX();
+        y = (int) comp.getPosition().getY();
     }
 
     public ScreenComponent getComponent() { return comp; }
 
-    // called from constructor of screenview
-    public abstract void addComponent(ScreenView scr);
-
     // draw component on screen
-    public abstract void paintComponentOn(Graphics g, ScreenView scr);
+    public abstract void paintComponentOn(Graphics g);
 
-    public int getX() { return (int) comp.getPosition().getX(); }
+    public int getX() { return x; }
 
-    public int getY() { return (int) comp.getPosition().getY(); }
+    public int getY() { return y; }
 
-    public void setX(int x) { comp.getPosition().setLocation(x, getY()); }
+    // change position of component if editing
+    public void setX(int x)
+    {
+        // comp.getPosition().setLocation(x, getY());
+        this.x = x;
+    }
 
-    public void setY(int y) { comp.getPosition().setLocation(getX(), y); }
+    public void setY(int y)
+    {
+        // comp.getPosition().setLocation(getX(), y);
+        this.y = y;
+    }
 }

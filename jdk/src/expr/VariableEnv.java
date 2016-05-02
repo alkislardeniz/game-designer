@@ -9,5 +9,5 @@ package expr;
 public interface VariableEnv
 {
     public ExprValue getVariable(Var var);
-    public void addVariable(Var var, Expr value);
+    public boolean addVariable(Var var, Expr value);
 }

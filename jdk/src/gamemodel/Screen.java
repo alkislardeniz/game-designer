@@ -1,6 +1,5 @@
 package gamemodel;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -15,10 +14,9 @@ public abstract class Screen implements Serializable
 {
     // name already defined inside game
     String name;
-    String description;
-    Game parent; // why?
-    List<Option> options; // searched by name
-    int optionLimit = -1; // affects add, changed for AssignScreen and CondScreen
+    Game parent;
+    ArrayList<Option> options; // searched by name
+    int optionLimit = 4; // affects add, changed for AssignScreen and CondScreen
     boolean playable; // true for PlayableScreen, used to determine type w/o calling instanceof
 
     // for serialization, set everything to null
@@ -32,42 +30,101 @@ public abstract class Screen implements Serializable
     {
         this.parent = parent;
         this.name = name;
-        options = new ArrayList<Option>();
+        options = new ArrayList<>();
     }
+
+    public abstract Screen copy(Game game);
+
+    public String toString() { return name; }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public boolean getPlayable() { return playable; }
 
     public Game getParent() { return parent; }
 
     // called from player, either responds directly or waits for input from GUI interface
-    public abstract void fromPlayer(GamePlayer player);
+    public void fromPlayer(GamePlayer player)
+    {
+
+    }
 
     // calls player after updating its state, sets new screen of player to option,
     // then calls the player's call() method
     // can be called either from fromPlayer or from GUI action listeners
     public void toPlayer(GamePlayer player, Option option)
     {
-        // TODO
+        if (player != null)
+        {
+            player.setCurrentScreen(option.getScreen());
+            player.call();
+        }
     }
 
     // getOptions() to be called from editor
-    protected List<Option> getOptions()
+    public ArrayList<Option> getOptions()
     {
-        return null;
-    } // TODO
+        return options;
+    }
+
+    public void setOption(String name, Screen screen)
+    {
+        Option op = getOption(name);
+        if (op != null)
+            op.setScreen(screen);
+    }
 
     public boolean addOption(String name, Screen screen)
     {
-        return false;
-    } // TODO
+        return (optionLimit == -1 || options.size() <= optionLimit)
+            && options.add(new Option(name, screen));
+    }
+
+    public Option getOption(String name)
+    {
+        for (Option op : options)
+            if (op.getName().equals(name))
+                return op;
+        return null;
+    }
+
+    public boolean hasOption(String name)
+    {
+        return getOption(name) != null;
+    }
 
     public Screen getScreenWithOption(String name)
     {
+        for (Option op : options)
+            if (op.getName().equals(name))
+                return op.getScreen();
         return null;
-    } // TODO
+    }
 
     public boolean removeOption(String name)
     {
+        for (Option op : options)
+        {
+            if (op.getName().equals(name))
+            {
+                options.remove(op);
+                return true;
+            }
+        }
         return false;
-    } // TODO
+    }
 
     // getter, setter for playable etc.
+
+    public boolean valid()
+    {
+        for (Option op : options)
+            if (op.getScreen() != null && !parent.screens.contains(op.getScreen()))
+                return false;
+        return true;
+    }
+
+    public abstract void accept(ScreenVisitor visitor);
 }

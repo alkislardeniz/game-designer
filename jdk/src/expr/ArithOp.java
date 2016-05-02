@@ -1,12 +1,15 @@
 package expr;
 
+import java.io.Serializable;
+import java.lang.Math;
+
 /**
  * ArithOp
  * Represents arithmetic operations on numbers.
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-enum ArithOp implements BinaryOp
+enum ArithOp implements BinaryOp, Serializable
 {
     ADD ("+") {
         protected Number applyOp(double arg1, double arg2)
@@ -37,9 +40,23 @@ enum ArithOp implements BinaryOp
         {
             return arg1 % arg2;
         }
-    };
+    },
+    MAX ("MAX") {
+        protected Number applyOp(double arg1, double arg2)
+        {
+            return Math.max(arg1, arg2);
+        }
+    },
+    MIN ("MIN") {
+        protected Number applyOp(double arg1, double arg2)
+        {
+            return Math.min(arg1, arg2);
+        }
+    };;
 
     String name;
+
+    private ArithOp() {}
 
     private ArithOp(String name) { this.name = name; }
 

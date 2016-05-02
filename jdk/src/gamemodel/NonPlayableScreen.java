@@ -24,4 +24,6 @@ public abstract class NonPlayableScreen extends Screen
     }
 
     public abstract Option getOption(GamePlayer player);
+
+    public abstract String getText();
 }

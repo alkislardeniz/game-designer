@@ -7,66 +7,120 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by admin on 4/12/16.
+ * Represents a ScreenObject graphically.
+ * @author  Deniz Alkislar
+ * @author  Ata Deniz Aydin
+ * @version 12/04/16
  */
 public class ObjectView extends ComponentView
 {
     ScreenObject obj;
-    ObjectIcon icon;
-    boolean moving;
+    ObjectIconView icon;
+    int movingIndex;
+    int directionIndex;
 
-    public ObjectView(ScreenObject obj)
+    public ObjectView(ScreenView parent, ScreenObject obj, boolean editing)
     {
-        super(obj);
+        super(parent, obj, editing);
+        icon = ObjectIconView.getIcon(obj.getIcon());
+        icon.setMoving(this, false);
+
+        // copy obj for playing
+        if (!editing)
+            obj = new ScreenObject(obj); // parent.parent.getPlayer().getSharedObject(obj);
+
         this.obj = obj;
-        moving = false;
     }
 
-    public void addComponent(ScreenView scr) {}
-
     // draw object on screen
-    public void paintComponentOn(Graphics g, ScreenView scr)
+    public void paintComponentOn(Graphics g)
     {
         // handle the icon work on this class as well
-        getImage().paintIcon(scr, g, getX(), getY());
+        getImage().paintIcon(parent, g, getX() * parent.IMAGE_WIDTH, getY() * parent.IMAGE_HEIGHT);
     }
 
     // try to move object, changing position and icon's current image
-    public boolean move(int direction, int jump)
+    public boolean move(int direction)
     {
-        int x = 0, y = 0;
+        int x, y, dx, dy;
+
+        dx = 0;
+        dy = 0;
 
         if (direction == KeyEvent.VK_UP)
-            y = -1;
+            dy--;
         if (direction == KeyEvent.VK_DOWN)
-            y = 1;
+            dy++;
         if (direction == KeyEvent.VK_LEFT)
-            x = -1;
+            dx--;
         if (direction == KeyEvent.VK_RIGHT)
-            x = 1;
+            dx++;
+
+        x = getX() + dx;
+        y = getY() + dy;
 
         // check compatibility in obj's parent
         if (obj.getParent().canPlaceComponent(obj, x, y))
         {
-            // if can move, change coordinates and change currentIcon to direction
+            // if object can move, change coordinates and change currentIcon to direction
 
-            icon.setImage(x, y);
-            moving = true;
+            icon.setMoving(this, true);
+            icon.setImage(this, dx, dy);
+
+            setX(x);
+            setY(y);
+
+            // check if the movable object goes in front of a button (problem: putting button on top of object)
+            if (parent.parent.getPlayer() != null)
+            {
+                for (ScreenComponent comp : parent.screen.getComponents())
+                    if (comp instanceof ScreenButton && !((ScreenButton) comp).getVisible() && comp.contains(x, y))
+                        ((ScreenButton) comp).clicked(parent.parent.getPlayer());
+            }
 
             return true;
         }
         else
         {
-            // otherwise change it to leftStand or rightStand
-            moving = false;
+            // otherwise do not move and do not update icon
+            icon.setMoving(this, false);
 
             return false;
         }
     }
 
+    public void setIcon(ObjectIconView icon)
+    {
+        this.icon = icon;
+        icon.setMoving(this, false);
+    }
+
+    public void stopMoving()
+    {
+        icon.setMoving(this, false);
+    }
+
     public ImageIcon getImage()
     {
         // depends on whether the object is moving or not
-        return icon.getImage();
+        return icon.getImage(this);
+    }
+
+    // change coordinates for movable objects
+
+    @Override
+    public void setX(int x)
+    {
+        super.setX(x);
+        if (icon.movable)
+            obj.getPosition().setLocation(x, getY());
+    }
+
+    @Override
+    public void setY(int y)
+    {
+        super.setY(y);
+        if (icon.movable)
+            obj.getPosition().setLocation(getX(), y);
     }
 }

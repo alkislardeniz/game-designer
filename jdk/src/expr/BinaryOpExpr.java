@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
  */
 class BinaryOpExpr extends Expr
 {
-    // WIP
     public static Expr parse(String parseString)
     {
         Expr temp;
@@ -91,6 +90,10 @@ class BinaryOpExpr extends Expr
             start = start + c;
             parseString = parseString.substring(1);
         } while (!parseString.isEmpty() && (i != 0 || !parseString.matches(regex + ".*")));
+
+        // if parentheses unmatched
+        if (i != 0)
+            return null;
 
         if (parseString.isEmpty())
             return new String[] {start};

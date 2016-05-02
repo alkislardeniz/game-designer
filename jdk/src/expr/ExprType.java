@@ -1,12 +1,14 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * ExprType
  * Enumerated type for expressions.
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-enum ExprType
+public enum ExprType implements Serializable
 {
     BOOLEAN (false),
     INTEGER (0) {
@@ -17,17 +19,17 @@ enum ExprType
     },
     DOUBLE (0),
     STRING (""),
-    NONE (null),
-    ALL (null);
+    ALL    (null),
+    NONE   (null);
 
-    Object initialValue;
+    Serializable initialValue;
 
-    ExprType(Object init)
+    private ExprType(Serializable init)
     {
         initialValue = init;
     }
 
-    public Object getInitialValue()
+    public Serializable getInitialValue()
     {
         return initialValue;
     }

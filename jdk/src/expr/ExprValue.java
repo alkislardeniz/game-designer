@@ -1,17 +1,19 @@
 package expr;
 
+import java.io.Serializable;
+
 /**
  * ExprValue
  * Value bound to a type.
  * @author  Ata Deniz Aydin
  * @version 03/04/16
  */
-public class ExprValue
+public class ExprValue implements Serializable
 {
-    Object   value;
+    Serializable value;
     ExprType type;
 
-    public ExprValue(Object value, ExprType type)
+    public ExprValue(Serializable value, ExprType type)
     {
         this.value = value;
         this.type  = type;

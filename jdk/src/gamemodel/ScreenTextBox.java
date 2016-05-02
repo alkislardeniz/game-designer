@@ -20,9 +20,24 @@ public class ScreenTextBox extends ScreenComponent
 
         variable = null;
         text = null;
+
+        width = 3;
+    }
+
+    public ScreenTextBox(ScreenTextBox other)
+    {
+        super(other);
+        variable = other.variable;
+        text = other.text;
+        width = 3;
     }
 
     // getters, setters go here
+
+    public ScreenComponent copy()
+    {
+        return new ScreenTextBox(this);
+    }
 
     public boolean setVariable(String newVar)
     {
@@ -36,6 +51,7 @@ public class ScreenTextBox extends ScreenComponent
     }
 
     // called from GUI, perhaps disable exiting from screen until a valid expression is added
+    // one possible setback: dealing with literal text with quotes
     public ExprError setText(String newText)
     {
         Expr temp = Expr.parse(newText);
@@ -55,6 +71,18 @@ public class ScreenTextBox extends ScreenComponent
     @Override
     public void leavingScreen(GamePlayer player)
     {
-        player.addVariable(variable, text);
+        if (valid() && text != null && text.valid(parent.parent) && text.getType(parent.parent) == variable.getType())
+            player.addVariable(variable, text);
+    }
+
+    @Override
+    public void accept(ComponentVisitor visitor)
+    {
+        visitor.visit(this);
+    }
+
+    public boolean valid()
+    {
+        return parent.parent.hasVariable(variable);
     }
 }

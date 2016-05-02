@@ -19,11 +19,29 @@ public class AssignScreen extends NonPlayableScreen
     {
         super(parent, name);
         optionLimit = 1;
-        options.add(0, new Option("", null));
+        // options.add(0, new Option("", null));
     }
 
     // getters, setters
     // parse newValue automatically within the setter, which takes a String
+
+    public Screen copy(Game game)
+    {
+        AssignScreen screen = new AssignScreen(game, name);
+        screen.variable = variable;
+        screen.newValue = newValue;
+
+        return screen;
+    }
+
+    public Var getVariable() { return variable; }
+
+    public Expr getNewValue() { return newValue; }
+
+    public String getText()
+    {
+        return variable + " := " + newValue;
+    }
 
     public boolean setVariable(String var)
     {
@@ -56,7 +74,20 @@ public class AssignScreen extends NonPlayableScreen
     @Override
     public Option getOption(GamePlayer player)
     {
-        player.addVariable(variable, newValue);
+        if (valid() && variable.getType().equals(newValue.getType(parent)))
+            player.addVariable(variable, newValue);
         return options.get(0); // first option
+    }
+
+    public boolean valid()
+    {
+        return newValue != null
+            && newValue.valid(parent)
+            && parent.hasVariable(variable);
+    }
+
+    public void accept(ScreenVisitor visitor)
+    {
+        visitor.visit(this);
     }
 }
