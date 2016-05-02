@@ -243,7 +243,12 @@ public class EditScrollPaneLeft extends JPanel
                 // add option to screen and update combo box
                 if (parent.screen.addOption(nameField.getText(),
                                             parent.screen.getParent().getScreen((String) screenField.getSelectedItem())))
+                {
                     model.fireTableStructureChanged();
+
+                    nameField.setText("");
+                    screenField.setSelectedIndex(0);
+                }
             }
         }
 

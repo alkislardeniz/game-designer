@@ -43,7 +43,11 @@ public class GamePlayer extends Observable implements Serializable, VariableEnv
     public boolean call()
     {
         if (currentScreen == null)
+        {
+            setChanged();
+            notifyObservers();
             return false;
+        }
 
         currentScreen.fromPlayer(this);
         setChanged();

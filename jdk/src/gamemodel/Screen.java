@@ -121,7 +121,7 @@ public abstract class Screen implements Serializable
     public boolean valid()
     {
         for (Option op : options)
-            if (!parent.screens.contains(op.getScreen()))
+            if (op.getScreen() != null && !parent.screens.contains(op.getScreen()))
                 return false;
         return true;
     }

@@ -11,7 +11,7 @@ public class ExprStringTest
     {
         ExprString expr = new ExprString();
 
-        expr.setString("2 + 5 = $(2 + 5)");
+        expr.setString("$\"$\"");
 
         System.out.println(expr.toString(null));
     }

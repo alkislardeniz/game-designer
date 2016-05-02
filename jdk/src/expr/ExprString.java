@@ -11,12 +11,12 @@ import java.util.ArrayList;
  */
 public class ExprString implements Serializable
 {
-    ArrayList<Expr> exprs;
+    public ArrayList<Expr> exprs;
     String exprString;
 
     public ExprString()
     {
-
+        setString("");
     }
 
     public ExprString(String exprStr)
@@ -48,6 +48,7 @@ public class ExprString implements Serializable
     {
         String[] split;
         int startIndex;
+        Expr expr;
 
         // find nearest $ sign
         startIndex = exprStr.indexOf("$");
@@ -57,6 +58,20 @@ public class ExprString implements Serializable
         {
             exprs.add(new LiteralExpr(new ExprValue(exprStr, ExprType.STRING)));
             return true;
+        }
+
+        // $ sign escaped by \
+        if (startIndex > 0 && exprStr.charAt(startIndex - 1) == '\\')
+        {
+            exprs.add(new LiteralExpr(new ExprValue(exprStr.substring(0, startIndex - 1) + "$", ExprType.STRING)));
+            return setStringAux(exprStr.substring(startIndex + 1));
+        }
+
+        // $ sign at end
+        if (startIndex == exprStr.length() - 1)
+        {
+            exprs = null;
+            return false;
         }
 
         // add string until $ sign to list
@@ -72,7 +87,14 @@ public class ExprString implements Serializable
             return false;
         }
 
-        exprs.add(Expr.parse(split[0]));
+        expr = Expr.parse(split[0]);
+
+        if (expr == null)
+        {
+            exprs = null;
+            return false;
+        }
+        exprs.add(expr);
 
         return split.length == 1 || setStringAux(split[1]);
     }
@@ -99,6 +121,9 @@ public class ExprString implements Serializable
     public String toString(VariableEnv env)
     {
         String res = "";
+
+        if (exprs == null)
+            return "";
 
         for (Expr expr : exprs)
             res = res + expr.eval(env);

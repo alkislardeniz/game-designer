@@ -4,6 +4,7 @@ import expr.Binding;
 import gamemodel.*;
 import javax.swing.*;
 import java.awt.*;
+import java.lang.Math;
 
 /**
  * Displays preview image for screens, to be used inside GameEditController.
@@ -12,10 +13,11 @@ import java.awt.*;
  */
 public class ScreenPreview extends JPanel implements ScreenVisitor
 {
-    Screen screen;
     static final int WIDTH = 100;
     static final int HEIGHT = 75;
 
+    Screen screen;
+    boolean showOptions;
     JLabel nameLabel, textLabel;
 
     // for assignment screens, show the screen's name and assignment
@@ -70,6 +72,74 @@ public class ScreenPreview extends JPanel implements ScreenVisitor
             res = res + "\n" + o.getName() + " : " + o.getScreen();
 
         return res;
+    }
+
+    // paint each option as an arrow if highlighted
+    public void paintOptions(GameView parent, Graphics g)
+    {
+        Point next;
+        int offset = 100;
+        int direction; // 1 if going down, -1 if up
+        int x, y, nextX, nextY;
+
+        // center (x,y)
+        x = getX() + WIDTH / 2;
+        y = getY() + HEIGHT / 2;
+
+        if (showOptions)
+        {
+            // for each option,
+            //   find location of next screen in view
+            //   if adjacent, draw straight line
+            //   otherwise draw lines in alternating sides and in increasing offset
+
+            for (Option op : screen.getOptions())
+            {
+                next = parent.getLocation(op.getScreen());
+
+                if (next != null)
+                {
+                    nextX = (int) next.getX() + WIDTH / 2;
+                    nextY = (int) next.getY() + HEIGHT / 2;
+                    direction = (int) Math.signum(next.getY() - getY());
+
+                    // directing back to itself
+                    if (direction == 0)
+                    {
+                        // draw full loop
+                        g.drawLine(x, y, x - 100, y);
+                        g.drawLine(x - 100, y, x - 100, y - 85);
+                        g.drawLine(x - 100, y - 85, x, y - 85);
+                        g.drawLine(x, y - 85, x, y);
+
+                        // draw name
+                        g.drawString(op.getName(), x - 100, y - 10);
+
+                    }
+                    else if (parent.isAdjacent(screen, op.getScreen()))
+                    {
+                        // draw line
+                        g.drawLine(x, y, nextX, nextY);
+
+                        // draw name
+                        g.drawString(op.getName(), x + 5, y + direction * 50);
+                    }
+                    else if (parent.contains(op.getScreen()))
+                    {
+                        // draw loop based on offset
+                        g.drawLine(x, y, x + offset, y);
+                        g.drawLine(x + offset, y, x + offset, nextY);
+                        g.drawLine(x + offset, nextY, x, nextY);
+
+                        // draw name
+                        g.drawString(op.getName(), x + 50 * (int) Math.signum(offset), y - 10);
+
+                        // update offset
+                        offset = -(offset + 25);
+                    }
+                }
+            }
+        }
     }
 
     // modifying preview based on type of screen

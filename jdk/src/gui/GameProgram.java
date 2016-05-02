@@ -23,11 +23,19 @@ public class GameProgram extends JFrame
     {
         super("Game");
 
+        JLabel label;
+
+        createMenu();
+
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
-        createMenu();
-        panel.add(Box.createRigidArea(new Dimension(1000, 650)));
+
+        label = new JLabel(new ImageIcon("pics/welcome.png"));
+        label.setSize(1000, 650);
+
+        panel.add(label);
         add(panel);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);
@@ -71,8 +79,8 @@ public class GameProgram extends JFrame
 
         // save menu item
         saveGame = new JMenu("Save");
-        saveEditable = new JMenuItem("Create Editable Game");
-        savePlayable = new JMenuItem("Create Playable Game");
+        saveEditable = new JMenuItem("Save Editable Game");
+        savePlayable = new JMenuItem("Save Playable Game");
         saveEditable.setEnabled(false);
         savePlayable.setEnabled(false);
         saveGame.add(saveEditable);
@@ -256,7 +264,7 @@ public class GameProgram extends JFrame
 
                 if (player == null)
                 {
-                    // TODO print error message
+                    // TODO print error message -- game not set up correctly
                     return;
                 }
 
@@ -294,9 +302,9 @@ public class GameProgram extends JFrame
         aboutUs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String aboutStr = "Dadam - Deniz Ata Demir Akant Mehmet \n Lets you to design j-rpg games" +
-                 "\n The only thing that restricts you is your imagination " +
-                        "\n \n Part of Bilkent's CS 102 course";
+                String aboutStr = "Dadam - Deniz Ata Demir Akant Mehmet \nLets you design j-rpg games"
+                                + "\nThe only thing that restricts you is your imagination"
+                                + "\n\nPart of Bilkent's CS 102 course";
 
                 JOptionPane.showMessageDialog(GameProgram.this, aboutStr, "About Us", JOptionPane.INFORMATION_MESSAGE);
             }

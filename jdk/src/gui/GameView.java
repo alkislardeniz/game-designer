@@ -15,8 +15,6 @@ public class GameView extends JPanel
     GameEditController controller;
     Game game;
     ArrayList<ScreenPreview> screens;
-    PlayableScreen screen = new PlayableScreen(game, "a");
-    AssignScreen assign = new AssignScreen(game, "b");
     JPanel panel;
 
     public GameView(GameEditController controller)
@@ -28,7 +26,18 @@ public class GameView extends JPanel
         this.controller = controller;
         game = controller.game;
 
-        panel = new JPanel();
+        panel = new JPanel() {
+            @Override
+            public void paintComponent(Graphics g)
+            {
+                super.paintComponent(g);
+
+                GameView.this.update();
+
+                for (ScreenPreview view : screens)
+                    view.paintOptions(GameView.this, g);
+            }
+        };
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
         screens = new ArrayList<>();
@@ -45,20 +54,29 @@ public class GameView extends JPanel
         setPreferredSize(new Dimension(800, 575));
 
         add(scrollPane);
+
+        repaint();
     }
 
     public void addScreen(Screen screen)
     {
         ScreenPreview preview = new ScreenPreview(screen);
-        screens.add(preview); // estne hoc necesse?
-        preview.addMouseListener(new PreviewListener(preview));
+        screens.add(preview);
+
+        PreviewListener listener = new PreviewListener(preview);
+        preview.addMouseListener(listener);
+        preview.addMouseMotionListener(listener);
+
+        panel.add(Box.createRigidArea(new Dimension(100, 50)));
         panel.add(preview);
 
+        validate();
         repaint();
     }
 
     public void removePreview(ScreenPreview view)
     {
+        // cannot remove start screen
         if (view.screen.equals(game.getStartScreen()))
             return;
 
@@ -67,22 +85,80 @@ public class GameView extends JPanel
         game.removeScreen(view.screen.getName());
         controller.pane.pane.removeTabAt(controller.pane.pane.indexOfTab(view.screen.getName()));
 
+        validate();
         repaint();
     }
 
-    // TODO
-    // - Link each ScreenPreview to its predecessors and successors
-    // - Draw each newly completed line while adding previews, updating if necessary
-    // - Take x offset of the line from a queue,
+    public boolean contains(Screen screen)
+    {
+        for (ScreenPreview view : screens)
+            if (view.screen.equals(screen))
+                return true;
+
+        return false;
+    }
+
+    public Point getLocation(Screen screen)
+    {
+        for (ScreenPreview view : screens)
+            if (view.screen.equals(screen))
+                return view.getLocation();
+
+        return null;
+    }
+
+    // suboptimal algorithm
+    public int indexOf(Screen screen)
+    {
+        for (ScreenPreview view : screens)
+            if (view.screen.equals(screen))
+                return screens.indexOf(view);
+
+        return -1;
+    }
+
+    public boolean isAdjacent(Screen scr1, Screen scr2)
+    {
+        int index1 = indexOf(scr1);
+        int index2 = indexOf(scr2);
+        int diff = index1 - index2;
+
+        return index1 != -1
+            && index2 != -1
+            && (diff == -1 || diff == 1);
+    }
+
+    public void update()
+    {
+        for (ScreenPreview view : screens)
+            view.update();
+
+        repaint();
+    }
 
     public class PreviewListener extends MouseAdapter
     {
         ScreenPreview view;
-        MouseEvent lastEvent;
 
         public PreviewListener(ScreenPreview view)
         {
             this.view = view;
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e)
+        {
+            view.showOptions = true;
+
+            repaint();
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e)
+        {
+            view.showOptions = false;
+
+            repaint();
         }
 
         @Override

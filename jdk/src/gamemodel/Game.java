@@ -1,7 +1,6 @@
 package gamemodel;
 
 import java.util.ArrayList;
-import java.util.Observable;
 import java.io.Serializable;
 import expr.*;
 
@@ -12,7 +11,7 @@ import expr.*;
  * @author Demir Topaktas
  * @version 30/04/16
  */
-public class Game extends Observable implements Serializable, VariableSet
+public class Game implements Serializable, VariableSet
 {
     // store dimensions of each screen of game
     // possibly make the lists maps, so as to memoize screen names and speed up program
@@ -27,7 +26,7 @@ public class Game extends Observable implements Serializable, VariableSet
         screens = new ArrayList<>();
         variables = new ArrayList<>();
 
-        startScreen = new PlayableScreen(this, "start");
+        startScreen = new PlayableScreen(this, "Start");
         screens.add(startScreen);
     }
 

@@ -41,7 +41,8 @@ public class ObjectView extends ComponentView
     {
         int x, y, dx, dy;
 
-        dx = dy = 0;
+        dx = 0;
+        dy = 0;
 
         if (direction == KeyEvent.VK_UP)
             dy--;
@@ -58,7 +59,7 @@ public class ObjectView extends ComponentView
         // check compatibility in obj's parent
         if (obj.getParent().canPlaceComponent(obj, x, y))
         {
-            // if can move, change coordinates and change currentIcon to direction
+            // if object can move, change coordinates and change currentIcon to direction
 
             icon.setMoving(this, true);
             icon.setImage(this, dx, dy);

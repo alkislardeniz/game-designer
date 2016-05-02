@@ -31,17 +31,16 @@
 
 package gui;
 
-/**
- * @author Mehmet was here lolz
- * @author Akant Atılgan
- */
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
+/**
+ * Component to be used as tabComponent;
+ * Contains a JLabel to show the text and
+ * a JButton to close the tab it belongs to
+ */
 public class ButtonTabComponent extends JPanel {
     private final JTabbedPane pane;
 
