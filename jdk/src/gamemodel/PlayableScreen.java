@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin on 4/3/16.
+ * PlayableScreen
+ * A playable screen that contains screen components.
+ * @author  Ata Deniz Aydin
+ * @author  Demir Topaktas
+ * @version 12/04/16
  */
 public class PlayableScreen extends Screen
 {

@@ -1,16 +1,15 @@
 package gui;
 
-import gamemodel.Option;
-
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 
 /**
- * Created by Deniz Alkislar on 21.4.2016.
+ * Contains radio buttons that affect the editing of a screen.
+ * @author  Deniz Alkislar
+ * @author  Ata Deniz Aydin
+ * @version 21/04/16
  */
 public class EditScreenOptions extends JPanel
 {

@@ -5,6 +5,7 @@ import expr.*;
 /**
  * ScreenLabel
  * Displays value of a given expression inside a screen.
+ * @author  Ata Deniz Aydin
  * @version 4/10/16
  */
 public class ScreenLabel extends ScreenComponent

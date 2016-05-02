@@ -5,9 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by admin on 4/26/16.
+ * Panel allowing the user to edit a game.
+ * @author  Ata Deniz Aydin
+ * @author  Demir Topaktas
+ * @version 28/04/16
  */
-public class GameEditController extends JPanel implements GameController
+public class GameEditController extends JPanel
 {
     Game game;
     GameView gameView;

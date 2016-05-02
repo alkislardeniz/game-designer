@@ -3,7 +3,9 @@ package gui;
 import gamemodel.GamePlayer;
 
 /**
- * Created by admin on 4/17/16.
+ * Interface for parent classes of ScreenView.
+ * @author  Ata Deniz Aydin
+ * @version 12/04/16
  */
 public interface ScreenController
 {

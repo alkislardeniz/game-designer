@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Deniz Alkislar on 21.4.2016.
+ * Scrollable pane containing objects to add to a screen.
+ * @author  Deniz Alkislar
+ * @version 21/04/16
  */
 public class EditScrollPaneRight extends JPanel
 {

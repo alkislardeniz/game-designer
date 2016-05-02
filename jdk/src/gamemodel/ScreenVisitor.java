@@ -1,7 +1,9 @@
 package gamemodel;
 
 /**
- * Created by admin on 4/28/16.
+ * Visitor interface for different subclasses of screens.
+ * @author  Ata Deniz Aydin
+ * @version 12/04/16
  */
 public interface ScreenVisitor
 {

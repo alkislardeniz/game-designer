@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Created by Deniz Alkislar on 21.4.2016.
+ * Scrollable pane containing movable characters and other components to add to a screen.
+ * @author  Deniz Alkislar
+ * @author  Ata Deniz Aydin
+ * @version 21/04/16
  */
 public class EditScrollPaneLeft extends JPanel
 {

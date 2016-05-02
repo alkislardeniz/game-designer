@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by admin on 4/18/16.
+ * Represents a ScreenTextBox graphically.
+ * @author  Ata Deniz Aydin
+ * @version 22/04/16
  */
 public class TextBoxView extends ComponentView
 {

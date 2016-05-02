@@ -4,8 +4,9 @@ import gamemodel.*;
 import java.awt.*;
 
 /**
- * Represents screen component graphically
- * Created by admin on 4/12/16.
+ * Represents a screen component graphically.
+ * @author  Ata Deniz Aydin
+ * @version 12/04/16
  */
 public abstract class ComponentView
 {

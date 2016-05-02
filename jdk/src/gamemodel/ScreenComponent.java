@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.awt.Point;
 
 /**
- * Created by admin on 4/3/16.
+ * Abstract class to represent components on a playable screen.
+ * @author  Ata Deniz Aydin
+ * @version 17/04/16
  */
 public abstract class ScreenComponent implements Serializable
 {
@@ -67,8 +69,6 @@ public abstract class ScreenComponent implements Serializable
         this.position = position;
     }
 
-
-
     public PlayableScreen getParent() { return parent; }
 
     // returns whether other's position is compatible with this
@@ -89,11 +89,9 @@ public abstract class ScreenComponent implements Serializable
             && y < position.getY() + height;
     }
 
-
     // what to do in leaving a screen, nothing by default
     public void leavingScreen(GamePlayer player)
     {
-
 
     }
 

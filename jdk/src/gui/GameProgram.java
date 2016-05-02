@@ -4,7 +4,6 @@ import filemodule.*;
 import gamemodel.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
@@ -12,12 +11,17 @@ import java.io.File;
  * Program to be run, creates/opens/saves games and plays the open game.
  * @author Mehmet Can Altuntaş
  * @author Ata Deniz Aydın
- * Created by admin on 4/28/16.
+ * @version 30/04/16
  */
 public class GameProgram extends JFrame
 {
+    public static void main(String[] args)
+    {
+        new GameProgram();
+    }
+
     JPanel panel;
-    GameController controller;
+    GameEditController controller;
 
     public GameProgram()
     {
@@ -130,7 +134,7 @@ public class GameProgram extends JFrame
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
                     fileName = chooser.getSelectedFile().getAbsolutePath();
-                    System.out.println(fileName);
+                    // System.out.println(fileName);
                 }
 
                 try
@@ -169,23 +173,14 @@ public class GameProgram extends JFrame
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
                     fileName = chooser.getSelectedFile().getAbsolutePath();
-                    System.out.println(fileName);
+                    // System.out.println(fileName);
                 }
 
                 try
                 {
                     GamePlayer player = (GamePlayer) new In(fileName).deserializeFile();
                     // create new Game object and add its panel to frame
-                    panel.removeAll();
-                    panel.add(new GamePlayController(player));
-
-                    validate();
-                    repaint();
-                    pack();
-
-                    saveEditable.setEnabled(false);
-                    savePlayable.setEnabled(true);
-                    playGame.setEnabled(true);
+                    showPlayer(player);
                 }
                 catch (Exception ex)
                 {
@@ -209,13 +204,14 @@ public class GameProgram extends JFrame
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
                     fileName = chooser.getSelectedFile().getAbsolutePath() + ".playable";
-                    System.out.println(fileName);
+                    // System.out.println(fileName);
                 }
 
                 try
                 {
-                    assert controller != null && controller instanceof GameEditController;
-                    new Out(new File(fileName), ((GameEditController) controller).game).serializeFile();
+                    assert controller != null;
+
+                    new Out(new File(fileName), controller.game).serializeFile();
                 } catch (Exception ex)
                 {
                     JOptionPane.showMessageDialog(GameProgram.this, "Something went wrong :(", "Error while opening the file", JOptionPane.ERROR_MESSAGE);
@@ -239,7 +235,7 @@ public class GameProgram extends JFrame
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
                     fileName = chooser.getSelectedFile().getAbsolutePath() + ".playable";
-                    System.out.println(fileName);
+                    // System.out.println(fileName);
                 }
 
                 try
@@ -264,33 +260,12 @@ public class GameProgram extends JFrame
 
                 if (player == null)
                 {
-                    // TODO print error message -- game not set up correctly
+                    // print error message -- game not set up correctly
+                    JOptionPane.showMessageDialog(null, "Error: The game is not set up correctly.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                JFrame frame = new JFrame("Game");
-
-                JPanel playPanel = new GamePlayController(new PlayerWindow() {
-                    @Override
-                    public GamePlayer getPlayer()
-                    {
-                        return player;
-                    }
-
-                    // close controller if game over
-                    @Override
-                    public void gameOver()
-                    {
-                        // close frame
-                        frame.setVisible(false);
-                        frame.dispose();
-                    }
-                });
-
-                frame.add(playPanel);
-                frame.pack();
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
+                showPlayer(player);
             }
         });
 
@@ -319,31 +294,36 @@ public class GameProgram extends JFrame
 
     public GamePlayer getPlayer()
     {
-        GamePlayer player;
+        if (controller.game.valid())
+            return new GamePlayer(controller.game);
 
-        if (controller instanceof GameEditController)
-        {
-            if (((GameEditController) controller).game.valid())
-            {
-                player = new GamePlayer((((GameEditController) controller).game));
-            }
-            else
-            {
-                return null;
-            }
-        }
-        else
-        {
-            assert controller instanceof GamePlayController;
-
-            player = ((GamePlayController) controller).player;
-        }
-
-        return player;
+        return null;
     }
 
-    public static void main(String[] args)
+    public void showPlayer(GamePlayer player)
     {
-        new GameProgram();
+        JFrame frame = new JFrame("Game");
+
+        JPanel playPanel = new GamePlayController(new PlayerWindow() {
+            @Override
+            public GamePlayer getPlayer()
+            {
+                return player;
+            }
+
+            // close controller if game over
+            @Override
+            public void gameOver()
+            {
+                // close frame
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
+
+        frame.add(playPanel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }

@@ -6,7 +6,9 @@ import gamemodel.*;
 import javax.swing.*;
 
 /**
- * Created by admin on 4/18/16.
+ * Represents a ScreenLabel graphically.
+ * @author  Ata Deniz Aydin
+ * @version 18/04/16
  */
 public class LabelView extends ComponentView
 {

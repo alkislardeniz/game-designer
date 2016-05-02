@@ -7,7 +7,8 @@ import java.awt.event.*;
 
 /**
  * Contains ScreenView for a screen being played.
- * Created by admin on 4/12/16.
+ * @author  Ata Deniz Aydin
+ * @version 12/04/16
  */
 public class ScreenPlayController extends JPanel implements ScreenController
 {

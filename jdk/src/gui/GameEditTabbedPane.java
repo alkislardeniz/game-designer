@@ -9,7 +9,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Created by sev on 26.04.2016.
+ * Tabbed pane containing GameView and ScreenEditControllers.
+ * @author  Akant Atilgan
+ * @author  Ata Deniz Aydin
+ * @version 30/04/16
  */
 public class GameEditTabbedPane extends JPanel
 {

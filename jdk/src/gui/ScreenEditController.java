@@ -7,7 +7,10 @@ import java.awt.event.*;
 
 /**
  * Panel containing ScreenView that allows to edit an individual screen.
- * Created by Ata Deniz Aydin on 4/12/16.
+ * @author  Ata Deniz Aydin
+ * @author  Deniz Alkislar
+ * @author  Akant Atilgan
+ * @version 18/04/16
  */
 public class ScreenEditController extends JPanel implements ScreenController
 {

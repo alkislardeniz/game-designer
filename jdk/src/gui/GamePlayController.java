@@ -2,15 +2,16 @@ package gui;
 
 import gamemodel.*;
 import javax.swing.*;
-import java.awt.event.*;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
  * Changes ScreenPlayController based on current screen of game
- * Created by admin on 4/15/16.
+ * @author  Ata Deniz Aydin
+ * @author  Demir Topaktas
+ * @version 15/04/16
  */
-public class GamePlayController extends JPanel implements Observer, GameController
+public class GamePlayController extends JPanel implements Observer
 {
     PlayerWindow parent;
     GamePlayer player;

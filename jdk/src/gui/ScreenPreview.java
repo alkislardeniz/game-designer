@@ -8,8 +8,9 @@ import java.lang.Math;
 
 /**
  * Displays preview image for screens, to be used inside GameEditController.
- * Mehmet was here on 26 April 2016
- * Created by admin on 4/26/16.
+ * @author  Mehmet Can Altuntas
+ * @author  Ata Deniz Aydin
+ * @version 01/05/16
  */
 public class ScreenPreview extends JPanel implements ScreenVisitor
 {

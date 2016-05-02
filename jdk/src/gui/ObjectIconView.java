@@ -5,7 +5,9 @@ import gamemodel.*;
 import javax.swing.*;
 
 /**
- * Created by admin on 4/12/16.
+ * Contains graphical representations of ObjectIcon objects.
+ * @author  Deniz Alkislar
+ * @version 30/04/16
  */
 public enum ObjectIconView
 {
@@ -26,10 +28,10 @@ public enum ObjectIconView
     BG8     (ObjectIcon.BG8, "bg8.png"),
     BG9     (ObjectIcon.BG9, "bg9.png"),
     TILE    (ObjectIcon.TILE, "tile.png"),
-    TILE2    (ObjectIcon.TILE2, "tile2.png"),
-    TILE3    (ObjectIcon.TILE3, "tile3.png"),
-    TILE4    (ObjectIcon.TILE4, "tile4.png"),
-    TILE5    (ObjectIcon.TILE5, "tile5.png"),
+    TILE2   (ObjectIcon.TILE2, "tile2.png"),
+    TILE3   (ObjectIcon.TILE3, "tile3.png"),
+    TILE4   (ObjectIcon.TILE4, "tile4.png"),
+    TILE5   (ObjectIcon.TILE5, "tile5.png"),
     BLOCK   (ObjectIcon.BLOCK, "block.png"),
     WALL    (ObjectIcon.WALL, "wall.png"),
     WALL2   (ObjectIcon.WALL2, "wall2.png"),
@@ -65,7 +67,7 @@ public enum ObjectIconView
     SHELF2  (ObjectIcon.SHELF2, "shelf2.png"),
     STAIRS  (ObjectIcon.STAIRS, "stairs.png"),
     STAIRSTOP (ObjectIcon.STAIRSTOP, "stairstop.png"),
-    TAP (ObjectIcon.TAP, "tap.png"),
+    TAP     (ObjectIcon.TAP, "tap.png"),
     TABLE   (ObjectIcon.TABLE, "table.png"),
     VASE    (ObjectIcon.VASE, "vase.png"),
     WC      (ObjectIcon.WC, "wc.png"),

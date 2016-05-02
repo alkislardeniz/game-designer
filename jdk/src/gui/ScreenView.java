@@ -8,7 +8,10 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
- * Created by admin on 4/12/16.
+ * Represents a PlayableScreen graphically.
+ * @author  Deniz Alkislar
+ * @author  Ata Deniz Aydin
+ * @version 17/04/16
  */
 public class ScreenView extends JPanel implements ComponentVisitor
 {

@@ -6,7 +6,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * Created by fatma on 4/17/16.
+ * Represents a ScreenButton graphically.
+ * @author  Ata Deniz Aydin
+ * @author  Demir Topaktas
+ * @version 17/04/16
  */
 public class ButtonView extends ComponentView
 {

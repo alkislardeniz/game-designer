@@ -4,7 +4,8 @@ import gamemodel.GamePlayer;
 
 /**
  * Window that contains and runs a player.
- * Created by admin on 4/21/16.
+ * @author  Ata Deniz Aydin
+ * @version 21/04/16
  */
 public interface PlayerWindow
 {

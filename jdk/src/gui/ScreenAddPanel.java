@@ -1,15 +1,15 @@
 package gui;
 
-import gamemodel.*;
-import expr.Binding;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
 /**
- * Contains buttons to add screens to game.
- * Created by admin on 4/28/16.
+ * Contains buttons to add screens to and delete screens from the game.
+ * @author  Ata Deniz Aydin
+ * @author  Deniz Alkislar
+ * @version 28/04/16
  */
 public class ScreenAddPanel extends JPanel
 {

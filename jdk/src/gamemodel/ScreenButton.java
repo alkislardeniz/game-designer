@@ -1,7 +1,10 @@
 package gamemodel;
 
 /**
- * Created by admin on 4/3/16.
+ * Represents a button on a playable screen.
+ * @author  Ata Deniz Aydin
+ * @author  Demir Topaktas
+ * @version 12/04/16
  */
 public class ScreenButton extends ScreenComponent
 {

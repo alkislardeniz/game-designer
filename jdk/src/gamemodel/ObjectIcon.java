@@ -1,17 +1,18 @@
 package gamemodel;
 
 /**
- *
+ * Enumerated type for icons used by objects.
  * @author Mehmet Can Altuntaş
- * @version 21 April 2016
+ * @author Deniz Alkislar
+ * @version 28/04/2016
  */
-
 public enum ObjectIcon
 {
     //Movable objects
     MEGAMAN (1, 1, true),
     MARIO   (1, 1, true),
     COP     (1, 1, true),
+
     //Non movable backgrounds
     BG0     (),
     BG      (),
@@ -24,10 +25,10 @@ public enum ObjectIcon
     BG8     (),
     BG9     (),
     TILE    (1, 1, false, true),
-    TILE2    (1, 1, false, true),
-    TILE3    (1, 1, false, true),
-    TILE4    (1, 1, false, true),
-    TILE5    (1, 1, false, true),
+    TILE2   (1, 1, false, true),
+    TILE3   (1, 1, false, true),
+    TILE4   (1, 1, false, true),
+    TILE5   (1, 1, false, true),
     BLOCK   (1, 1, false),
     WALL    (1, 1, false),
     WALL2   (1, 1, false),
@@ -61,9 +62,9 @@ public enum ObjectIcon
     SWORDS  (2, 1, false),
     SHELF   (2, 3, false),
     SHELF2  (1, 3, false),
-    STAIRS (2, 4, false),
+    STAIRS  (2, 4, false),
     STAIRSTOP (2, 2, false),
-    TAP (1, 2, false),
+    TAP     (1, 2, false),
     TABLE   (1, 1, false),
     VASE    (1, 1, false),
     WC      (1, 2, false),

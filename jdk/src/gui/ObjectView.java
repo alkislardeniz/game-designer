@@ -7,7 +7,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by admin on 4/12/16.
+ * Represents a ScreenObject graphically.
+ * @author  Deniz Alkislar
+ * @author  Ata Deniz Aydin
+ * @version 12/04/16
  */
 public class ObjectView extends ComponentView
 {

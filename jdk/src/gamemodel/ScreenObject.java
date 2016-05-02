@@ -1,7 +1,9 @@
 package gamemodel;
 
 /**
- * Created by admin on 4/3/16.
+ * Represents an object on a playable screen.
+ * @author  Ata Deniz Aydin
+ * @version 17/04/16
  */
 public class ScreenObject extends ScreenComponent
 {

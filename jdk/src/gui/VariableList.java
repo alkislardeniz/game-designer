@@ -11,7 +11,9 @@ import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
 /**
- * Created by admin on 4/28/16.
+ * Contains mutable list of variables.
+ * @author  Ata Deniz Aydin
+ * @version 01/05/16
  */
 public class VariableList extends JPanel
 {
