@@ -84,7 +84,8 @@ public class GameView extends JPanel
         screens.remove(view);
         panel.remove(view);
         game.removeScreen(view.screen.getName());
-        controller.pane.pane.removeTabAt(controller.pane.pane.indexOfTab(view.screen.getName()));
+        if (controller.pane.pane.indexOfTab(view.screen.getName()) >= 0)
+            controller.pane.pane.removeTabAt(controller.pane.pane.indexOfTab(view.screen.getName()));
 
         validate();
         repaint();
