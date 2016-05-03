@@ -52,8 +52,8 @@ public abstract class ScreenComponent implements Serializable
     {
         return other != null
             && other instanceof ScreenComponent
-            && ((ScreenComponent) other).name.equals(name)
-            && ((ScreenComponent) other).position.equals(position);
+            && ((ScreenComponent) other).name.equals(name);
+            // && ((ScreenComponent) other).position.equals(position);
     }
 
     public String getName() { return name; }
