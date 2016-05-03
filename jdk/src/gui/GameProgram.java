@@ -142,7 +142,8 @@ public class GameProgram extends JFrame
                     Game game = (Game) new In(fileName).deserializeFile();
                     // create new Game object and add its panel to frame
                     panel.removeAll();
-                    panel.add(new GameEditController(game));
+                    controller = new GameEditController(game);
+                    panel.add(controller);
 
                     validate();
                     repaint();
@@ -205,7 +206,7 @@ public class GameProgram extends JFrame
 
                 if (tmp == JFileChooser.APPROVE_OPTION)
                 {
-                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".playable";
+                    fileName = chooser.getSelectedFile().getAbsolutePath() + ".editable";
                     // System.out.println(fileName);
                 }
 
